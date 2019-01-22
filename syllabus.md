@@ -12,7 +12,7 @@
 
 This is a master's level course on data mining and statistical learning for students in the master's program in Economics at UT-Austin.  The course is intended as an overview, rather than an in-depth treatment of any particular topic.  We will move fast and cover a lot, but we will focus on practical applications rather than theory.  
 
-[The course homepage](README.md) has a detailed outline of topics, together with topic-by-topic reading lists.  
+[The course homepage](README.md) will have a detailed week by week description of what we're doing in class, together with topic-by-topic reading lists.  I'll post these notices as we move along in the semester.  But if you want to read ahead, you can pace yourself using the topics list below (see "Outline of topics").  
 
 The prerequisites are the Statistics and Probability course and the Econometrics course in the Econ master's program.  
 
@@ -58,7 +58,7 @@ If there's time, we will try to cover some or all of the following supplemental 
 
 
 
-## Grading  
+## Assignments and grading  
 
 There are no in-class exams and no final exam.  
 
@@ -71,7 +71,9 @@ Your grade for this course will come from:
 The homework assignments consist mainly of analyzing some data and writing a report on what you've found.  Here's the submission protocol:  
 - Prepare your report as a single RMarkdown file.  
 - Knit the RMarkdown file to a Markdown output.  (Do not knit to HTML.)  
-- E-mail the link for both the output (.md file) and the raw RMarkdown file (.Rmd) to our TA.  
+- E-mail the links for both the output (.md file) and the raw RMarkdown file (.Rmd) to our TA.  
+
+Do not send an attachment.  Do not knit to an HTML file.  
 
 ### Late assignment grace policy
 
@@ -85,13 +87,11 @@ The assignment for the final project is simple: pose an interesting question; co
 
 This assignment is purposely open-ended, allowing you considerable freedom to follow a path dictacted by your own intellectual curiosity. Strive to write something that a statistically literate person of wide- ranging interests (for example, a future employer) would find engaging and impressive.  
 
-For the final project, you will bring your own data set, analyze it, and write a report on it.  You will also have the option of working on a "default" final project and data set that I provide.  If you go for the default project, there will be a ceiling of 95% on your grade -- the last 5% is an incentive to be more creative and go with your own project.
-
-In case getting a data set proves too difficult, I will provide a "default" data set and project.  If you use this data set, I will impose a 94% ceiling (i.e. an A-) on your grade.  
-
 The deliverable dates are as follows:  
-- 5 PM on Friday, April 19, 2019: 2-page (max) project prospectus outlining the question, proposed methods, and data sources you will pursue.  The prospectus is ungraded, but for every week or partial week late that you are in turning in your prospectus, you will lose 5 points on your final project grade.  
-- 5 PM on Friday, May 10, 2019 (the last class day of the spring semester): the final project is due.   Because of the quick turn-around required to grade final projects, I unfortunately cannot extend this grace policy to encompass the project.  But remember, you have all semester to get this sorted.  
+- 5 PM on Friday, April 19, 2019: 2-page (max) project prospectus outlining the question, proposed methods, and data sources you will pursue.  The prospectus is ungraded, but it is an opportunity for you to get feedback on your idea and approach.  If you don't turn in a project prospectus on time, then you will not receive feedback on your idea.  
+- 5 PM on Friday, May 10, 2019 (the last class day of the spring semester): the final project is due.   Because of the quick turn-around required to grade final projects, I unfortunately cannot extend the grace policy to encompass the project.  But remember, you have all semester to get this sorted.  
+
+In case getting a data set proves too difficult, I will provide a "default" data set and project.  If you use this data set, I will impose a 93% ceiling (i.e. an A-) on your grade.  The last 7% is an incentive to be more creative and go with your own project.  If you are taking the "default" option, then just tell me so by April 19, in lieu of turning in a project prospectus.  
 
 
 ### Groups are allowed

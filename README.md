@@ -5,9 +5,12 @@ Welcome to ECO 395M, a course on data mining and statistical learning for studen
 
 ## Exercises
 
-TBA 
+I will post the exercises [here](exercises.md) and will call attention to their due dates in the week-by-week outline below.  
 
-## Week by week detail 
+## Week-by-week running outline 
+
+Every week I will update this 
+
 
 ### Week 1: the data scientist's toolbox
 
@@ -19,5 +22,5 @@ Readings:
 - [Introduction to RMarkdown](http://rmarkdown.rstudio.com)  
 - [Introduction to GitHub](https://help.github.com/articles/set-up-git/)    
 
-
+Looking ahead to next week:
 
