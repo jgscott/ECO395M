@@ -11,8 +11,6 @@ I will post the exercises [here](exercises/) and will call attention to their du
 
 Every week I will update this outline to reflect what we're currently working on, as well as to give you a preview of what's coming.  
 
-Here is a random change!!!!
-
 ### Week 1: the data scientist's toolbox
 
 [Slides here.](http://rpubs.com/jgscott/intro_ECO395M) 
