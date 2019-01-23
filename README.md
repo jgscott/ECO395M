@@ -14,6 +14,8 @@ Every week I will update this outline to reflect what we're currently working on
 
 ### Week 1: the data scientist's toolbox
 
+[Slides here.](http://rpubs.com/jgscott/intro_ECO395M) 
+
 Topics: Good data-curation and data-analysis practices; R; Markdown and RMarkdown; the importance of replicable analyses; version control with Git and Github.
 
 The first thing to do is to install [R](http://www.r-project.org) and then [RStudio](http://www.rstudio.org) on your own computer.  Detailed instructions for installing these two programs [can be found here](https://github.com/jgscott/learnR/blob/master/basics/installing_R.md).  Both are free.
