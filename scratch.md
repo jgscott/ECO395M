@@ -1,6 +1,6 @@
 
 
-### Data visualization
+### Data visualization 2
 
 Contingency tables and bar plots; basic plots for numerical data (scatterplot, boxplot, histogram, line graphs); lattice plots.  
 
