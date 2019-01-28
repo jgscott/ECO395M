@@ -24,7 +24,7 @@ Some software walkthroughs that show some of the capabilities of basic R graphic
 - [Test scores and GPA for UT grads](https://github.com/jgscott/learnR/blob/master/sat/sat.md): association between numerical and categorical variables.  
 
 If you really want to get good at plotting in R, you should learn ggplot2:
-- [mpg.R](R/mpg.R)  
+- [mpg.R](r/mpg.R)  
 - [Introduction to ggplot2](https://r4ds.had.co.nz/data-visualisation.html)
 - [Graphics for communication](https://r4ds.had.co.nz/graphics-for-communication.html)  
 
