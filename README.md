@@ -11,6 +11,32 @@ I will post the exercises [here](exercises/) and will call attention to their du
 
 Every week I will update this outline to reflect what we're currently working on, as well as to give you a preview of what's coming.  
 
+
+### Week 2: data visualization and practice with R
+
+Contingency tables and bar plots; basic plots for numerical data (scatterplot, boxplot, histogram, line graphs); lattice plots.  Introduction to ggplot2.  
+
+Examples of [bad graphics](notes/badgraphics.pdf).  [Baby set of slides here.](http://rpubs.com/jgscott/datavis1).
+
+Some software walkthroughs that show some of the capabilities of basic R graphics: 
+- [Survival on the Titanic](https://github.com/jgscott/learnR/blob/master/titanic/titanic.md): summarizing variation in categorical variables  
+- [City temperatures](https://github.com/jgscott/learnR/blob/master/citytemps/citytemps.md): measuring and visualizing dispersion in one numerical variable.  
+- [Test scores and GPA for UT grads](https://github.com/jgscott/learnR/blob/master/sat/sat.md): association between numerical and categorical variables.  
+
+If you really want to get good at plotting in R, you should learn ggplot2:
+- [mpg.R](R/mpg.R)  
+- [Introduction to ggplot2](https://r4ds.had.co.nz/data-visualisation.html)
+- [Graphics for communication](https://r4ds.had.co.nz/graphics-for-communication.html)  
+
+
+Readings:   
+- [excerpts](notes/DataExploration.pdf) from my course notes on data science.  We'll look at some example graphics in Chapter 1.  
+- Good graphics: scan through some of the New York Times' best [data visualizations](https://www.nytimes.com/interactive/2017/12/21/us/2017-year-in-graphics.html).  Lots of good stuff here but for our purposes, the best things to look at are those in the "Data Visualizations" section, about 60% of the way down the page.  Control-F for "Data Visualization" and you'll find it.  Here are three examples:  
+1) [Low-income students in college](https://www.nytimes.com/interactive/2017/01/18/upshot/some-colleges-have-more-students-from-the-top-1-percent-than-the-bottom-60.html)  
+2) [The French presidential election](https://www.nytimes.com/interactive/2017/04/23/world/europe/french-election-results-maps.html)  
+3) [LeBron James's playoff scoring record](https://www.nytimes.com/interactive/2017/05/25/sports/basketball/lebron-career-playoff-points-record.html)  
+
+
 ### Week 1: the data scientist's toolbox
 
 [Slides here.](http://rpubs.com/jgscott/intro_ECO395M) 
