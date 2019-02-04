@@ -12,6 +12,19 @@ I will post the exercises [here](exercises/) and will call attention to their du
 Every week I will update this outline to reflect what we're currently working on, as well as to give you a preview of what's coming.  
 
 
+
+### Week 3: Basic concepts in statistical learning
+
+[Slides here.](http://rpubs.com/jgscott/introlearning).
+
+Reading: Chapters 1-2 of "Introduction to Statistical Learning."
+
+In class:  
+- [loadhou.R](r/loadhou.R)  
+- [loadhou.csv](data/loadhou.csv)  
+
+
+
 ### Week 2: data visualization and practice with R
 
 Contingency tables and bar plots; basic plots for numerical data (scatterplot, boxplot, histogram, line graphs); lattice plots.  Introduction to ggplot2.  
