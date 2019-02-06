@@ -15,21 +15,23 @@ Every week I will update this outline to reflect what we're currently working on
 
 ### Week 3: Basic concepts in statistical learning
 
-[Slides here.](http://rpubs.com/jgscott/introlearning).
+[Slides here.](http://rpubs.com/jgscott/introlearning)
 
 Reading: Chapters 1-2 of "Introduction to Statistical Learning."
 
 In class:  
 - [loadhou.R](r/loadhou.R)  
 - [loadhou.csv](data/loadhou.csv)  
-
+- [spamtoy.R](r/spamtoy.r)  
+- [spamfit.csv](data/spamfit.csv)   
+- [spamtest.csv](data/spamtest.csv)   
 
 
 ### Week 2: data visualization and practice with R
 
 Contingency tables and bar plots; basic plots for numerical data (scatterplot, boxplot, histogram, line graphs); lattice plots.  Introduction to ggplot2.  
 
-Examples of [bad graphics](notes/badgraphics.pdf).  [Baby set of slides here.](http://rpubs.com/jgscott/datavis1).
+Examples of [bad graphics](notes/badgraphics.pdf).  [Baby set of slides here.](http://rpubs.com/jgscott/datavis1)
 
 Some software walkthroughs that show some of the capabilities of basic R graphics: 
 - [Survival on the Titanic](https://github.com/jgscott/learnR/blob/master/titanic/titanic.md): summarizing variation in categorical variables  
