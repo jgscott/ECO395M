@@ -61,7 +61,7 @@ names(knn250)
 
 # define a helper function for calculating RMSE
 rmse = function(y, ypred) {
-  sqrt(mean((y-ypred)^2))
+  sqrt(mean(data.matrix((y-ypred)^2)))
 }
 
 ypred_lm1 = predict(lm1, X_test)
