@@ -91,3 +91,26 @@ p_test + geom_point(aes(x = KHOU, y = ypred_knn250), color='red')
 p_test + geom_path(aes(x = KHOU, y = ypred_knn250), color='red')
 p_test + geom_path(aes(x = KHOU, y = ypred_knn250), color='red') + 
   geom_path(aes(x = KHOU, y = ypred_lm2), color='blue')
+
+
+
+
+#### exercise
+
+
+N_train = 150
+train_ind = sort(sample.int(N, N_train, replace=FALSE))
+D_train = loadhou[train_ind,]
+D_train = arrange(D_train, KHOU)
+y_train = D_train$COAST
+X_train = data.frame(KHOU=jitter(D_train$KHOU))
+
+knn_model = knn.reg(X_train, X_train, y_train, k = 3)
+
+D_train$ypred = knn_model$pred
+p_train = ggplot(data = D_train) + 
+  geom_point(mapping = aes(x = KHOU, y = COAST), color='lightgrey') + 
+  theme_bw(base_size=18) + 
+  ylim(7000, 20000) + xlim(0,36)
+p_train + geom_path(mapping = aes(x=KHOU, y=ypred), color='red', size=1.5)
+

@@ -13,6 +13,16 @@ Every week I will update this outline to reflect what we're currently working on
 
 
 
+### Weeks 4-5: Linear regression
+
+[Slides here.](http://rpubs.com/jgscott/linear_regression)
+
+Reading: Chapter 3 of "Introduction to Statistical Learning."
+
+In class:  
+- [oj.R](r/oj.R) and [oj.csv](data/oj.csv)   
+
+
 ### Week 3: Basic concepts in statistical learning
 
 [Slides here.](http://rpubs.com/jgscott/introlearning)
