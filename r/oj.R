@@ -6,15 +6,14 @@ library(tidyverse)
 ## read in the data
 oj = read.csv("../data/oj.csv") 
 
-## create some colors for the brands
 levels(oj$brand)
 
 ggplot(data=oj) + 
   geom_boxplot(aes(x=brand, y = log(price)))
 
 
-plot(log(price) ~ brand, data=oj, col=brandcol)
-plot(logmove ~ log(price), data=oj, col=brandcol[oj$brand])
+plot(log(price) ~ brand, data=oj)
+plot(logmove ~ log(price), data=oj)
 
 ## simple regression
 reg = lm(logmove ~ log(price) + brand, data=oj)

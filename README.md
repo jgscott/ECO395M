@@ -21,7 +21,7 @@ Reading: Chapter 3 of "Introduction to Statistical Learning."
 
 In class:  
 - [oj.R](r/oj.R) and [oj.csv](data/oj.csv)   
-
+- [saratoga_lm.R](r/saratoga_lm.R)  
 
 ### Week 3: Basic concepts in statistical learning
 
