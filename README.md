@@ -12,6 +12,10 @@ I will post the exercises [here](exercises/) and will call attention to their du
 Every week I will update this outline to reflect what we're currently working on, as well as to give you a preview of what's coming.  
 
 
+### Week 6: Classification
+
+[Slides here.](http://rpubs.com/jgscott/classification)
+
 
 ### Weeks 4-5: Linear regression
 

@@ -74,9 +74,21 @@ rmse_vals = do(100)*{
   # fit to this training set
   lm2 = lm(price ~ . - sewer - waterfront - landValue - newConstruction, data=saratoga_train)
   
+  lm_boom = lm(price ~ lotSize + age + pctCollege + 
+                 fireplaces + rooms + heating + fuel + centralAir +
+                 bedrooms*rooms + bathrooms*rooms + 
+                 bathrooms*livingArea, data=saratoga_train)
+  
+  lm_biggerboom = lm(price ~ lotSize + landValue + waterfront + newConstruction + bedrooms*bathrooms + heating + fuel + pctCollege + rooms*bedrooms + rooms*bathrooms + rooms*heating + livingArea, data=saratoga_train)
+  
+  
   # predict on this testing set
   yhat_test2 = predict(lm2, saratoga_test)
-  rmse(saratoga_test$price, yhat_test2)
+  yhat_testboom = predict(lm_boom, saratoga_test)
+  yhat_testbiggerboom = predict(lm_biggerboom, saratoga_test)
+  c(rmse(saratoga_test$price, yhat_test2),
+    rmse(saratoga_test$price, yhat_testboom),
+    rmse(saratoga_test$price, yhat_testbiggerboom))
 }
 
 rmse_vals
