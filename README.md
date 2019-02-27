@@ -16,6 +16,11 @@ Every week I will update this outline to reflect what we're currently working on
 
 [Slides here.](http://rpubs.com/jgscott/classification)
 
+Reading: Chapter 4 of "Introduction to Statistical Learning."
+
+In class:  
+- [glass.R](r/glass.R)  
+
 
 ### Weeks 4-5: Linear regression
 
