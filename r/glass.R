@@ -46,7 +46,6 @@ X_train = X[train_ind,]
 X_test = X[-train_ind,]
 y_train = y[train_ind]
 y_test = y[-train_ind]
-n_train = length(y_tra)
 
 # scale the training set features
 scale_factors = apply(X_train, 2, sd)
@@ -93,3 +92,45 @@ sum(knn25 != y_test)/n_test
 # 2) choose K to optimize out-of-sample error rate
 # 3) average over multiple train/test splits to minimize the effect of Monte Carlo variability
 
+
+
+## for illustration, consider the RIxMg plane (i.e., just 2D)
+X = select(fgl, -type) 
+#X = select(fgl, RI, Mg)
+y = fgl$type
+n = length(y)
+
+# select a training set
+n_train = round(0.8*n)
+n_test = n - n_train
+
+
+library(foreach)
+library(mosaic)
+k_grid = seq(1, 25, by=2)
+err_grid = foreach(k = k_grid,  .combine='c') %do% {
+  out = do(100)*{
+    train_ind = sample.int(n, n_train)
+    X_train = X[train_ind,]
+    X_test = X[-train_ind,]
+    y_train = y[train_ind]
+    y_test = y[-train_ind]
+    
+    # scale the training set features
+    scale_factors = apply(X_train, 2, sd)
+    X_train_sc = scale(X_train, scale=scale_factors)
+    
+    # scale the test set features using the same scale factors
+    X_test_sc = scale(X_test, scale=scale_factors)
+    
+    # Fit two KNN models (notice the odd values of K)
+    knn_try = class::knn(train=X_train_sc, test= X_test_sc, cl=y_train, k=k)
+    
+    # Calculating classification errors
+    sum(knn_try != y_test)/n_test
+  } 
+  mean(out$result)
+}
+
+
+plot(k_grid, err_grid)
