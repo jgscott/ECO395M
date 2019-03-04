@@ -12,6 +12,17 @@ I will post the exercises [here](exercises/) and will call attention to their du
 Every week I will update this outline to reflect what we're currently working on, as well as to give you a preview of what's coming.  
 
 
+
+### Week 7: Classification, continued (multinomial logit, Bayes)
+
+[Slides same as last week.](http://rpubs.com/jgscott/classification)
+
+In class:  
+- [glass_mlr.R](r/glass_mlr.R)  
+- [congress109_bayes.R](r/congress109_bayes.R)  
+- [congress109.csv](data/congress109.csv)   
+- [congress109members.csv](data/congress109members.csv)   
+
 ### Week 6: Classification
 
 [Slides here.](http://rpubs.com/jgscott/classification)
