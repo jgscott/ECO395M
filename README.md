@@ -11,6 +11,7 @@ I will post the exercises [here](exercises/) and will call attention to their du
 
 Every week I will update this outline to reflect what we're currently working on, as well as to give you a preview of what's coming.  
 
+[Raw RMarkdown files for all slides are in this GitHub repo.](https://github.com/jgscott/stat_learning_slides)  
 
 
 ### Week 7: Classification, continued (multinomial logit, Bayes)

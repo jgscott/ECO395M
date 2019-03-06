@@ -4,15 +4,15 @@ library(nnet)  # for multinom
 data(fgl) 
 
 # split into training and testing set
-n = nrow(fgl); n_train = 180
+n = nrow(fgl); n_train = 180; n_test = n - n_train
 train_ind = sort(sample.int(214, n_train, replace=FALSE))
 fgl_train = fgl[train_ind,]
 fgl_test = fgl[-train_ind,]
 
 # train three multinomial logit models
-ml1 = multinom(type ~ RI + Mg, data=fgl_train)
-ml2 = multinom(type ~ RI + Mg + Si + Al, data=fgl_train)
-ml3 = multinom(type ~ (.)^2, data=fgl_train)
+ml1 = multinom(type ~ RI + Mg, data=fgl_train, maxit=1000)
+ml2 = multinom(type ~ RI + Mg + Si + Al, data=fgl_train, maxit=1000)
+ml3 = multinom(type ~ (.)^2, data=fgl_train, maxit=1000)
 
 # notice we get the in-sample deviance at the bottom
 summary(ml1)
@@ -52,10 +52,10 @@ dev_out(fgl_test$type, probhat2_test)
 dev_out(fgl_test$type, probhat3_test)
 
 # out-of-sample classification error rate
-yhat2_test = predict(ml2, newdata=fgl_test, type='class')
-conf2 = table(fgl_test$type, yhat2_test)
-conf2
-sum(diag(conf2))/n_test
+yhat3_test = predict(ml3, newdata=fgl_test, type='class')
+conf3 = table(fgl_test$type, yhat3_test)
+conf3
+sum(diag(conf3))/n_test
 
 
 
