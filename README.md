@@ -14,6 +14,17 @@ Every week I will update this outline to reflect what we're currently working on
 [Raw RMarkdown files for all slides are in this GitHub repo.](https://github.com/jgscott/stat_learning_slides)  
 
 
+### Week 8: Resampling methods (CV, bootstrap)  
+
+[Slides here.](http://rpubs.com/jgscott/resampling)  
+
+In class:  
+- [bootstrap.R](r/bootstrap.R)  
+- [residual_resampling.R](r/residual_resampling.R)  
+- [chymotrypsin.csv](data/chymotrypsin.csv)   
+- [ethanol.csv](data/ethanol.csv)    
+
+
 ### Week 7: Classification, continued (multinomial logit, Bayes)
 
 [Slides same as last week.](http://rpubs.com/jgscott/classification)

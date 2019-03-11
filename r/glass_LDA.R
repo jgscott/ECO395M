@@ -20,16 +20,16 @@ p0 = ggplot(data = fgl)
 p0 + geom_point(aes(x=RI, y=Mg)) + facet_wrap(~type)
 
 # let's look at (mu, Sigma) for two classes:
-X_WinNF = fgl %>% filter(type=='WinNF') %>% select(RI, Mg)
+X_WinNF = fgl %>% filter(type=='WinNF') %>% dplyr::select(RI, Mg)
 mu_WinNF = colMeans(X_WinNF)
 Sigma_WinNF = cov(X_WinNF)
 
-X_veh = fgl %>% filter(type=='Veh') %>% select(RI, Mg)
+X_veh = fgl %>% filter(type=='Veh') %>% dplyr::select(RI, Mg)
 mu_veh = colMeans(X_veh)
 Sigma_veh = cov(X_veh)
 
 # compare likelihoods of a sample point
-X_all = fgl %>% select(RI, Mg)
+X_all = fgl %>% dplyr::select(RI, Mg)
 y_all = fgl$type
 X_all[147,]
 
