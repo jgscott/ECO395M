@@ -21,8 +21,11 @@ Every week I will update this outline to reflect what we're currently working on
 In class:  
 - [bootstrap.R](r/bootstrap.R)  
 - [residual_resampling.R](r/residual_resampling.R)  
+- [predimed_bootstrap.R](data/predimed_bootstrap.R)    
+
 - [chymotrypsin.csv](data/chymotrypsin.csv)   
 - [ethanol.csv](data/ethanol.csv)    
+- [predimed.csv](data/predimed.csv)    
 
 
 ### Week 7: Classification, continued (multinomial logit, Bayes)
