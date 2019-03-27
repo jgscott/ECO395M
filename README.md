@@ -14,9 +14,16 @@ Every week I will update this outline to reflect what we're currently working on
 [Raw RMarkdown files for all slides are in this GitHub repo.](https://github.com/jgscott/stat_learning_slides)  
 
 
+### Weeks 9-10: Model selection and regularization  
+
+[Slides here.](http://rpubs.com/jgscott/selection_regularization)  
+
+Reading: chapter 6 of _Introduction to Statistical Learning_.  
+
+
+
 ### Week 8: Resampling methods (CV, bootstrap)  
 
-[Slides here.](http://rpubs.com/jgscott/resampling)  
 
 In class:  
 - [bootstrap.R](r/bootstrap.R)  

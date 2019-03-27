@@ -22,4 +22,5 @@ lm2 = lm(log(shares) ~ . - url - n_tokens_content - self_reference_max_shares -
          data=online_news)
 summary(lm2)
 
-lm_step = 
+# consider 1 step
+lm_step = step(lm2, scope=~(.)^2, steps=1)
