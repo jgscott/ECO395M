@@ -4,7 +4,7 @@
 
 - [Exercises 1](exercises01.md): Due at the beginning of class on Monday, February 11, 2019.  
 - [Exercises 2](exercises02.md): Due at 5 PM on Friday, March 15, 2019.  
-- [Exercises 3](exercises03.md): Due at 5 PM on Friday, April 5, 2019.   
+- [Exercises 3](exercises03.md): Due at beginning of class on Monday, April 8, 2019.   
 
 
 # How to prepare and submit your reports

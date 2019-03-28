@@ -1,6 +1,7 @@
 # ECO 395M: Exercises 3
 
-Due date: links must be submitted by the beginning of class on Wednesday, April 10.
+Due date: links must be submitted by the beginning of class on Monday, April 8, 2019.   
+
 
 ## Model selection and regularization: green buildings
 
