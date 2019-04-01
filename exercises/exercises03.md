@@ -59,5 +59,5 @@ their approach and discuss their result in the “Table 2” below, from the res
 on the first column of the table. Can you describe the model being estimated here?
 What is the conclusion?
 
-![Table 4](ex3table2.png)
+![Table 4](ex3table4.png)
 
