@@ -8,7 +8,7 @@ full = glm(FAIL ~ ., data=semiconductor, family=binomial)
 # null model
 null = glm(FAIL~1, data=semiconductor)
 # forward stepwise: it takes a long time!
-system.time(fwd = step(null, scope=formula(full), dir="forward"))
+system.time(fwd <- step(null, scope=formula(full), dir="forward"))
 length(coef(fwd)) # chooses around 70 coef
 
 
@@ -44,7 +44,7 @@ sum(scbeta!=0) # chooses 30 (+intercept) @ log(lambda) = -4.5
 
 # Now without the AIC approximation:
 # cross validated lasso (verb just prints progress)
-sccvl = cv.gamlr(scx, scy, family="binomial", verb=TRUE)
+sccvl = cv.gamlr(scx, scy, nfold=10, family="binomial", verb=TRUE)
 
 # plot the out-of-sample deviance as a function of log lambda
 # Q: what are the bars associated with each dot? 
