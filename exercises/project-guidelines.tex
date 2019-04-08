@@ -1,0 +1,96 @@
+  \documentclass{mynotes}
+
+%\geometry{showframe}% for debugging purposes -- displays the margins
+
+\newcommand{\E}{\mbox{E}}
+
+\usepackage{amsmath}
+%\usepackage[garamond]{mathdesign}
+\usepackage{url}
+
+% Set up the images/graphics package
+\usepackage{graphicx}
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+\graphicspath{{graphics/}}
+
+\title[Project $\cdot$ ECO 395M]{Project $\cdot$ Bring Your Own Data}
+%\author[ ]{ }
+\date{Due Friday, May 10, 2019 (5 PM)}  % if the \date{} command is left out, the current date will be used
+
+% The following package makes prettier tables.
+\usepackage{booktabs}
+
+% The units package provides nice, non-stacked fractions and better spacing
+% for units.
+\usepackage{units}
+
+% The fancyvrb package lets us customize the formatting of verbatim
+% environments.  We use a slightly smaller font.
+\usepackage{fancyvrb}
+\fvset{fontsize=\normalsize}
+
+% Small sections of multiple columns
+\usepackage{multicol}
+
+% Provides paragraphs of dummy text
+\usepackage{lipsum}
+
+% These commands are used to pretty-print LaTeX commands
+\newcommand{\doccmd}[1]{\texttt{\textbackslash#1}}% command name -- adds backslash automatically
+\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}% optional command argument
+\newcommand{\docarg}[1]{\textrm{\textit{#1}}}% (required) command argument
+\newenvironment{docspec}{\begin{quote}\noindent}{\end{quote}}% command specification environment
+\newcommand{\docenv}[1]{\textsf{#1}}% environment name
+\newcommand{\docpkg}[1]{\texttt{#1}}% package name
+\newcommand{\doccls}[1]{\texttt{#1}}% document class name
+\newcommand{\docclsopt}[1]{\texttt{#1}}% document class option name
+
+\newcommand{\N}{\mbox{N}}
+
+\begin{document}
+
+\maketitle% this prints the handout title, author, and date
+
+
+\section{Project description}
+
+The assignment for this project is simple: pose an interesting question that can be addressed using statistical learning; collect or find a relevant data set; and use the data, in conjunction with the tools we have learned in class, to answer the question you have posed.  Make sure to quantify any uncertainty that arises in answering your question, and to address any shortcomings in the answer provided by your data and analysis.   You will be evaluated both on the technical correctness (50\%) and the overall intellectual quality (50\%) of your approach and write-up.\footnote{Where can one find data?  Everywhere!  These websites in particular have long lists of data sources: \url{https://github.com/caesar0301/awesome-public-datasets} and \url{http://stats-for-change.github.io/data.html}.   If you want to branch out even further, here's a short list of other sources you might consider: major newspapers, the U.S.~census, the Federal Reserve, academic journals, the Economist, Twitter, the World Bank, ESPN.com or other sports sites, Craigslist, Amazon prices, EBay, the Bureau of Labor Statistics, Facebook, the World Economic Forum, the OECD Factbook, the CIA World Factbook, the Securities and Exchange Commission, Yahoo finance, Google Public Data Explorer,  your own vital signs, your favorite blogs, your other classes, and your friends.  If you know how to write a program that will scrape a website, your options are almost limitless here. }
+
+This assignment is purposely open-ended, allowing you considerable freedom to follow a path dictated by your own intellectual curiosity.  Strive to write something that a statistically literate person of wide-ranging interests (for example, a future employer) would find engaging and impressive.
+
+\section{Advice}
+
+The best projects I have seen over the years have been \textit{problem-driven} rather than \textit{process-driven}.  A problem-driven project is one where you start with an interesting question, together with a data set capable of addressing that question, and let the statistical approach be guided by that question.  A process-driven project, on the other hand, is one where you find some data set, without necessarily having a strong idea of the question(s) you'd like to use that data set to answer.  You then fit some models on that data set, focusing on the process of what you did, as opposed to the substantive question you'd like to answer.
+
+My strong advice here is to undertake a project that is problem-driven.  For good examples of problem-driven questions, you should recall some of those we've used for in-class problems and homework so far (building a predictive model for house prices; demand curves for beer; energy demand; and so forth).  Each of these is strongly anchored in a real-world question of interest.  Over the years I've seen students go to awesome lengths to collect their own data sources: driving around Austin to collect data on gas prices, going from one grocery store to the next to understand variation in the price of consumer goods, and so on.  This kind of effort isn't necessary to do well on the project, but it is nearly always impressive when I see it.  The reason these groups tend to do well on the project isn't because they've gone to such an effort; it's because they had a very clear question of interest, and they collected a data set that was appropriate for answering that question.
+
+Many, many students in the past have told me that the project has been the centerpiece of their class experience---the opportunity to let their curiosity take over, and to create something that they can talk about in future job interviews as showing clear evidence that they've learned some valuable data-science skills.  I encourage you to make the most of the opportunity.
+
+\section{To turn in}
+
+You should turn in the following three items.  As with the homework assignments, you may work in groups of 4 people or fewer, or you may turn in your own project.  If you work in a group, only one set of these items (bearing all of your names) needs to be turned in.
+\begin{enumerate}
+\item A written project report that describes your question, your data sources, your methodological approach, and your conclusions.  This should be prepared in RMarkdown format.
+\item The data set itself, in .csv format.
+\item The raw .Rmd file used to analyze your data and prepare your report.  If your analysis and plots are not 100$\%$ reproducible, you will not receive a passing grade.
+\end{enumerate}
+All three items should be e-mailed to the e-mail drop box at \url{statdropbox@gmail.com}.  (Please don't send projects to my regular McCombs account or through Canvas: Gmail has a higher limit for size of attachments, and I want to have these projects all in one place.)  The subject line of your e-mail should be: ``ECO 395 Project: (names),'' where you fill in the blank with the full names of all your group members.
+
+
+\section{Organizing your report}
+
+A reasonable length here would be 5--10 type-written pages including figures and tables, but treat this only as a rough guideline rather than an absolute quota or limit.  A report of 15+ pages is almost surely too long.  Please organize your report into the following sections.
+\begin{description}
+\item[Abstract:] summarize your question, your methods, your results, and your main conclusions in a few hundred words or less.
+\item[Introduction:] Introduce the question you're trying to answer at a reasonable level of detail.  Give background and motivation for why it's important.
+\item[Methods:] Describe your data set and the methods you will use to analyze it.
+\item[Results:] Tables, figures, and text that illustrate your findings.  Keep the focus on the numbers here.  You will interpret your results in the next section.
+\item[Conclusion:] Interpret what you found. What are the main lessons we should take away from your report?
+\item[Appendix:] optional.  Any details (like extra figures, etc) that didn't fit in well with the main report, but that you think are important.
+\end{description}
+
+The main body of your report (excluding the appendix) should probably have no more than about 4-6 figures and tables.  Use those to focus on the most important results.  Put the rest in the appendix if you need more.  Number all figures and tables and refer to them by number (Figure 2, Table 3, etc) in the text where appropriate.  Do not include a figure or table in the report or the appendix if you don't discuss it in the text.
+
+\end{document}
+
+

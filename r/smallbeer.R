@@ -19,16 +19,14 @@ hist(coef(oneforall)) ## super noisy zeros
 # build some regression designs
 library(gamlr)
 
-
-
-x1 = sparse.model.matrix(~price*item + factor(week)-1, data=beer)
+x1 = sparse.model.matrix(~log(price)*item + factor(week)-1, data=beer)
 head(x1)
 ml1 = cv.gamlr(x=x1, y=log(beer$units), free = 1, standardize=FALSE, verb=TRUE)
 coef(ml1)
 
 # how can I get the elasticities?
 price_main = coef(ml1)[2]
-which_int = grep("price:item", rownames(coef(ml1)), fixed=TRUE)
+which_int = grep("log(price):item", rownames(coef(ml1)), fixed=TRUE)
 price_int = coef(ml1)[which_int]
 
 # these look much more reasonable, though not all negative
@@ -70,7 +68,7 @@ xtext = sparseMatrix(i=xtext$i,j=xtext$j,x=as.numeric(xtext$v>0), # convert from
               dims=dim(xtext),dimnames=dimnames(xtext))
 colnames(xtext)
 
-xtreat = cBind(1,xtext,xweek)
+xtreat = cbind(1,xtext,xweek)
 ofit = gamlr(x=lpr*xtreat, y=lqr, standardize=FALSE, free=1)
 gams = coef(ofit)[-1,]
 

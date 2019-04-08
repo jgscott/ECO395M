@@ -14,6 +14,17 @@ Every week I will update this outline to reflect what we're currently working on
 [Raw RMarkdown files for all slides are in this GitHub repo.](https://github.com/jgscott/stat_learning_slides)  
 
 
+### Weeks 11-13: Introduction to unsupervised learning  
+
+Reading: chapter 10 of _Introduction to Statistical Learning_.
+
+I have posted a [set of project guidelines](project-guidelines.pdf) to give you some more specifics about how to prepare and submit your reports.  But the basic idea is simple: find a problem and data set that interests you, approach it using the tools we've learned in class, and write a report.  Remember that, if you'd like to get feedback on your project idea, I'm asking you to turn in a prospectus by 5 PM on Friday, April 19.  __The prospectus is optional__.  Ideally you should address the question, proposed methods, and data sources you will pursue.  But really, just be as specific as you can.  If you can't address all these questions, that's OK.  This is not for a grade; its just an opportunity to bounce your ideas off me.  Send the prospectus to me at james.scott@mccombs.utexas.edu with the subject: "ECO 395 Project Prospectus: (your names)."
+
+I've also posted the [fourth and final set of exercises](exercises/exercises04.md) this semester, on unsupervised learning techniques.  These are due at 5 PM on Friday, April 26.
+
+Note on topic order: we're skipping chapter 7 in the interests of time, although it's good stuff to know.  We will come back to chapter 8 (and possibly 9) after we've done Chapter 10.  
+
+
 ### Weeks 9-10: Model selection and regularization  
 
 [Slides here.](http://rpubs.com/jgscott/selection_regularization)  
