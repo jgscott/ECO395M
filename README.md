@@ -16,6 +16,8 @@ Every week I will update this outline to reflect what we're currently working on
 
 ### Weeks 11-13: Introduction to unsupervised learning  
 
+[Slides here.](http://rpubs.com/jgscott/clustering)    
+
 Reading: chapter 10 of _Introduction to Statistical Learning_.
 
 I have posted a [set of project guidelines](../exercises/project-guidelines.pdf) to give you some more specifics about how to prepare and submit your reports.  But the basic idea is what we've discussed before: find a problem and data set that interests you, approach it using the tools we've learned in class, and write a report.  Remember that, if you'd like to get feedback on your project idea, I'm asking you to turn in a prospectus by 5 PM on Friday, April 19.  Send the prospectus to me at james.scott@mccombs.utexas.edu with the subject: "ECO 395 Project Prospectus: (your names)."
