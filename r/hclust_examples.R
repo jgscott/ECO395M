@@ -1,8 +1,8 @@
 # Protein first
-protein <- read.csv("../data/protein.csv", row.names=1)
+protein = read.csv("../data/protein.csv", row.names=1)
 
 # Center/scale the data
-protein_scaled <- scale(protein, center=TRUE, scale=TRUE) 
+protein_scaled = scale(protein, center=TRUE, scale=TRUE) 
 
 # Form a pairwise distance matrix using the dist function
 protein_distance_matrix = dist(protein_scaled, method='euclidean')
