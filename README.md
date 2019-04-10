@@ -39,6 +39,8 @@ Reading: chapter 6 of _Introduction to Statistical Learning_.
 
 ### Week 8: Resampling methods (CV, bootstrap)  
 
+[Slides here.](http://rpubs.com/jgscott/resampling)    
+  
 
 In class:  
 - [bootstrap.R](r/bootstrap.R)  
