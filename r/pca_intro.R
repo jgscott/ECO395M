@@ -24,8 +24,7 @@ segments(0, 0, v_try[1], v_try[2], col='red', lwd=4)
 slope = v_try[2]/v_try[1]
 abline(0, slope)
 
-# Now show the subspace, side by side with the project points as a histogram
-
+# Now show the subspace, side by side with the projected points as a histogram
 v_try = rnorm(2)
 v_try = v_try/sqrt(sum(v_try^2))  # normalize to unit length
 
