@@ -7,6 +7,7 @@ Z = iris[,c(1,4)]
 
 # Clearly a lot of correlation structure in the measurements 
 plot(Z)
+qplot(Sepal.Length, Petal.Width, color=Species, data=iris)
 
 # Standardize (center/scale) the data
 Z_std = scale(Z)

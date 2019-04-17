@@ -22,28 +22,14 @@ plot(marriage, edge.curved=FALSE)
 ## print the degree for each family
 sort(degree(marriage))
 
-## calculate and color a couple shortest paths
-PtoA = get.shortest.paths(marriage, from="Peruzzi", to="Acciaiuoli")
-allPtoA = all_shortest_paths(marriage, from="Peruzzi", to="Acciaiuoli")
+## print the betweenness for each family
+betweenness(marriage)  %>% sort %>% round(1)
 
+## calculate shortest paths
+allPtoA = all_shortest_paths(marriage, from="Peruzzi", to="Acciaiuoli")
 
 # Somewhat confusing return value
 # vpath is a list of the shortest paths 
 # First element of vpath is then your vector 
 # of vertices along the path.
-
-PtoA$vpath[[1]]
-
-GtoS = get.shortest.paths(marriage, from="Ginori", to="Strozzi")
-GtoS$vpath[[1]]
-
-# color the edges along these paths
-# and set the rest to grey
-E(marriage)$width = 2
-E(marriage)$color = "grey"
-E(marriage, path=PtoA$vpath[[1]])$color = "purple"
-E(marriage, path=GtoS$vpath[[1]])$color = "darkgreen"
-plot(marriage)
-
-## print the betweenness for each family
-sort(round(betweenness(marriage),1))
+allPtoA$res[[1]]

@@ -21,6 +21,8 @@ biplot(pr_NCI)
 scores = pr_NCI$x
 qplot(scores[,1], scores[,2], color=nci.labs, xlab='Component 1', ylab='Component 2')
 
+qplot(scores[,1], scores[,2], facets=~nci.labs, xlab='Component 1', ylab='Component 2')
+
 # three scatterplots for PCs 1-3
 qplot(scores[,1], scores[,2], facets=~nci.labs, xlab='Component 1', ylab='Component 2')
 qplot(scores[,1], scores[,3], facets=~nci.labs, xlab='Component 1', ylab='Component 2')

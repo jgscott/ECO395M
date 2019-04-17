@@ -14,14 +14,26 @@ Every week I will update this outline to reflect what we're currently working on
 [Raw RMarkdown files for all slides are in this GitHub repo.](https://github.com/jgscott/stat_learning_slides)  
 
 
-### Week 12: PCA  
+### Weeks 12-13: Unsupervised learning, continued: PCA, networks, and association rules
 
-[Slides here.](http://rpubs.com/jgscott/PCA)    
+[Slides on PCA here.](http://rpubs.com/jgscott/PCA)    
+
+[Intro slides on networks](notes/networks_intro.pdf).  
+
+[Slides on association rules here.](https://github.com/jgscott/ECO395M/blob/master/notes/association_rules.pdf)    
+
+
+Miscellaneous:  
+- [Gephi](https://gephi.org/), a great piece of software for exploring graphs  
+- [The Gephi quick-start tutorial](https://gephi.org/tutorials/gephi-tutorial-quick_start.pdf)  
+- a little Python utility for [scraping Spotify playlists](https://github.com/nithinphilips/spotifyscrape)  
+
+
 
 Reading: rest of chapter 10 of _Introduction to Statistical Learning_.
 
 
-### Week 11 
+### Week 11: clustering   
 
 [Slides here.](http://rpubs.com/jgscott/clustering)    
 
