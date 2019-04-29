@@ -14,6 +14,13 @@ Every week I will update this outline to reflect what we're currently working on
 [Raw RMarkdown files for all slides are in this GitHub repo.](https://github.com/jgscott/stat_learning_slides)  
 
 
+### Weeks 13-14: Trees
+
+[Slides on trees](notes/trees.pdf).  
+
+Reading: Chapter 8 of _Introduction to Statistical Learning_.
+
+
 ### Weeks 12-13: Unsupervised learning, continued: PCA, networks, and association rules
 
 [Slides on PCA here.](http://rpubs.com/jgscott/PCA)    

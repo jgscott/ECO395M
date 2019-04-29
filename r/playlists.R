@@ -80,4 +80,5 @@ plot(sub1, method='graph')
 plot(head(sub1, 100, by='lift'), method='graph')
 
 # export a graph
+sub1 = subset(musicrules, subset=confidence > 0.02 & support > 0.005)
 saveAsGraph(sub1, file = "musicrules.graphml")
