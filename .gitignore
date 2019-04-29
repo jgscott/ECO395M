@@ -34,3 +34,9 @@ vignettes/*.pdf
 
 # Shiny token, see https://shiny.rstudio.com/articles/shinyapps.html
 rsconnect/
+data/ercot/weather_processed/dewpoint.csv
+data/ercot/weather_processed/dewpoint_impute.csv
+data/ercot/weather_processed/temperature.csv
+data/ercot/weather_processed/temperature_impute.csv
+data/ercot/weather_processed/windSpeed.csv
+data/ercot/weather_processed/windSpeed_impute.csv

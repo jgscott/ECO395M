@@ -1,5 +1,5 @@
 ###################################################
-## Fit a regression tree to medv~lstat in the boston housing data.
+## Fit a regression tree energy data.
 ## The tree is plotted as well as a plot of the corresponding step function
 ## fit to the data.
 ## The cutpoints from tree are added to the plot so you can see how
@@ -40,7 +40,7 @@ lines(load.fit[oo] ~ KHOU_temp[oo], data=load_coast,col='red',lwd=3) #step funct
 
 
 ################################################################################
-## Fit a regression tree to COAST~temp+humidity from the Boston housing data.
+## Fit a regression tree to COAST~temp+humidity from the energy data
 ## The tree is plotted as well as the corresponding partition of the two-dimensional
 ## x space.
 ################################################################################
