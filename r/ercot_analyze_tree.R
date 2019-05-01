@@ -43,7 +43,7 @@ err_thresh = min(err_1se)
 # now find the largest simplest tree that beats this threshold
 big.tree$cptable[,'xerror'] - err_thresh
 which(big.tree$cptable[,'xerror'] - err_thresh < 0) %>% head
-bestcp = big.tree$cptable[773,'CP']
+bestcp = big.tree$cptable[798,'CP']
 
 cvtree = prune(big.tree, cp=bestcp)
 length(unique(cvtree$where))
