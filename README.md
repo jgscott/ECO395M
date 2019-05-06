@@ -15,7 +15,9 @@ Every week I will update this outline to reflect what we're currently working on
 
 ### Week 15: Trees continued, text
 
-[Slides on text](notes/text_intro.pdf).   
+[Slides on text](notes/text_intro.pdf).   [The pdp package](https://journal.r-project.org/archive/2017/RJ-2017-016/RJ-2017-016.pdf) for partial dependence plots from nonparametric regression models.  
+
+
 
 Some supplemental, optional readings:  
 - [Stanford NLP notes](http://nlp.stanford.edu/IR-book/html/htmledition/scoring-term-weighting-and-the-vector-space-model-1.html) on vector-space models of text, TF-IDF weighting, and so forth.  
