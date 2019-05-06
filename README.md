@@ -13,6 +13,15 @@ Every week I will update this outline to reflect what we're currently working on
 
 [Raw RMarkdown files for all slides are in this GitHub repo.](https://github.com/jgscott/stat_learning_slides)  
 
+### Week 15: Trees continued, text
+
+[Slides on text](notes/text_intro.pdf).   
+
+Some supplemental, optional readings:  
+- [Stanford NLP notes](http://nlp.stanford.edu/IR-book/html/htmledition/scoring-term-weighting-and-the-vector-space-model-1.html) on vector-space models of text, TF-IDF weighting, and so forth.  
+- [Great blog post about word vectors](https://blog.acolyer.org/2016/04/21/the-amazing-power-of-word-vectors/).   
+- [Using the tm package](http://cran.r-project.org/web/packages/tm/vignettes/tm.pdf) for text mining in R.   
+
 
 ### Weeks 13-14: Trees
 

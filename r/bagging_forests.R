@@ -29,14 +29,18 @@ rmse_forest
 library(gbm)
 
 boost1 = gbm(NOx ~ E, data=ethanol_train, 
-               interaction.depth=2, n.trees=100, shrinkage=.2)
+               interaction.depth=2, n.trees=500, shrinkage=.05)
 
 plot(NOx ~ E, data=ethanol_train)
-points(predict(boost1, n.trees=100) ~ E, data=ethanol_train, pch=19, col='red')
+points(predict(boost1, n.trees=500) ~ E, data=ethanol_train, pch=19, col='red')
 
 yhat_boost_test = predict(boost1, ethanol_test, n.trees=100)
 rmse_boost = mean((ethanol_test$NOx - yhat_boost_test)^2) %>% sqrt
 rmse_boost
+
+
+big.tree = rpart(NOx ~ E, method="anova",data=ethanol_train,
+                 control=rpart.control(minsplit=2, cp=0.0005, xval=10))
 
 cp_grid = big.tree$cptable[,'CP']
 tree_rmse_grid = rep(0, length(cp_grid))
@@ -48,7 +52,7 @@ for(i in seq_along(cp_grid)) {
 
 
 # both bagging and boosting do better
-plot(cp_grid, tree_rmse_grid, log='x', ylim=c(0.35, 0.6))
+plot(cp_grid, tree_rmse_grid, log='x')
 abline(h=rmse_forest, col='red')
 abline(h=rmse_boost, col='blue')
 

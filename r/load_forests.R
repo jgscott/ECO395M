@@ -28,3 +28,9 @@ forest2 = randomForest(COAST ~ ., data = load_train, mtry = 5, ntree=100)
 yhat_forest2 = predict(forest2, load_test)
 rmse_forest2 = mean((yhat_forest2 - load_test$COAST)^2) %>% sqrt
 
+
+boost_ercot = gbm(COAST ~ ., data=load_train, 
+             n.trees=500, shrinkage=.05)
+yhat_boost = predict(boost_ercot, load_test, n.trees=500)
+rmse_boost = mean((yhat_boost - load_test$COAST)^2) %>% sqrt
+rmse_boost
