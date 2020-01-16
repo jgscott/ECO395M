@@ -10,9 +10,14 @@
 - [Exercises 4](exercises04.md): Due at 5 PM on Friday, April 26, 2019.   -->
 
 
+# Project  
+
+I have posted a [set of project guidelines](https://github.com/jgscott/ECO395M/blob/master/exercises/project-guidelines.pdf) to give you some more specifics about how to prepare and submit your reports.  But the basic idea is what we've discussed before: find a problem and data set that interests you, approach it using the tools we've learned in class, and write a report.  
+
+
 # How to prepare and submit your reports
 
-You will be evaluated both on the technical correctness (50%) and the overall intellectual quality (50%) of your approach and write-up.  Strive to make each write-up self-contained and something that a future employer would find engaging and impressive.  Please try as far as possible to [follow the suggestions given here.](https://jgscott.github.io/teaching/writeups/write_ups/)     
+For both HW and projects, you will be evaluated both on the technical correctness (50%) and the overall intellectual quality (50%) of your approach and write-up.  Strive to make each write-up self-contained and something that a future employer would find engaging and impressive.  Please try as far as possible to [follow the suggestions given here.](https://jgscott.github.io/teaching/writeups/write_ups/).  These guidelines are geared more towards the longer writeups for more complex data sets, but even for short problems, their general spirit should be followed.       
 
 Prepare your reports using RMarkdown, so that they are fully reproducible, carefully integrating visual and numerical evidence with prose.  You may work solo, or in groups of 3 or fewer people.  If you're working in a group, please turn in a single submission with all of your names attached.
 
