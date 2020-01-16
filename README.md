@@ -5,65 +5,87 @@ Welcome to ECO 395M, a course on data mining and statistical learning for studen
 
 ## Exercises
 
-I will post the exercises [here](exercises/) and will call attention to their due dates in the week-by-week outline below.   
+I will post the exercises [here](exercises/).   
 
-## Week-by-week running outline 
 
-Every week I will update this outline to reflect what we're currently working on, as well as to give you a preview of what's coming.  
+## Software 
 
-[Raw RMarkdown files for all slides are in this GitHub repo.](https://github.com/jgscott/stat_learning_slides)  
-
-### Week 15: Trees continued, text
-
-[Slides on text](notes/text_intro.pdf).   [The pdp package](https://journal.r-project.org/archive/2017/RJ-2017-016/RJ-2017-016.pdf) for partial dependence plots from nonparametric regression models.  
+Please install the following free pieces of software on your own machine:  
+- Statistical computing: [R](http://www.r-project.org), which we will use via [RStudio](http://www.rstudio.com), a free, platform-independent graphical front-end for R.  Make sure you have both installed, along with the [RMarkdown package](http://rmarkdown.rstudio.com).   
+- Other software: please [install Git and create a GitHub account](https://help.github.com/articles/set-up-git/), if you don't already have one.  You will use GitHub for version control and to submit your assignments.  
 
 
 
-Some supplemental, optional readings:  
-- [Stanford NLP notes](http://nlp.stanford.edu/IR-book/html/htmledition/scoring-term-weighting-and-the-vector-space-model-1.html) on vector-space models of text, TF-IDF weighting, and so forth.  
-- [Great blog post about word vectors](https://blog.acolyer.org/2016/04/21/the-amazing-power-of-word-vectors/).   
-- [Using the tm package](http://cran.r-project.org/web/packages/tm/vignettes/tm.pdf) for text mining in R.   
+## Topics outline  
 
 
-### Weeks 13-14: Trees
+### Week 1: the data scientist's toolbox
 
-[Slides on trees](notes/trees.pdf).  
+[Slides here.](http://rpubs.com/jgscott/intro_ECO395M)  
 
-Reading: Chapter 8 of _Introduction to Statistical Learning_.
+Topics: Good data-curation and data-analysis practices; R; Markdown and RMarkdown; the importance of replicable analyses; version control with Git and Github.
 
+In class review of some R:    
+- [mpg_review.R](r/mpg_review.R)  
 
-### Weeks 12-13: Unsupervised learning, continued: PCA, networks, and association rules
+Readings:  
+- [Getting starting with GitHub Desktop](https://help.github.com/en/desktop/getting-started-with-github-desktop)  
+- [Introduction to RMarkdown](http://rmarkdown.rstudio.com) and [RMarkdown tutorial](https://rmarkdown.rstudio.com/lesson-1.html)  
+- [Introduction to GitHub](https://guides.github.com/activities/hello-world/)   
+- [Jeff Leek's guide to sharing data](https://github.com/jtleek/datasharing)  
 
-[Slides on PCA here.](http://rpubs.com/jgscott/PCA)    
-
-[Intro slides on networks](notes/networks_intro.pdf).  
-
-[Slides on association rules here.](https://github.com/jgscott/ECO395M/blob/master/notes/association_rules.pdf)    
-
-
-Miscellaneous:  
-- [Gephi](https://gephi.org/), a great piece of software for exploring graphs  
-- [The Gephi quick-start tutorial](https://gephi.org/tutorials/gephi-tutorial-quick_start.pdf)  
-- a little Python utility for [scraping Spotify playlists](https://github.com/nithinphilips/spotifyscrape)  
+Note: If you'd like a refresher on some techniques for data visualization in R, please refer back to the "Data Exploration and Visualization" section in [ECO 394D](https://github.com/jgscott/ECO394D).  You'll find lots of R scripts and notes there.  
 
 
+### Weeks 2-3: Basic concepts in statistical learning  
 
-Reading: rest of chapter 10 of _Introduction to Statistical Learning_.
+[Slides here.](http://rpubs.com/jgscott/introlearning)
+
+Reading: Chapters 1-2 of "Introduction to Statistical Learning."
+
+In class:  
+- [loadhou.R](r/loadhou.R)  
+- [loadhou.csv](data/loadhou.csv)  
+- [spamtoy.R](r/spamtoy.r)  
+- [spamfit.csv](data/spamfit.csv) and [spamtest.csv](data/spamtest.csv)   
 
 
-### Week 11: clustering   
+### Weeks 4-5: Linear models  
 
-[Slides here.](http://rpubs.com/jgscott/clustering)    
+[Slides here.](http://rpubs.com/jgscott/linear_regression)
 
-Reading: chapter 10.3 of _Introduction to Statistical Learning_.
+Reading: Chapter 3 of "Introduction to Statistical Learning."
 
-I have posted a [set of project guidelines](https://github.com/jgscott/ECO395M/blob/master/exercises/project-guidelines.pdf) to give you some more specifics about how to prepare and submit your reports.  But the basic idea is what we've discussed before: find a problem and data set that interests you, approach it using the tools we've learned in class, and write a report.  Remember that, if you'd like to get feedback on your project idea, I'm asking you to turn in a prospectus by 5 PM on Friday, April 19.  Send the prospectus to me at james.scott@mccombs.utexas.edu with the subject: "ECO 395 Project Prospectus: (your names)."
+In class:  
+- [oj.R](r/oj.R) and [oj.csv](data/oj.csv)   
+- [saratoga_lm.R](r/saratoga_lm.R)  
 
-__The prospectus is optional__.  Ideally you should address the question, proposed methods, and data sources you will pursue.  But really, just be as specific as you can.  If you can't address all these questions, that's OK.  This is not for a grade; its just an opportunity to bounce your ideas off me, and if you can't find the time to send in a prospectus, that's OK.  
 
-I've also posted the [fourth and final set of exercises](exercises/exercises04.md) this semester, on unsupervised learning techniques.  These are due at 5 PM on Friday, April 26.
+### Week 6-7: Classification
 
-Note on topic order: we're skipping chapter 7 in the interests of time, although it's good stuff to know.  We will come back to chapter 8 (and possibly 9) after we've done Chapter 10.  
+[Slides here.](http://rpubs.com/jgscott/classification)
+
+Reading: Chapter 4 of "Introduction to Statistical Learning."
+
+In class:  
+- [glass.R](r/glass.R)  
+- [glass_mlr.R](r/glass_mlr.R)   
+- [congress109_bayes.R](r/congress109_bayes.R)   
+- [congress109.csv](data/congress109.csv)    
+- [congress109members.csv](data/congress109members.csv)    
+
+
+### Week 8: Resampling methods (CV, bootstrap)  
+
+[Slides here.](http://rpubs.com/jgscott/resampling)    
+  
+In class:  
+- [bootstrap.R](r/bootstrap.R)  
+- [residual_resampling.R](r/residual_resampling.R)  
+- [predimed_bootstrap.R](data/predimed_bootstrap.R)    
+- [chymotrypsin.csv](data/chymotrypsin.csv)   
+- [ethanol.csv](data/ethanol.csv)    
+- [predimed.csv](data/predimed.csv)    
 
 
 ### Weeks 9-10: Model selection and regularization  
@@ -74,131 +96,51 @@ Reading: chapter 6 of _Introduction to Statistical Learning_.
 
 
 
-### Week 8: Resampling methods (CV, bootstrap)  
+### Week 11: Unsupervised learning: clustering    
 
-[Slides here.](http://rpubs.com/jgscott/resampling)    
-  
+[Slides here.](http://rpubs.com/jgscott/clustering)    
 
-In class:  
-- [bootstrap.R](r/bootstrap.R)  
-- [residual_resampling.R](r/residual_resampling.R)  
-- [predimed_bootstrap.R](data/predimed_bootstrap.R)    
-
-- [chymotrypsin.csv](data/chymotrypsin.csv)   
-- [ethanol.csv](data/ethanol.csv)    
-- [predimed.csv](data/predimed.csv)    
+Reading: chapter 10.3 of _Introduction to Statistical Learning_.
 
 
-### Week 7: Classification, continued (multinomial logit, Bayes)
 
-[Slides same as last week.](http://rpubs.com/jgscott/classification)
+### Week 12-13: Unsupervised learning, continued: PCA, networks, and association rules
 
-In class:  
-- [glass_mlr.R](r/glass_mlr.R)  
-- [congress109_bayes.R](r/congress109_bayes.R)  
-- [congress109.csv](data/congress109.csv)   
-- [congress109members.csv](data/congress109members.csv)   
+Reading: rest of chapter 10 of _Introduction to Statistical Learning_.
 
-### Week 6: Classification
+[Slides on PCA here.](http://rpubs.com/jgscott/PCA)    
 
-[Slides here.](http://rpubs.com/jgscott/classification)
+[Intro slides on networks](notes/networks_intro.pdf).  
 
-Reading: Chapter 4 of "Introduction to Statistical Learning."
+[Slides on association rules here.](https://github.com/jgscott/ECO395M/blob/master/notes/association_rules.pdf)    
 
-In class:  
-- [glass.R](r/glass.R)  
+Miscellaneous:  
+- [Gephi](https://gephi.org/), a great piece of software for exploring graphs  
+- [The Gephi quick-start tutorial](https://gephi.org/tutorials/gephi-tutorial-quick_start.pdf)  
+- a little Python utility for [scraping Spotify playlists](https://github.com/nithinphilips/spotifyscrape)  
 
 
-### Weeks 4-5: Linear regression
 
-[Slides here.](http://rpubs.com/jgscott/linear_regression)
+### Weeks 13-14: Trees
 
-Reading: Chapter 3 of "Introduction to Statistical Learning."
+[Slides on trees](notes/trees.pdf).  
 
-In class:  
-- [oj.R](r/oj.R) and [oj.csv](data/oj.csv)   
-- [saratoga_lm.R](r/saratoga_lm.R)  
+Reading: Chapter 8 of _Introduction to Statistical Learning_.
 
-### Week 3: Basic concepts in statistical learning
-
-[Slides here.](http://rpubs.com/jgscott/introlearning)
-
-Reading: Chapters 1-2 of "Introduction to Statistical Learning."
-
-In class:  
-- [loadhou.R](r/loadhou.R)  
-- [loadhou.csv](data/loadhou.csv)  
-- [spamtoy.R](r/spamtoy.r)  
-- [spamfit.csv](data/spamfit.csv)   
-- [spamtest.csv](data/spamtest.csv)   
+[The pdp package](https://journal.r-project.org/archive/2017/RJ-2017-016/RJ-2017-016.pdf) for partial dependence plots from nonparametric regression models.  
 
 
-### Week 2: data visualization and practice with R
 
-Contingency tables and bar plots; basic plots for numerical data (scatterplot, boxplot, histogram, line graphs); lattice plots.  Introduction to ggplot2.  
+### Week 15: Text
 
-Examples of [bad graphics](notes/badgraphics.pdf).  [Baby set of slides here.](http://rpubs.com/jgscott/datavis1)
-
-Some software walkthroughs that show some of the capabilities of basic R graphics: 
-- [Survival on the Titanic](https://github.com/jgscott/learnR/blob/master/titanic/titanic.md): summarizing variation in categorical variables  
-- [City temperatures](https://github.com/jgscott/learnR/blob/master/citytemps/citytemps.md): measuring and visualizing dispersion in one numerical variable.  
-- [Test scores and GPA for UT grads](https://github.com/jgscott/learnR/blob/master/sat/sat.md): association between numerical and categorical variables.  
-
-If you really want to get good at plotting in R, you should learn ggplot2.  Here are two references, written by the ggplot2 package author (Hadley Wickham), that are pretty useful at getting the basics:  
-- [Introduction to ggplot2](https://r4ds.had.co.nz/data-visualisation.html)
-- [Graphics for communication](https://r4ds.had.co.nz/graphics-for-communication.html)  
+[Slides on text](notes/text_intro.pdf).   
 
 
-Some examples of ggplot2 in action, from the basic to the advanced (and truly beautiful):  
-- [mpg.R](r/mpg.R)  
-- [fijiquakes.R](r/fijiquakes.R)  
-- [titanic.R](r/titanic.R)  
-- [50 ggplots](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)  
-- [A map of average ages in Swiss municipalities](https://github.com/grssnbchr/thematic-maps-ggplot2)  
 
+I have posted a [set of project guidelines](https://github.com/jgscott/ECO395M/blob/master/exercises/project-guidelines.pdf) to give you some more specifics about how to prepare and submit your reports.  But the basic idea is what we've discussed before: find a problem and data set that interests you, approach it using the tools we've learned in class, and write a report.  Remember that, if you'd like to get feedback on your project idea, I'm asking you to turn in a prospectus by 5 PM on Friday, April 19.  Send the prospectus to me at james.scott@mccombs.utexas.edu with the subject: "ECO 395 Project Prospectus: (your names)."
 
-Further references:   
-- [excerpts](notes/DataExploration.pdf) from my course notes on data science.  We'll look at some example graphics in Chapter 1.  
-- Good graphics: scan through some of the New York Times' best [data visualizations](https://www.nytimes.com/interactive/2017/12/21/us/2017-year-in-graphics.html).  Lots of good stuff here but for our purposes, the best things to look at are those in the "Data Visualizations" section, about 60% of the way down the page.  Control-F for "Data Visualization" and you'll find it.  Here are three examples:  
-1) [Low-income students in college](https://www.nytimes.com/interactive/2017/01/18/upshot/some-colleges-have-more-students-from-the-top-1-percent-than-the-bottom-60.html)  
-2) [The French presidential election](https://www.nytimes.com/interactive/2017/04/23/world/europe/french-election-results-maps.html)  
-3) [LeBron James's playoff scoring record](https://www.nytimes.com/interactive/2017/05/25/sports/basketball/lebron-career-playoff-points-record.html)  
+__The prospectus is optional__.  Ideally you should address the question, proposed methods, and data sources you will pursue.  But really, just be as specific as you can.  If you can't address all these questions, that's OK.  This is not for a grade; its just an opportunity to bounce your ideas off me, and if you can't find the time to send in a prospectus, that's OK.  
 
+I've also posted the [fourth and final set of exercises](exercises/exercises04.md) this semester, on unsupervised learning techniques.  These are due at 5 PM on Friday, April 26.
 
-### Week 1: the data scientist's toolbox
-
-[Slides here.](http://rpubs.com/jgscott/intro_ECO395M) 
-
-Topics: Good data-curation and data-analysis practices; R; Markdown and RMarkdown; the importance of replicable analyses; version control with Git and Github.
-
-The first thing to do is to install [R](http://www.r-project.org) and then [RStudio](http://www.rstudio.org) on your own computer.  Detailed instructions for installing these two programs [can be found here](https://github.com/jgscott/learnR/blob/master/basics/installing_R.md).  Both are free.
-
-R is the underlying data-analysis program we'll use in this course, while RStudio provides a nice front-end interface to R that makes certain repetitive steps (e.g. loading data, saving plots) very simple.   I will use RStudio in class most days this semester, and you will use it most weeks for your homework.  RStudio depends upon having R available behind the scenes, so make sure you install both, even though you won't need to interact directly with R.  
-
-Please install these on your own computer; you'll need them for the second day of class.  At some point before class next week, complete the following R walkthroughs if you need an R refresher.  If you're comfortable with R, you can safely skip these.   
-- [Getting started with R.](https://github.com/jgscott/learnR/blob/master/heights/heights.md)   
-- [Installing a library in R.](https://github.com/jgscott/learnR/blob/master/basics/installing_library.md)    
-
-
-Important links:  
-- [Introduction to RMarkdown](http://rmarkdown.rstudio.com)  
-- [RMarkdown tutorial](https://rmarkdown.rstudio.com/lesson-1.html)  
-- [Introduction to GitHub](https://guides.github.com/activities/hello-world/)   
-- [Jeff Leek's guide to sharing data](https://github.com/jtleek/datasharing)  
-
-
-Looking ahead to next week: data visualization.  The following software walkthroughs will help you get your feet wet -- a lot of this will probably be a reminder!    
-
-- [Survival on the Titanic](https://github.com/jgscott/learnR/blob/master/titanic/titanic.md): summarizing variation in categorical variables  
-- [City temperatures](https://github.com/jgscott/learnR/blob/master/citytemps/citytemps.md): measuring and visualizing dispersion in one numerical variable.  
-- [Test scores and GPA for UT grads](https://github.com/jgscott/learnR/blob/master/sat/sat.md): association between numerical and categorical variables.  
-
-
-<!-- Some examples of great data visualizations from the New York Times:  
-- ["Thousands cried for help as Houston flooded"](https://www.nytimes.com/interactive/2017/08/30/us/houston-flood-rescue-cries-for-help.html)  
-- [College attendance and income inequality](https://www.nytimes.com/interactive/2017/01/18/upshot/some-colleges-have-more-students-from-the-top-1-percent-than-the-bottom-60.html)  
-- [Opioid overdose deaths in America](https://www.nytimes.com/interactive/2017/06/05/upshot/opioid-epidemic-drug-overdose-deaths-are-rising-faster-than-ever.html)  
-- [Who likes which musical artists](https://www.nytimes.com/interactive/2017/08/07/upshot/music-fandom-maps.html)  
-- [LeBron James and the playoff scoring record](https://www.nytimes.com/interactive/2017/05/25/sports/basketball/lebron-career-playoff-points-record.html)  
-  -->
 

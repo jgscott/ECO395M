@@ -1,22 +1,25 @@
-
-
 # Exercises
 
-- [Exercises 1](exercises01.md): Due at the beginning of class on Monday, February 11, 2019.  
-- [Exercises 2](exercises02.md): Due at 5 PM on Friday, March 15, 2019.  
+- [Exercises 1](exercises01.md): Due by 5 PM on Friday, February 7.  
+- Exercises 2: TBA  
+- Exercises 3: TBA  
+- Exercises 4: TBA  
+
+<!-- - [Exercises 2](exercises02.md): Due at 5 PM on Friday, March 15, 2019.  
 - [Exercises 3](exercises03.md): Due at beginning of class on Monday, April 8, 2019.  
-- [Exercises 4](exercises04.md): Due at 5 PM on Friday, April 26, 2019.  
+- [Exercises 4](exercises04.md): Due at 5 PM on Friday, April 26, 2019.   -->
+
 
 # How to prepare and submit your reports
 
-Prepare your reports using RMarkdown, so that they are fully reproducible, carefully integrating visual and numerical evidence with prose.  You may work solo, or in groups of 4 or fewer people.  If you're working in a group, please turn in a single submission with all of your names attached.
+You will be evaluated both on the technical correctness (50%) and the overall intellectual quality (50%) of your approach and write-up.  Strive to make each write-up self-contained and something that a future employer would find engaging and impressive.  Please try as far as possible to [follow the suggestions given here.](https://jgscott.github.io/teaching/writeups/write_ups/)     
 
-To submit, please e-mail <ajlee@utexas.edu> with the subject line "ECO 395 Exercises N: name here" where N is the exercise number as appropriate (1, 2, etc.) And obviously use your own name in the subject, or the names of all your group members if applicable.
+Prepare your reports using RMarkdown, so that they are fully reproducible, carefully integrating visual and numerical evidence with prose.  You may work solo, or in groups of 3 or fewer people.  If you're working in a group, please turn in a single submission with all of your names attached.
 
-Your e-mail should have two links in it: 
-1) A link to a GitHub page where the final report has been stored in Markdown format (PDF is acceptable in a pinch, but definitely not HTML -- it doesn't render properly on GitHub.)  
-2) A link to the raw .Rmd file that can be used to reproduce your report from scratch.
+To submit, please e-mail Andrew at <ajlee@utexas.edu> with the subject line "ECO 395 Exercises N: name here" where N is the exercise number as appropriate (1, 2, etc.) And obviously use your own name in the subject, or the names of all your group members if applicable.
 
-If you need to include mathematical expressions in your report, you can use Markdown's [math syntax](https://github.com/cben/mathdown/wiki/math-in-markdown).  Alternatively, you can just handwrite the math, snap a photo, and include the image in the final report.  This is a simple, low-overhead option.
+Your e-mail should have two links in it, one to a .md file and one to a .Rmd file:  
+1) A link to a GitHub file where the final report has been created in Markdown (.md) format.  That means you should knit your RMarkdown file to a .md output.  PDF is acceptable if for whatever reason you can't get things to work with .md output, but definitely not HTML -- it doesn't render properly on GitHub.  
+2) A link to the raw .Rmd file that can be used to reproduce your Markdown output from scratch.  
 
-Note: if you know LaTeX, this is a perfectly acceptable alternative to Markdown (although you are probably creating more work for yourself, since RMarkdown is so east).  If you wish to typeset your reports in Latex, use Sweave or something similar and submit a PDF.  If you don't kow what Sweave is, either do some digging and find out, or don't use Latex :-)  
+If you need to include mathematical expressions in your report, you can use Markdown's [math syntax](https://github.com/cben/mathdown/wiki/math-in-markdown).  Alternatively, you can just handwrite the math, snap a photo, and include the image in the final report.  This is a simple, low-overhead option.  
