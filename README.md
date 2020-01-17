@@ -21,7 +21,7 @@ Please install the following free pieces of software on your own machine:
 
 ### Week 1: the data scientist's toolbox
 
-[Slides here.](http://rpubs.com/jgscott/intro_ECO395M)  
+[Slides here.](slides/01-intro/01_intro.pdf)  
 
 Topics: Good data-curation and data-analysis practices; R; Markdown and RMarkdown; the importance of replicable analyses; version control with Git and Github.
 
@@ -39,7 +39,7 @@ Note: If you'd like a refresher on some techniques for data visualization in R, 
 
 ### Weeks 2-3: Basic concepts in statistical learning  
 
-[Slides here.](http://rpubs.com/jgscott/introlearning)
+[Slides here.](slides/02-intro_learning/02_intro_learning.pdf)  
 
 Reading: Chapters 1-2 of "Introduction to Statistical Learning."
 
@@ -52,7 +52,7 @@ In class:
 
 ### Weeks 4-5: Linear models  
 
-[Slides here.](http://rpubs.com/jgscott/linear_regression)
+[Slides here.](slides/03-linear_regression/03_linear_models.pdf)  
 
 Reading: Chapter 3 of "Introduction to Statistical Learning."
 
