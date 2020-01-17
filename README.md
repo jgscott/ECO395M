@@ -59,7 +59,7 @@ Reading: Chapter 3 of "Introduction to Statistical Learning."
 In class:  
 - [oj.R](r/oj.R) and [oj.csv](data/oj.csv)   
 - [saratoga_lm.R](r/saratoga_lm.R)  
-
+- [gft_train.csv](data/gft_train.csv) and [gft_test.csv](data/gft_test.csv).  The goal here is to imagine you work at the CDC: build a flu-prediction model using the training data (`cdcflu` is the outcome) and make predictions on the testing data.   
 
 ### Week 6-7: Classification
 
