@@ -12,6 +12,6 @@ sclass65AMG = subset(sclass, trim == '65 AMG')
 summary(sclass65AMG)
 
 # Look at price vs mileage for each trim level
-plot(price ~ mileage, data = sclass350)
+plot(price ~ mileage, data = sclass550)
 plot(price ~ mileage, data = sclass65AMG)
 

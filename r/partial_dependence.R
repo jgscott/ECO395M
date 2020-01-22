@@ -26,7 +26,7 @@ forest2 %>%
 	partial(pred.var = "KHOU_temp") %>% autoplot
 
 
-# partial dependence plot: temp
+# partial dependence plot: dewpoint
 forest2 %>%
 	partial(pred.var = "KHOU_dewpoint") %>% autoplot
 
