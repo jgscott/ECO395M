@@ -7,8 +7,6 @@ Welcome to ECO 395M, a course on data mining and statistical learning for studen
 
 I will post the exercises [here](exercises/).   
 
-Hey, let's make a change!
-
 ## Software 
 
 Please install the following free pieces of software on your own machine:  
