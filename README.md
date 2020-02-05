@@ -18,7 +18,7 @@ Please install the following free pieces of software on your own machine:
 ## Topics outline  
 
 
-### Week 1: the data scientist's toolbox
+### The data scientist's toolbox
 
 [Slides here.](slides/01-intro/01_intro.pdf)  
 
@@ -36,7 +36,7 @@ Readings:
 Note: If you'd like a refresher on some techniques for data visualization in R, please refer back to the "Data Exploration and Visualization" section in [ECO 394D](https://github.com/jgscott/ECO394D).  You'll find lots of R scripts and notes there.  
 
 
-### Weeks 2-3: Basic concepts in statistical learning  
+### Basic concepts in statistical learning  
 
 [Slides here.](slides/02-intro_learning/02_intro_learning.pdf)  
 
@@ -49,7 +49,7 @@ In class:
 - [spamfit.csv](data/spamfit.csv) and [spamtest.csv](data/spamtest.csv)   
 
 
-### Weeks 4-5: Linear models  
+### Linear models  
 
 [Slides here.](slides/03-linear_regression/03_linear_models.pdf)  
 
@@ -60,7 +60,7 @@ In class:
 - [saratoga_lm.R](r/saratoga_lm.R)  
 - [gft_train.csv](data/gft_train.csv) and [gft_test.csv](data/gft_test.csv).  The goal here is to imagine you work at the CDC: build a flu-prediction model using the training data (`cdcflu` is the outcome) and make predictions on the testing data.   
 
-### Week 6-7: Classification
+### Classification
 
 [Slides here.](http://rpubs.com/jgscott/classification)
 
@@ -74,7 +74,7 @@ In class:
 - [congress109members.csv](data/congress109members.csv)    
 
 
-### Week 8: Resampling methods (CV, bootstrap)  
+### Resampling methods (CV, bootstrap)  
 
 [Slides here.](http://rpubs.com/jgscott/resampling)    
   
@@ -87,7 +87,7 @@ In class:
 - [predimed.csv](data/predimed.csv)    
 
 
-### Weeks 9-10: Model selection and regularization  
+### Model selection and regularization  
 
 [Slides here.](http://rpubs.com/jgscott/selection_regularization)  
 
@@ -95,7 +95,7 @@ Reading: chapter 6 of _Introduction to Statistical Learning_.
 
 
 
-### Week 11: Unsupervised learning: clustering    
+### Unsupervised learning: clustering    
 
 [Slides here.](http://rpubs.com/jgscott/clustering)    
 
@@ -103,7 +103,7 @@ Reading: chapter 10.3 of _Introduction to Statistical Learning_.
 
 
 
-### Week 12-13: Unsupervised learning, continued: PCA, networks, and association rules
+### Unsupervised learning, continued: PCA, networks, and association rules
 
 Reading: rest of chapter 10 of _Introduction to Statistical Learning_.
 
@@ -120,7 +120,7 @@ Miscellaneous:
 
 
 
-### Weeks 13-14: Trees
+### Trees
 
 [Slides on trees](notes/trees.pdf).  
 
@@ -130,7 +130,7 @@ Reading: Chapter 8 of _Introduction to Statistical Learning_.
 
 
 
-### Week 15: Text
+### Text
 
 [Slides on text](notes/text_intro.pdf).   
 
