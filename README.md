@@ -74,6 +74,23 @@ In class:
 - [congress109members.csv](data/congress109members.csv)    
 
 
+
+### Model selection and regularization  
+
+[Slides here.](http://rpubs.com/jgscott/selection_regularization)  
+
+Reading: chapter 6 of _Introduction to Statistical Learning_.  
+
+
+### Trees
+
+[Slides on trees](notes/trees.pdf).  
+
+Reading: Chapter 8 of _Introduction to Statistical Learning_.
+
+[The pdp package](https://journal.r-project.org/archive/2017/RJ-2017-016/RJ-2017-016.pdf) for partial dependence plots from nonparametric regression models.  
+
+
 ### Resampling methods (CV, bootstrap)  
 
 [Slides here.](http://rpubs.com/jgscott/resampling)    
@@ -85,13 +102,6 @@ In class:
 - [chymotrypsin.csv](data/chymotrypsin.csv)   
 - [ethanol.csv](data/ethanol.csv)    
 - [predimed.csv](data/predimed.csv)    
-
-
-### Model selection and regularization  
-
-[Slides here.](http://rpubs.com/jgscott/selection_regularization)  
-
-Reading: chapter 6 of _Introduction to Statistical Learning_.  
 
 
 
@@ -119,14 +129,6 @@ Miscellaneous:
 - a little Python utility for [scraping Spotify playlists](https://github.com/nithinphilips/spotifyscrape)  
 
 
-
-### Trees
-
-[Slides on trees](notes/trees.pdf).  
-
-Reading: Chapter 8 of _Introduction to Statistical Learning_.
-
-[The pdp package](https://journal.r-project.org/archive/2017/RJ-2017-016/RJ-2017-016.pdf) for partial dependence plots from nonparametric regression models.  
 
 
 

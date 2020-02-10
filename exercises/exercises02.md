@@ -1,15 +1,16 @@
 # ECO 395M: Exercises 2
 
-Due date: links must be submitted by 5 PM on Friday, March 15, 2019  
+Due date: links must be submitted by 5 PM on Friday, March 6, 2020  
 
 ## Saratoga house prices
 
 Return to the data set on house prices in Saratoga, NY that we considered in class.  Recall that a starter script here is in `saratoga_lm.R`.  
 
-- See if you can "hand-build" a model for price that outperforms the "medium" model that we considered in class.  Use any combination of transformations, polynomial terms, and interactions that you want.  Are there any variables or interactions that seem to be especially strong drivers of house prices?  
-- Then see if you can turn this hand-built linear model into a better-performing KNN model.  Note: don't explicitly include interactions or polynomial terms in your KNN model.  The method is sufficiently adaptable to find them, if they are there.  However, if your linear model did include composite features (like sqft of house per acre of land, or something like that), then you _should_ include those in KNN.  Make sure to _standardize_ your variables before applying KNN, and make sure to include a plot of RMSE versus K.   
+- See if you can "hand-build" a model for price that outperforms the "medium" model that we considered in class.  Use any combination of transformations, polynomial/spline terms, and interactions that you want.  
+- Are there any variables or interactions that seem to be especially strong drivers of house prices?  You can judge this question by assessing how much a variable or interaction improves the out-of-sample RMSE when it is included in the model.  
+- Then see if you can turn this hand-built linear model into a better-performing nonparametric model.  Note: don't explicitly include interactions or polynomial terms in your KNN model.  The method is sufficiently adaptable to find them, if they are there.  However, if your linear model did include composite features (like sqft of house per acre of land, or something like that), then you _should_ include those in KNN.  Make sure to _standardize_ your variables before applying KNN, and make sure to include a plot of RMSE versus K.   
 
-Write your report as if you were describing your price-modeling strategies for a local taxing authority, who needs to form predicted market values for properties in order to know how much to tax them.  Keep the focus on the conclusions and model performance, rather than on the technical details.  
+Write your report as if you were describing your price-modeling strategies for a local taxing authority, who needs to form predicted market values for properties in order to know how much to tax them.  Keep the focus on the conclusions and model performance, rather than on the technical details.   
 
 Note: When measuring out-of-sample performance, there is _random variation_ due to the particular choice of data points that end up in your train/test split.  Make sure your script addresses this by averaging the estimate of out-of-sample RMSE over many different random train/test splits.   
 

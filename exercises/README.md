@@ -1,7 +1,7 @@
 # Exercises
 
 - [Exercises 1](exercises01.md): Due by 5 PM on Friday, February 7.  
-- Exercises 2: TBA  
+- [Exercises 2](exercises02.md): Due by 5 PM on Friday, March 6.   
 - Exercises 3: TBA  
 - Exercises 4: TBA  
 
