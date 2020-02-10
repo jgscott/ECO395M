@@ -79,7 +79,7 @@ rmse_vals = do(100)*{
                  bedrooms*rooms + bathrooms*rooms + 
                  bathrooms*livingArea, data=saratoga_train)
   
-  lm_biggerboom = lm(price ~ lotSize + landValue + waterfront + newConstruction + bedrooms*bathrooms + heating + fuel + pctCollege + rooms*bedrooms + rooms*bathrooms + rooms*heating + livingArea, data=saratoga_train)
+  lm_biggerboom = lm(price ~ lotSize + waterfront + newConstruction + bedrooms*bathrooms + heating + fuel + pctCollege + rooms*bedrooms + rooms*bathrooms + rooms*heating + livingArea, data=saratoga_train)
   
   
   # predict on this testing set
