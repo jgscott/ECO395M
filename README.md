@@ -45,8 +45,6 @@ Reading: Chapters 1-2 of "Introduction to Statistical Learning."
 In class:  
 - [loadhou.R](r/loadhou.R)  
 - [loadhou.csv](data/loadhou.csv)  
-- [spamtoy.R](r/spamtoy.r)  
-- [spamfit.csv](data/spamfit.csv) and [spamtest.csv](data/spamtest.csv)   
 
 
 ### Linear models  
@@ -58,21 +56,24 @@ Reading: Chapter 3 of "Introduction to Statistical Learning."
 In class:  
 - [oj.R](r/oj.R) and [oj.csv](data/oj.csv)   
 - [saratoga_lm.R](r/saratoga_lm.R)  
-- [gft_train.csv](data/gft_train.csv) and [gft_test.csv](data/gft_test.csv).  The goal here is to imagine you work at the CDC: build a flu-prediction model using the training data (`cdcflu` is the outcome) and make predictions on the testing data.   
+
 
 ### Classification
 
-[Slides here.](http://rpubs.com/jgscott/classification)
+[Slides here.](slides/04-classification/04-classification.pdf)  
+
 
 Reading: Chapter 4 of "Introduction to Statistical Learning."
 
 In class:  
+- [spamtoy.R](r/spamtoy.r)  
+- [spamfit.csv](data/spamfit.csv) and [spamtest.csv](data/spamtest.csv)   
 - [glass.R](r/glass.R)  
 - [glass_mlr.R](r/glass_mlr.R)   
 - [congress109_bayes.R](r/congress109_bayes.R)   
 - [congress109.csv](data/congress109.csv)    
 - [congress109members.csv](data/congress109members.csv)    
-
+- [glass_LDA.R](r/glass_LDA.R)  
 
 
 ### Model selection and regularization  
@@ -80,6 +81,9 @@ In class:
 [Slides here.](http://rpubs.com/jgscott/selection_regularization)  
 
 Reading: chapter 6 of _Introduction to Statistical Learning_.  
+
+In-class:  
+- [gft_train.csv](data/gft_train.csv) and [gft_test.csv](data/gft_test.csv).  The goal here is to imagine you work at the CDC: build a flu-prediction model using the training data (`cdcflu` is the outcome) and make predictions on the testing data.   
 
 
 ### Trees
