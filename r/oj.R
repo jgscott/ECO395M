@@ -65,7 +65,7 @@ summary(reg_ads3)
 oj$reg_ads3_fitted = fitted(reg_ads3)
 
 p_base = ggplot(data=oj) + 
-  geom_point(aes(x=log(price), y = logmove, color=factor(feat)), alpha=0.025) + 
+  geom_point(aes(x=log(price), y = logmove, color=factor(feat)), alpha=0.1) + 
   facet_grid(~brand)
 p_base
 
