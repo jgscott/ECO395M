@@ -30,6 +30,7 @@ p0 + geom_boxplot(aes(x=type, y=Al))
 # some are more subtle
 p0 + geom_boxplot(aes(x=type, y=RI))
 p0 + geom_boxplot(aes(x=type, y=Si))
+p0 + geom_boxplot(aes(x=type, y=Fe))
 
 
 
@@ -95,8 +96,9 @@ sum(knn25 != y_test)/n_test
 
 
 ## for illustration, consider the RIxMg plane (i.e., just 2D)
-X = dplyr::select(fgl, -type) 
-#X = select(fgl, RI, Mg)
+# X = dplyr::select(fgl, RI, Mg)
+X = dplyr::select(fgl, -type)
+X = select(fgl, -Si, -Fe, -type)
 y = fgl$type
 n = length(y)
 
@@ -107,9 +109,9 @@ n_test = n - n_train
 
 library(foreach)
 library(mosaic)
-k_grid = seq(1, 25, by=2)
+k_grid = seq(1, 25, by=1)
 err_grid = foreach(k = k_grid,  .combine='c') %do% {
-  out = do(100)*{
+  out = do(250)*{
     train_ind = sample.int(n, n_train)
     X_train = X[train_ind,]
     X_test = X[-train_ind,]
@@ -123,7 +125,7 @@ err_grid = foreach(k = k_grid,  .combine='c') %do% {
     # scale the test set features using the same scale factors
     X_test_sc = scale(X_test, scale=scale_factors)
     
-    # Fit two KNN models (notice the odd values of K)
+    # Fit KNN models (notice the odd values of K)
     knn_try = class::knn(train=X_train_sc, test= X_test_sc, cl=y_train, k=k)
     
     # Calculating classification errors
