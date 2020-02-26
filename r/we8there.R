@@ -1,13 +1,9 @@
-library(textir)
 library(wordcloud)
 library(tidyverse)
 
 
-we8thereRatings = read.csv('../data/we8thereRatings.csv')
-we8thereCounts = read.csv('../data/we8thereCounts.csv')
-
-
-wordcloud(colnames(we8thereCounts), colSums(we8thereCounts)/sum(we8thereCounts), max.words=250, random.order = FALSE)
+we8thereRatings = read.csv('../data/we8thereRatings.csv', row.names=1)
+we8thereCounts = read.csv('../data/we8thereCounts.csv', row.names=1)
 
 
 ind5 = which(we8thereRatings$Overall == 5)

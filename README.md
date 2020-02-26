@@ -78,11 +78,14 @@ In class:
 
 ### Model selection and regularization  
 
-[Slides here.](http://rpubs.com/jgscott/selection_regularization)  
+[Slides here.](slides/05-selection_regularization/05-selection_regularization.pdf)  
+
 
 Reading: chapter 6 of _Introduction to Statistical Learning_.  
 
 In-class:  
+- [semiconductor.R](R/semiconductor.R) and [semiconductor.csv](data/semiconductor.csv)  
+- [gasoline.R](R/gasoline.R) and [gasoline.csv](data/gasoline.csv)  
 - [gft_train.csv](data/gft_train.csv) and [gft_test.csv](data/gft_test.csv).  The goal here is to imagine you work at the CDC: build a flu-prediction model using the training data (`cdcflu` is the outcome) and make predictions on the testing data.   
 
 

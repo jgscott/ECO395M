@@ -43,7 +43,7 @@ priors = table(y_train) %>% prop.table
 
 
 # now try a query doc in the test set
-i = 5
+i = 6
 test_doc = X_test[i,]
 test_doc %>% sort
 sum(test_doc * log(pvec_0)) + log(priors[1])
