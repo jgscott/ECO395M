@@ -38,3 +38,35 @@ lm_step = step(lm_medium,
 getCall(lm_step)
 coef(lm_step)
 
+
+# Compare out of sample performance
+rmse = function(y, yhat) {
+  sqrt( mean( (y - yhat)^2 ) )
+}
+
+n = nrow(SaratogaHouses)
+n_train = round(0.8*n)  # round to nearest integer
+n_test = n - n_train
+rmse_vals = do(100)*{
+  
+  # re-split into train and test cases with the same sample sizes
+  train_cases = sample.int(n, n_train, replace=FALSE)
+  test_cases = setdiff(1:n, train_cases)
+  saratoga_train = SaratogaHouses[train_cases,]
+  saratoga_test = SaratogaHouses[test_cases,]
+  
+  # Fit to the training data
+  # use `update` to refit the same model with a different set of data
+  lm1 = update(lm_medium, data=saratoga_train)
+  lm2 = update(lm_step, data=saratoga_train)
+  
+  # Predictions out of sample
+  yhat_test1 = predict(lm1, saratoga_test)
+  yhat_test2 = predict(lm2, saratoga_test)
+  
+  c(rmse(saratoga_test$price, yhat_test1),
+    rmse(saratoga_test$price, yhat_test2))
+}
+
+# noticeable improvement over the starting point!
+colMeans(rmse_vals)

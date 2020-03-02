@@ -25,7 +25,6 @@ For each patient, two outcomes are recorded.  The first is an indicator of wheth
 
 In addition to the cancer and recall outcomes, several risk factors for breast cancer identified in previous studies are provided in the data set. Referent values for a “typical patient are indicated by asterisks:
 - age: 40-49*, 50-59, 60-69, 70 and older  
-- family history of breast cancer: 0=No*, 1=Yes  
 - history of breast biopsy/surgery: 0=No*, 1=Yes  
 - breast cancer symptoms: 0=No*, 1=Yes  
 - menopause/hormone-therapy status: Pre-menopausal, Post-menopausal & no hormone replacement
