@@ -31,7 +31,7 @@ pc_gasoline = prcomp(X, scale=TRUE)
 
 # pc_gasoline$x has the summary variables
 # Regress on the first K
-K = 3
+K = 4
 scores = pc_gasoline$x[,1:K]
 pcr1 = lm(y ~ scores)
 

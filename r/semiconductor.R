@@ -1,4 +1,4 @@
-semiconductor = read.csv("semiconductor.csv")
+semiconductor = read.csv("../data/semiconductor.csv")
 n = nrow(semiconductor)
 
 ## full model
@@ -6,7 +6,7 @@ full = glm(FAIL ~ ., data=semiconductor, family=binomial)
 
 ## A forward stepwise procedure
 # null model
-null = glm(FAIL~1, data=semiconductor)
+null = glm(FAIL~1, data=semiconductor, family=binomial)
 # forward stepwise: it takes a long time!
 system.time(fwd <- step(null, scope=formula(full), dir="forward"))
 length(coef(fwd)) # chooses around 70 coef
@@ -64,7 +64,7 @@ sum(scb.1se!=0) ## usually selects all zeros (just the intercept)
 # note that AIC is a pretty good estimate of out-of-sample deviance
 # for values of lambda near the optimum
 # outside that range: much worse  
-plot(sccvl, bty="n")
+plot(sccvl, bty="n", ylim=c(0, 1))
 lines(log(sclasso$lambda),AICc(sclasso)/n, col="green", lwd=2)
 legend("top", fill=c("blue","green"),
 	legend=c("CV","AICc"), bty="n")

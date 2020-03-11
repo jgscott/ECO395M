@@ -7,6 +7,7 @@
 ###################################################
 library(mosaic)
 library(tree)
+library(rpart)
 
 #--------------------------------------------------
 #fit a tree to load_coast data
@@ -14,7 +15,7 @@ load_coast = read.csv('../data/load_coast.csv')
 
 #first get a big tree using a small value of mindev
 # small mindev leads to large tree
-temp = tree(COAST~KHOU_temp,data=load_coast,mindev=.0001)
+temp = tree(COAST~KHOU_temp,data=load_coast,mindev=.00001)
 length(unique(temp$where))
 
 #then prune it down to one with 12 leaves
@@ -23,7 +24,6 @@ length(unique(load.tree$where))
 
 #--------------------------------------------------
 #plot the tree and the fits.
-par(mfrow=c(1,2))
 
 #plot the tree
 plot(load.tree,type="uniform")
@@ -47,7 +47,7 @@ lines(load.fit[oo] ~ KHOU_temp[oo], data=load_coast,col='red',lwd=3) #step funct
 
 #--------------------------------------------------
 #big tree
-temp = tree(COAST ~ KHOU_temp + KHOU_dewpoint, data=load_coast, mindev=.0001)
+temp = tree(COAST ~ KHOU_temp + KHOU_dewpoint, data=load_coast, mindev=.00001)
 length(unique(temp$where))
 
 #--------------------------------------------------
@@ -56,11 +56,9 @@ load.tree = prune.tree(temp,best=20)
 
 #--------------------------------------------------
 # plot tree and partition in x.
-par(mfrow=c(1,2))
 plot(load.tree,type="u")
 text(load.tree,col="blue",label=c("yval"),cex=.8)
 partition.tree(load.tree)
-
 
 
 ################################################################################
@@ -79,8 +77,6 @@ source('cal_setup.R')
 ################################################################################
 
 library(tree)
-library(maps)
-
 
 #--------------------------------------------------
 #first get big tree
@@ -93,37 +89,11 @@ length(unique(caltrain.tree$where))
 
 #--------------------------------------------------
 #plot the tree
-par(mfrow=c(1,2))
 plot(caltrain.tree,type="u")
 text(caltrain.tree,col="blue",label=c("yval"),cex=.8)
+
+
 partition.tree(caltrain.tree)
-
-
-#--------------------------------------------------
-#map plot
-frm = caltrain.tree$frame
-wh = caltrain.tree$where
-nrf = nrow(frm)
-iil = frm[,"var"]=="<leaf>"
-iil = (1:nrf)[iil] #indices of leaves in the frame
-oo = order(frm[iil,"yval"]) #sort by yval so iil[oo[i]] give frame row of ith yval leaf
-
-map('state', 'california')
-nc=length(iil)
-colv = heat.colors(nc)[nc:1]
-for(i in 1:length(iil)) {
-print(iil[oo[i]])
-iitemp  = (wh == iil[oo[i]]) #where refers to rows of the frame
-points(catrain$longitude[iitemp],catrain$latitude[iitemp],col=colv[i])
-}
-lglabs=as.character(round(exp(frm[iil[oo],"yval"]),0))
-print(lglabs)
-lseq = seq(from=nc,to=1,by=-2)
-print(lseq)
-legend("topright",legend=lglabs[lseq],col=colv[lseq],
-         cex=0.5,lty=rep(1,nc),lwd=rep(5,nc),bty="n")
-
-
 
 
 
@@ -150,5 +120,4 @@ plot(pen.tree,type="uniform")
 options(digits=5)
 text(pen.tree,pretty=0,col="blue",label=c("yprob"),cex=.8)
 options(digits=7)
-
 

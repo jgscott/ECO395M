@@ -11,8 +11,6 @@ qplot(longitude, latitude, color=medianHouseValue, data=CAhousing)
 pen2ref = read.table('../data/pen2ref.txt', header=TRUE)
 head(pen2ref)
 
-qplot(factor(oppcall), goaldiff, data=pen2ref, geom='violin')
-
 # calls against you tend to be when you're ahead
 # calls for you tend to be when you're behind
 mean(goaldiff~oppcall, data=pen2ref)
@@ -22,4 +20,5 @@ mean(goaldiff~oppcall, data=pen2ref)
 xtabs(~oppcall+inrow2, data=pen2ref) %>% prop.table(margin=2)
 
 
-boxplot(timespan ~ oppcall, data=pen2ref) %>% prop.table(margin=2)
+boxplot(timespan ~ oppcall, data=pen2ref)
+
