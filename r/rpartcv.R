@@ -19,3 +19,5 @@ yhat = predict(temp)
 
 plot(yhat ~ KHOU_temp, data=load_coast)
 
+boxplot(yhat ~ factor(hour), data=load_coast)
+
