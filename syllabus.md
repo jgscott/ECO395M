@@ -5,8 +5,21 @@
 - Instructor: James Scott (james.scott@mccombs.utexas.edu)
 - Office: GDC 7.516  
 - Course website: http://www.github.com/jgscott/ECO395M/
-- Office hours: Mondays and Wednesdays, 1:30 to 2:45 PM, in GDC 7.516.  
+- Office hours: Mondays and Wednesdays, 1:30 to 2:45 PM, via Zoom.    
 - Teaching assistant: Andrew Lee (ajlee@utexas.edu), office hours TBA.  
+
+## Syllabus updates March 2020
+
+Due to the ongoing COVID-19 pandemic, our syllabus has changed a bit. Please see the University’s website for general university information on the situation. Below you’ll find information specific to our course.
+
+- Starting Monday, March 30, all lectures will take place online, via Zoom, at our usual class time: MW 11:00am to 12:15 PM. Our personal classroom link has been shared via Canvas.  
+- HW3 will be posted by Monday, March 30 and due three weeks later, by 11 AM (beginning of class) on Monday, April 20.  
+- Because we have lost a week of class, there will be no HW4. We will preserve the same grading rubric for the course, with your best homework grade counting twice (that is, in lieu of the now-nonexistent HW4).  
+- Office hours will proceed at the normal time (MW 1:30 to 2:45), also via Zoom, at the same link I will share via Canvas.  
+- If you’d like feedback on a project prospectus (2 pages max), please get it to me by Friday, April 24 at 10 AM. The project prospectus is unrequired and ungraded. It is simply an opportunity for you to get feedback. (I cannot guarantee I will get you useful feedback in time for anything received after this date.)  
+- If you need accommodations in this class due to a COVID-19-related situation -- whether travel, illness, family, lack of access to resources necessary to attend online lectures and complete the coursework, anything -- I pledge as much flexibility as possible. Just do two things. First, please reach out to Student Emergency Services for support. Second, please let me know what you need. In the interest of privacy, you absolutely don’t need to explain any personal medical, financial, or logistical situations to me. All you need to do is to tell me what parts of the course you’re not able to complete, and if possible, what kind of accommodation it would take in order address the situation.  
+- Class recordings posted on Canvas are reserved only for students in this class for educational purposes. The recordings should not be shared outside the class in any form. Violations of this restriction will be taken extremely seriously; they will lead to Student Misconduct proceedings and possible expulsion from the University.   
+
 
 ## Overview
 
