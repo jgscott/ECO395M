@@ -1,0 +1,8 @@
+This folder contains data on 40 television shows; although the shows themselves aired across a variety of networks, this data collected by NBC for the purposes of market research.  The descriptions below have more details on each file, but to briefly describe each one:
+- nbc_showdetails.csv has data on the shows themselves: ratings, audience engagement measures, genre, and show length.  
+- nbc_demographics has details on the demographic profiles of each show's audience.  
+- nbc_pilotsurvey has survey data from a select panel of viewers who were asked to view the "pilot" (first episode) of each show and answer some basic questions on their responses.  
+
+There are two goals associated with this data set:
+- can we predict overall audience engagement and/or ratings based on data from the pilot survey?  
+- can we predict who, demographically, a show will appeal to based on the pilot survey?  

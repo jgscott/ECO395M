@@ -1,5 +1,6 @@
+library(tidyverse)
 library(randomForest)
-
+library(rpart)
 
 ethanol = read.csv('../data/ethanol.csv')
 plot(NOx ~ E, data=ethanol)

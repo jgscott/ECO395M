@@ -15,7 +15,7 @@ load_train = load_coast[train_ind,]
 load_test = load_coast[-train_ind,]
 
 # random forests
-# average over 25 bootstrap samples
+# average over ntree bootstrap samples
 # 5 candidate variables (mtry=5) in each bootstrapped sample
 forest2 = randomForest(COAST ~ ., data = load_train, mtry = 5, ntree=100)
 yhat_forest2 = predict(forest2, load_test)

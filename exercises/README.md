@@ -2,8 +2,7 @@
 
 - [Exercises 1](exercises01.md): Due by 5 PM on Friday, February 7.  
 - [Exercises 2](exercises02.md): Due by 5 PM on Friday, March 6.   
-- Exercises 3: TBA  
-- Exercises 4: TBA  
+- [Exercises 3](exercises03.md): Due by 10 AM on Monday, April 20.    
 
 <!-- - [Exercises 2](exercises02.md): Due at 5 PM on Friday, March 15, 2019.  
 - [Exercises 3](exercises03.md): Due at beginning of class on Monday, April 8, 2019.  

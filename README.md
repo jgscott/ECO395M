@@ -111,26 +111,15 @@ Reading: Chapter 8 of _Introduction to Statistical Learning_.
 [The pdp package](https://journal.r-project.org/archive/2017/RJ-2017-016/RJ-2017-016.pdf) for partial dependence plots from nonparametric regression models.  
 
 
-### Resampling methods (CV, bootstrap)  
-
-[Slides here.](http://rpubs.com/jgscott/resampling)    
-  
-In class:  
-- [bootstrap.R](r/bootstrap.R)  
-- [residual_resampling.R](r/residual_resampling.R)  
-- [predimed_bootstrap.R](data/predimed_bootstrap.R)    
-- [chymotrypsin.csv](data/chymotrypsin.csv)   
-- [ethanol.csv](data/ethanol.csv)    
-- [predimed.csv](data/predimed.csv)    
-
-
-
 ### Unsupervised learning: clustering    
 
-[Slides here.](http://rpubs.com/jgscott/clustering)    
-
+[Slides here.](slides/08-cluster/08-clustering.pdf)  
 Reading: chapter 10.3 of _Introduction to Statistical Learning_.
 
+In class:  
+- [cars.R](r/cars.R)  
+- [hclust_examples.R](r/hclust_examples.R)  
+- [linkage_minmax.R](r/linkage_minmax.R)  
 
 
 ### Unsupervised learning, continued: PCA, networks, and association rules
@@ -148,6 +137,21 @@ Miscellaneous:
 - [The Gephi quick-start tutorial](https://gephi.org/tutorials/gephi-tutorial-quick_start.pdf)  
 - a little Python utility for [scraping Spotify playlists](https://github.com/nithinphilips/spotifyscrape)  
 
+
+
+
+
+### Resampling methods (CV, bootstrap)  
+
+[Slides here.](http://rpubs.com/jgscott/resampling)    
+  
+In class:  
+- [bootstrap.R](r/bootstrap.R)  
+- [residual_resampling.R](r/residual_resampling.R)  
+- [predimed_bootstrap.R](data/predimed_bootstrap.R)    
+- [chymotrypsin.csv](data/chymotrypsin.csv)   
+- [ethanol.csv](data/ethanol.csv)    
+- [predimed.csv](data/predimed.csv)    
 
 
 
