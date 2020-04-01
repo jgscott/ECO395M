@@ -113,7 +113,7 @@ Reading: Chapter 8 of _Introduction to Statistical Learning_.
 
 ### Unsupervised learning: clustering    
 
-[Slides here.](slides/08-cluster/08-clustering.pdf)  
+[Slides here.](slides/08-clustering/08-clustering.pdf)  
 Reading: chapter 10.3 of _Introduction to Statistical Learning_.
 
 In class:  
