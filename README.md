@@ -126,7 +126,11 @@ In class:
 
 Reading: rest of chapter 10 of _Introduction to Statistical Learning_.
 
-[Slides on PCA here.](http://rpubs.com/jgscott/PCA)    
+[Slides on PCA here.](slides/09-PCA/09-PCA.pdf)  
+- [pca_intro.R](r/pca_intro.R)  
+- [congress109.R](r/congress109.R)  
+- [NCI60.R](r/NCI60.R)  
+
 
 [Intro slides on networks](notes/networks_intro.pdf).  
 
@@ -136,7 +140,6 @@ Miscellaneous:
 - [Gephi](https://gephi.org/), a great piece of software for exploring graphs  
 - [The Gephi quick-start tutorial](https://gephi.org/tutorials/gephi-tutorial-quick_start.pdf)  
 - a little Python utility for [scraping Spotify playlists](https://github.com/nithinphilips/spotifyscrape)  
-
 
 
 
