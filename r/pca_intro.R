@@ -97,18 +97,18 @@ pairs(Z)
 
 # Run PCA on all four dimensions
 # scaling inside the prcomp function now
-pc1 = prcomp(Z, scale.=TRUE)
+iris_pc = prcomp(Z, scale.=TRUE)
 
 # Look at the basic plotting and summary methods
-summary(pc1)
-plot(pc1)
+summary(iris_pc)
+plot(iris_pc)
 
 # Question 1: where do the individual points end up in PC space?
-biplot(pc1)
+biplot(iris_pc)
 
 # A biplot I like a bit better
-loadings = pc1$rotation
-scores = pc1$x
+loadings = iris_pc$rotation
+scores = iris_pc$x
 qplot(scores[,1], scores[,2], color=iris$Species, xlab='Component 1', ylab='Component 2')
 
 # Question 2: how are the principal components related to the original variables?
