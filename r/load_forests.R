@@ -22,7 +22,7 @@ rmse_forest = mean((yhat_forest - load_test$COAST)^2) %>% sqrt
 
 
 # now true random forests
-# now average over 25 bootstrap samples
+# now average over 100 bootstrap samples
 # this time only 5 candidate variables (mtry=5) in each bootstrapped sample
 forest2 = randomForest(COAST ~ ., data = load_train, mtry = 5, ntree=100)
 yhat_forest2 = predict(forest2, load_test)

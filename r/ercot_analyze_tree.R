@@ -40,7 +40,7 @@ head(big.tree$cptable)
 err_1se = big.tree$cptable[,'xerror'] + big.tree$cptable[,'xstd']
 err_thresh = min(err_1se)
 
-# now find the largest simplest tree that beats this threshold
+# now find the simplest tree that beats this threshold
 big.tree$cptable[,'xerror'] - err_thresh
 which(big.tree$cptable[,'xerror'] - err_thresh < 0) %>% head
 bestcp = big.tree$cptable[798,'CP']

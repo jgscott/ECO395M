@@ -134,7 +134,10 @@ Reading: rest of chapter 10 of _Introduction to Statistical Learning_.
 
 [Intro slides on networks](notes/networks_intro.pdf).  
 
+[Further slides on networks](notes/Networks.pdf).  
+
 [Slides on association rules here.](https://github.com/jgscott/ECO395M/blob/master/notes/association_rules.pdf)    
+
 
 Miscellaneous:  
 - [Gephi](https://gephi.org/), a great piece of software for exploring graphs  

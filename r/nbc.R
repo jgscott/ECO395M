@@ -35,7 +35,7 @@ shows = merge(shows, PCApilot$x[,1:3], by="row.names")
 shows = rename(shows, Show = Row.names)
 
 ggplot(shows) + 
-	geom_text(aes(x=PC1, y=PC2, label=Show), size=3)
+	geom_text(aes(x=PC2, y=PC3, label=Show), size=3)
 
 # principal component regression: predicted engagement
 lm1 = lm(PE ~ PC1 + PC2 + PC3, data=shows)
