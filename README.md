@@ -132,9 +132,9 @@ Reading: rest of chapter 10 of _Introduction to Statistical Learning_.
 - [NCI60.R](r/NCI60.R)  
 
 
-[Intro slides on networks](notes/arx/networks_intro.pdf).  
+[Intro slides on networks](notes/networks_intro.pdf).  
 
-[Further slides on networks](notes/arx/Networks.pdf).  
+[Further slides on networks](slides/arx/Networks.pdf).  
 
 [Slides on association rules here.](https://github.com/jgscott/ECO395M/blob/master/notes/association_rules.pdf)    
 
