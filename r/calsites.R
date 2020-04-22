@@ -43,6 +43,7 @@ top10_ind = order(betweenness(calink), decreasing=TRUE)[1:10] %>% head(10)
 V(calink)$name[top10_ind]
 
 # run page rank
-search = page.rank(calink)$vector
-casites[order(search, decreasing=TRUE)[1:20]]
+pr_fit = page.rank(calink)
+cal_rank = pr_fit$vector
+casites[order(cal_rank, decreasing=TRUE)[1:20]]
 

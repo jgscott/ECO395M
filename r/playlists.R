@@ -1,6 +1,7 @@
 library(tidyverse)
 library(arules)  # has a big ecosystem of packages built around it
 library(arulesViz)
+library(igraph)
 
 # Association rule mining
 
@@ -56,13 +57,13 @@ summary(playtrans)
 # Now run the 'apriori' algorithm
 # Look at rules with support > .01 & confidence >.1 & length (# artists) <= 5
 musicrules = apriori(playtrans, 
-	parameter=list(support=.01, confidence=.1, maxlen=5))
+	parameter=list(support=.005, confidence=.1, maxlen=2))
                          
 # Look at the output... so many rules!
 inspect(musicrules)
 
 ## Choose a subset
-inspect(subset(musicrules, lift > 5))
+inspect(subset(musicrules, lift > 7))
 inspect(subset(musicrules, confidence > 0.6))
 inspect(subset(musicrules, lift > 10 & confidence > 0.05))
 
@@ -90,5 +91,5 @@ plot(sub1, method='graph')
 plot(head(sub1, 100, by='lift'), method='graph')
 
 # export a graph
-sub1 = subset(musicrules, subset=confidence > 0.02 & support > 0.005)
+sub1 = subset(musicrules, subset=confidence > 0.25 & support > 0.005)
 saveAsGraph(sub1, file = "musicrules.graphml")
