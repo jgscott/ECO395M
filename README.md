@@ -146,6 +146,12 @@ Miscellaneous:
 
 
 
+### Text
+
+[Slides on text](notes/text_intro.pdf).   
+- [tm_examples.R](r/tm_examples.R) 
+- [smallbeer.R](r/smallbeer.R) 
+
 
 ### Resampling methods (CV, bootstrap)  
 
@@ -160,10 +166,5 @@ In class:
 - [predimed.csv](data/predimed.csv)    
 
 
-
-
-### Text
-
-[Slides on text](notes/text_intro.pdf).   
 
 

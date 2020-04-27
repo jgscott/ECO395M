@@ -1,7 +1,7 @@
 ## The tm library and related plugins comprise R's most popular text-mining stack.
 ## See http://cran.r-project.org/web/packages/tm/vignettes/tm.pdf
 library(tm) 
-library(magrittr)
+library(tidyverse)
 library(slam)
 library(proxy)
 
@@ -32,8 +32,6 @@ simon = lapply(file_list, readerPlain)
 file_list
 
 # Clean up the file names
-# This uses the piping operator from magrittr
-# See https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html
 mynames = file_list %>%
 	{ strsplit(., '/', fixed=TRUE) } %>%
 	{ lapply(., tail, n=2) } %>%
@@ -136,10 +134,10 @@ plot(tree_simon)
 clust5 = cutree(tree_simon, k=5)
 
 # inspect the clusters
-which(clust5 == 1)
-content(simon[[1]])
-content(simon[[4]])
-content(simon[[5]])
+which(clust5 == 3)
+content(simon[[12]])
+content(simon[[13]])
+content(simon[[21]])
 
 
 
@@ -187,7 +185,6 @@ content(simon[[11]])
 # Now look at the word view
 # 5-dimensional word vectors
 word_vectors = pca_simon$rotation[,1:5]
-
 word_vectors[984,]
 
 d_mat = dist(t(word_vectors))
