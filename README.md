@@ -152,6 +152,7 @@ Miscellaneous:
 - [tm_examples.R](r/tm_examples.R) 
 - [smallbeer.R](r/smallbeer.R) 
 
+[A bit on treatment-effect estimation](slides/arx/Treatments.pdf). 
 
 ### Resampling methods (CV, bootstrap)  
 

@@ -13,7 +13,7 @@ readerPlain = function(fname){
 				
 ## Rolling two directories together into a single training corpus
 train_dirs = Sys.glob('../data/ReutersC50/C50train/*')
-train_dirs = train_dirs[c(45, 47)]
+train_dirs = train_dirs[c(43, 47)]
 file_list = NULL
 labels_train = NULL
 for(author in train_dirs) {
@@ -35,7 +35,7 @@ corpus_train = corpus_train %>% tm_map(., content_transformer(tolower)) %>%
 
 ## Same operations with the testing corpus
 test_dirs = Sys.glob('../data/ReutersC50/C50test/*')
-test_dirs = test_dirs[c(45, 47)]
+test_dirs = test_dirs[c(43, 47)]
 file_list = NULL
 labels_test = NULL
 for(author in test_dirs) {
@@ -59,7 +59,6 @@ corpus_test = corpus_test %>% tm_map(., content_transformer(tolower)) %>%
 # create training and testing feature matrices
 DTM_train = DocumentTermMatrix(corpus_train)
 DTM_train # some basic summary statistics
-DTM_train = removeSparseTerms(DTM_train, 0.975)
 
 
 # restrict test-set vocabulary to the terms in DTM_train
@@ -70,12 +69,10 @@ DTM_test = DocumentTermMatrix(corpus_test,
 y_train = 0 + {labels_train=='TheresePoletti'}
 y_test = 0 + {labels_test=='TheresePoletti'}
 
-X_train =  Matrix(weightTf(DTM_train), nrow=100)
-X_test =  Matrix(weightTf(DTM_test), nrow=100)
 
 # lasso logistic regression for document classification
 logit1 = cv.gamlr(DTM_train, y_train, family='binomial', nfold=10)
-coef(logit1) 
+coef(logit1, select='min') 
 plot(coef(logit1))
 yhat_test = predict(logit1, DTM_test, type='response')
 
