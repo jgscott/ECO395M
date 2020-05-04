@@ -42,6 +42,7 @@ price_int = coef(ml1)[which_int]
 
 # these look much more reasonable, though not all negative
 # and the elephant in the room: of course price is not exogenous here!
+# price is changing over time and in response to features that also predict demand
 hist(price_main + price_int)
 
 ####
@@ -100,5 +101,6 @@ el = drop(gams[1] + xtest%*%gams[(1:ncol(xtext))+1])
 hist(el, xlab="OML elasticities", xlim=c(-6,1), col="lightblue", main="",breaks=7)
 
 # high and low sensitivity brands
-names(sort(el)[1:20])
-names(sort(-el)[1:20])
+sort(el) %>% head(20)
+sort(el) %>% tail(20)
+

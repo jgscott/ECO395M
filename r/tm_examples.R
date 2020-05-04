@@ -101,8 +101,8 @@ content(simon[[2]])
 content(simon[[3]])
 
 # cosine similarity
-i = 1
-j = 3
+i = 15
+j = 16
 sum(tfidf_simon[i,] * (tfidf_simon[j,]))/(sqrt(sum(tfidf_simon[i,]^2)) * sqrt(sum(tfidf_simon[j,]^2)))
 
 
