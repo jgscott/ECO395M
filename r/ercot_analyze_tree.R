@@ -1,9 +1,36 @@
 library(tidyverse)
 library(rpart)
-
+library(ggplot2)
 
 load_coast = read.csv('../data/load_coast.csv', row.names=1)
 N = nrow(load_coast)
+
+ggplot(load_coast) + 
+  geom_point(aes(x=KHOU_temp - 273, y=COAST)) + 
+  facet_wrap(~month)
+
+load_coast = load_coast %>%
+  mutate(      month_label = case_when(
+               month %in% c(12, 1:2) ~ "Winter",
+              month %in%  5:9  ~ "Summer (May-Sept)",
+               TRUE  ~ "Spring/Fall"),
+              time_of_day = case_when(
+                hour %in% 6:9 ~ "Morning",
+                hour %in% 9:17 ~ "Workday",
+                hour %in% 18:22 ~ "Evening",
+                hour %in% c(23, 0:5) ~ "Overnight"),
+              weekend = case_when(day %in% 1:5 ~ "Weekend",
+                                  TRUE ~ "Weekday"))
+
+load_coast$time_of_day = factor(load_coast$time_of_day, levels=c("Morning", "Workday", "Evening", "Overnight"))
+
+ggplot(load_coast) + 
+  geom_point(aes(x=KHOU_temp - 273, y=COAST), alpha=0.05) + 
+  facet_grid(month_label~time_of_day) + 
+  labs(x='Temperature (Celsius)', y='Power Consumption (MW)', 
+       title="Power Consumption vs Temperature: Houston Metro Area") + 
+  geom_smooth(aes(x=KHOU_temp - 273, y=COAST))
+
 
 # split into a training and testing set
 train_frac = 0.8

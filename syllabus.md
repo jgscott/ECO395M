@@ -3,23 +3,9 @@
 ## Course details
 
 - Instructor: James Scott (james.scott@mccombs.utexas.edu)
-- Office: GDC 7.516  
 - Course website: http://www.github.com/jgscott/ECO395M/
-- Office hours: Mondays and Wednesdays, 1:30 to 2:45 PM, via Zoom.    
-- Teaching assistant: Andrew Lee (ajlee@utexas.edu), office hours TBA.  
-
-## Syllabus updates March 2020
-
-Due to the ongoing COVID-19 pandemic, our syllabus has changed a bit. Please see the University’s website for general university information on the situation. Below you’ll find information specific to our course.
-
-- Starting Monday, March 30, all lectures will take place online, via Zoom, at our usual class time: MW 11:00am to 12:15 PM. Our personal classroom link has been shared via Canvas.  
-- HW3 will be posted by Monday, March 30 and due three weeks later, by 11 AM (beginning of class) on Monday, April 20.  
-- Because we have lost a week of class, there will be no HW4. We will preserve the same grading rubric for the course, with your best homework grade counting twice (that is, in lieu of the now-nonexistent HW4).  
-- Office hours will proceed at the normal time (MW 1:30 to 2:45), also via Zoom, at the same link I will share via Canvas.  
-- If you’d like feedback on a project prospectus (2 pages max), please get it to me by Friday, April 24 at 10 AM. The project prospectus is unrequired and ungraded. It is simply an opportunity for you to get feedback. (I cannot guarantee I will get you useful feedback in time for anything received after this date.)  
-- If you need accommodations in this class due to a COVID-19-related situation -- whether travel, illness, family, lack of access to resources necessary to attend online lectures and complete the coursework, anything -- I pledge as much flexibility as possible. Just do two things. First, please reach out to Student Emergency Services for support. Second, please let me know what you need. In the interest of privacy, you absolutely don’t need to explain any personal medical, financial, or logistical situations to me. All you need to do is to tell me what parts of the course you’re not able to complete, and if possible, what kind of accommodation it would take in order address the situation.  
-- Class recordings posted on Canvas are reserved only for students in this class for educational purposes. The recordings should not be shared outside the class in any form. Violations of this restriction will be taken extremely seriously; they will lead to Student Misconduct proceedings and possible expulsion from the University.   
-
+- Office hours: Mondays and Wednesdays, 1:30 to 2:45 PM, via Zoom.  See our course's Canvas site for the link.    
+- Teaching assistant: TBA 
 
 ## Overview
 
@@ -30,19 +16,31 @@ This is a master's level course on data mining and statistical learning for stud
 The prerequisites are the Statistics and Probability course and the Econometrics course in the Econ master's program.  
 
 
-## Software
+## Lectures
 
-- Statistical computing: [R](http://www.r-project.org), which we will use via [RStudio](http://www.rstudio.com), a free, platform-independent graphical front-end for R.  Make sure you have both installed, along with the [RMarkdown package](http://rmarkdown.rstudio.com).  
-- Other software: please [install Git and create a GitHub account](https://help.github.com/articles/set-up-git/).  You will use GitHub for version control and to submit your assignments.  
+Lectures will take place online, via Zoom, at the regularly scheduled time of 11 AM US Central time on Mondays and Wednesdays.  Join live and/or watch recordings of prior lectures via the Zoom tab on our course's Canvas page.  
+
+
+## Exercises
+
+I will post the exercises [here](exercises/).   
+
+
+## Software 
+
+Please install the following free pieces of software on your own machine:  
+- Statistical computing: [R](http://www.r-project.org) and [RStudio](http://www.rstudio.com), a free, platform-independent graphical front-end for R.  Make sure you have both R and RStudio installed, along with the [RMarkdown package](http://rmarkdown.rstudio.com).   
+- Other software: please [install Git and create a GitHub account](https://help.github.com/articles/set-up-git/), if you don't already have one.  You will use GitHub for version control and to submit your assignments.  
+
 
 
 ## Readings
 
 The course readings involve a compilation of free, high-quality sources available online.    
 
-* _ISL_: Selections from _An Introduction to Statistical Learning_ by James, Witten, Hastie, and Tibshirani.  The book is [freely available here](http://www-bcf.usc.edu/~gareth/ISL/).  I'll refer to it as "ISL" in the course outline.  We will pretty much move beginning to end through this book, in order.  
-* _Elements_: selections from [_Elements of Statistical Learning_](http://statweb.stanford.edu/~tibs/ElemStatLearn/), by Hastie, Tibshirani, and Friedman.  A standard reference on data mining from a more statistical perspective.  Referrered to as "Elements" in the course outline.  This is a more advanced treatment of much of the material in ISL, and I will highlight selections from this book as optional, supplemental reading.  
-* _Shalizi_: selections from [Advanced Data Analysis from an Elementary Point of View](http://www.stat.cmu.edu/~cshalizi/ADAfaEPoV/ADAfaEPoV.pdf), by Cosma Shalizi.  Another textbook whose author has kindly posted a free version on the web.  Referred to as "Shalizi" in the course outline.  As with "Elements," I will highlight selections from this book as optional, supplemental reading.  
+- _ISL_: Selections from _An Introduction to Statistical Learning_ by James, Witten, Hastie, and Tibshirani.  The book is [freely available here](http://www-bcf.usc.edu/~gareth/ISL/).  I'll refer to it as "ISL" in the course outline.  We will pretty much move beginning to end through this book, in order.  
+- _Elements_: selections from [_Elements of Statistical Learning_](http://statweb.stanford.edu/~tibs/ElemStatLearn/), by Hastie, Tibshirani, and Friedman.  A standard reference on data mining from a more statistical perspective.  Referrered to as "Elements" in the course outline.  This is a more advanced treatment of much of the material in ISL, and I will highlight selections from this book as optional, supplemental reading.  
+- _Shalizi_: selections from [Advanced Data Analysis from an Elementary Point of View](http://www.stat.cmu.edu/~cshalizi/ADAfaEPoV/ADAfaEPoV.pdf), by Cosma Shalizi.  Another textbook whose author has kindly posted a free version on the web.  Referred to as "Shalizi" in the course outline.  As with "Elements," I will highlight selections from this book as optional, supplemental reading.  
 
 
 ## Outline of topics  
@@ -78,8 +76,8 @@ Your grade for this course will come from:
 
 The homework assignments consist mainly of analyzing some data and writing a report on what you've found.  Here's the submission protocol:  
 - Prepare your report as a single RMarkdown file.  
-- Knit the RMarkdown file to a Markdown output.  (Do not knit to HTML.)  
-- E-mail the links for both the output (.md file) and the raw RMarkdown file (.Rmd) to our TA.  
+- Knit the RMarkdown file to a Markdown (.md) output.  Do not knit to HTML.    
+- E-mail the links for both the output (.md file) and the raw RMarkdown file (.Rmd) to our TA with the subject line: "ECO 395M Homework N: Your name(s) here".  Obviously, you should substitute the correct number for N (e.g. 1, 2) as well as your own name/group members' names.  
 
 Do not send an attachment.  Do not knit to an HTML file.  
 
@@ -87,7 +85,7 @@ Do not send an attachment.  Do not knit to an HTML file.
 
 Sometimes we have bad days, bad weeks, and bad semesters. In an effort to accommodate any unexpected, unfortunate personal crisis, I have built a grace policy into the course: that is, a one-time, three-day grace period for one homework assignment.  You do not have to utilize this policy, but if you find yourself struggling with unexpected personal events, I encourage you to e-mail me and our TA as soon as possible to notify us that you are using our grace policy.   
 
-All other late assignments will be penalized 10 points per day or partial day.  
+All other late assignments will be penalized 10 points per day or partial day that they are late.    
 
 
 
@@ -97,9 +95,7 @@ The assignment for the final project is simple: pose an interesting question; co
 
 This assignment is purposely open-ended, allowing you considerable freedom to follow a path dictacted by your own intellectual curiosity. Strive to write something that a statistically literate person of wide- ranging interests (for example, a future employer) would find engaging and impressive.  
 
-The project is due at 5 PM on Wednesday, May 6, 2020 (the last class day of the spring semester).   Because of the quick turn-around required to grade final projects, I unfortunately cannot extend the grace policy to encompass the project.  But remember, you have all semester to get this sorted.    
-
-In case getting a data set proves too difficult, I will provide a "default" data set and project.  If you use this data set, I will impose a 93% ceiling (i.e. an A-) on your grade.  The last 7% is an incentive to be more creative and go with your own project.  
+The project is due at 9:00 AM, US Central Time, on Monday, May 10, 2020.   Because of the quick turn-around required to grade final projects, I unfortunately cannot extend the grace policy to encompass the project.  But remember, you have all semester to get this sorted.    
 
 
 ### Groups are allowed
@@ -107,6 +103,7 @@ In case getting a data set proves too difficult, I will provide a "default" data
 You are welcome to work on the assignments and the final project in groups of up to 3 people.  (Groups aren't required; you can work on your own if you wish.)  If you are working in a group, put all of your names in alphabetical order at the top of each assignment, and submit a single set of files for all of you.  
 
 If you'd like to work in a group but are having trouble coordinating with other class members, please let our TA or me know and we'll do our best to place you in a group.  
+
 
 ### Grade cutoffs
 
@@ -136,7 +133,7 @@ Your success in this class is important to me. We will all need accommodations b
 
 ### Names and pronouns
 
-Professional courtesy and sensitivity are especially important with respect to individuals and topics dealing with differences of race, culture, religion, politics, sexual orientation, gender, gender variance, and nationalities. Class rosters are provided to me with each student’s legal name, but I will gladly address you with whatever name and pronouns you feel most comfortable with. Please let me your preferences!  
+Class rosters are provided to me with each student’s legal name, but I will gladly address you with whatever name and pronouns you feel most comfortable with. Please let me your preferences!  
 
 
 ### Academic Integrity  

@@ -91,14 +91,16 @@ Linear models: major cons
 ========================================================
 
  
-- Linear models are pretty much always _wrong_, sometimes subtly and sometimes spectacularly.  If the truth is nonlinear, then the linear model will provide a biased estimate.  
+- Linear models are pretty much always wrong, sometimes subtly and sometimes spectacularly.  If the truth is nonlinear, then the linear model will provide a biased estimate.  
 
-- Linear models depend on which transformation of the data you use (e.g. $x$ versus $\log(x)$).  
+- Linear models depend on which _transformation_ of the data you use (e.g. $x$ versus $\log(x)$).  
 
 - Linear models don't handle _interactions_ among the predictors unless you explicitly build them in.  
 
+- Linear models sometimes require extensive _feature engineering_ in order to yield good performance.  
 
-Huh?  What's an interaction?  
+
+Interactions  
 =====
 
 We use the term __interaction__ in statistical learning to describe situations where the effect of some feature $x$ on the outcome $y$ is __context-specific.__:  
@@ -147,11 +149,11 @@ Linear models _can_ accommodate interactions among feature variables---__but onl
 Example: orange juice sales 
 ========================================================
 
+We'll see an example that illustrates the importance of transformations and hand-built interactions to get a good linear model.  
+
 - Three brands of OJ: Tropicana, Minute Maid, Dominicks  
 
-- 83 Chicago-area stores  
-
-- Demographic info for each store  
+- 83 Chicago-area stores and demographic info for each store  
 
 - Price, sales (log units moved), and whether advertised (`feat`)
 
@@ -175,17 +177,15 @@ Sales decrease with price (duh).
 OJ example: teaching points
 ========================================================
 
-- Log-linear models: thinking about _scale_ in linear models.  
+- Log-linear models: thinking about _scale_ and the appropriate _transformation_ in linear models.  
 
-- Interpreting regression models when some of the predictors are categorical (factor effects, model matrices).    
-
-- Interactions.  
+- Interactions: must be hand-built, i.e. aren't automatically discovered by the fitting algorithm.    
 
 
 Log-linear models
 =====
 
-- When fitting a linear model (_this_ goes up, _that_ goes down), think about the _scale_ on which you expect to find linearity.  
+- When fitting a linear model (_this_ goes up, _that_ goes down), it's crucial that you think about the _scale_ on which you expect to find linearity.  
 
 - A very common scale is to model the mean for $\log(y)$ rather than $y$.  Remember, this allows us to model _multiplicative_ rather than _additive_ change.  
 
@@ -263,7 +263,7 @@ Output:
 |1          |         1|     0      |
 |1          |         0|     1      |
 
-Variable coded as a set of numeric "dummy variables" that we can multiply against $\beta$ coefficients.  This is done using `model.matrix`.
+Variable coded as a set of numeric "dummy variables" that we can multiply against $\beta$ coefficients.  This is done using `model.matrix`.  It's our first example of "feature engineering" (more later).  
 
 
 OJ: model matrix and dummy variables
@@ -273,56 +273,12 @@ class: small-code
 Our OJ model used `model.matrix` to build a 4 column matrix: 
 
 ```
-> x <- model.matrix( ∼ log(price) + brand, data=oj)
+> x = model.matrix( ∼ log(price) + brand, data=oj)
 > x[1,]
-Intercept log(price) branBDinute.maid brandtropicana
+Intercept log(price) brandminute.maid brandtropicana
   1.00000   1.353255         0.000000       1.000000
 ```
 Each factor’s reference level is absorbed by the intercept. Coefficients are "change relative to reference level" (dominicks here).
-
-To check the reference level of your factors, use
-
-```r
-levels(oj$brand)
-```
-
-```
-[1] "dominicks"   "minute.maid" "tropicana"  
-```
-
-The first level is reference.
-
-OJ: model matrix and dummy variables
-=====
-class: small-code
-
-To _change_ the reference level, use `relevel`:
-
-
-```r
-oj$brand2 = relevel(oj$brand, 'minute.maid')
-```
-
-Now if you re-run the regression, you'll see a different baseline category.  But crucially, the price coefficient doesn't change:
-
-```r
-reg2 = lm(logmove ~ log(price) + brand2, data=oj)
-coef(reg)  # old model
-```
-
-```
-     (Intercept)       log(price) brandminute.maid   brandtropicana 
-      10.8288216       -3.1386914        0.8701747        1.5299428 
-```
-
-```r
-coef(reg2) # new model
-```
-
-```
-    (Intercept)      log(price) brand2dominicks brand2tropicana 
-     11.6989962      -3.1386914      -0.8701747       0.6597681 
-```
 
 
 Interactions
@@ -330,7 +286,7 @@ Interactions
 
 Remember: an interaction is when one feature changes how another feature acts on y.    
 
-In regression, an interaction is expressed as the product of two features:
+In regression, an interaction is expressed as the product of two features:  
 $$
 E(y \mid x) = f(x) = \beta_0 + \beta_1 x_2 + \beta_2 x_2 + \beta_{12} x_1 x_2 + \cdots 
 $$
@@ -475,7 +431,7 @@ Including `feat` helped deconfound the estimate!
 Take-home messages: transformations
 =====
 
-- Transformations help us find the most natural scale on which to express the relationship between $x$ and $y$.  The log transformation is easily the most common.
+- Transformations allow us to specify a scale of the relationship between $x$ and $y$.  The log transformation is easily the most common.  
 - Exponential growth/decay in $y$ versus $x$:  
 $$
 \widehat{log(y)} = \beta_0 + \beta_1 x  \iff \hat{y} = e^{\beta_0} \cdot e^{\beta_1 x}
@@ -489,7 +445,7 @@ $$
 Take-home messages: dummy variables
 =====
 
-- Categorical variables are encoded using dummies.  Happens behind the scenes, but to interpret the output correctly, it's important to know how it works.    
+- Categorical variables are encoded using dummies.  In `lm` this happens behind the scenes, but not in all models!  Need to know how it works.  
 
 
 |Intercept    | brand=minute maid| brand = tropicana |
@@ -563,6 +519,7 @@ Three models for house prices
 A starter script is in `saratoga_lm.R`.  Goals for today:  
 - See if you can "hand-build" a model for price that outperforms all three of these baseline models!  Use any combination of transformations, polynomial terms, and interactions that you want.   
 - When measuring out-of-sample performance, there is _random variation_ due to the particular choice of data points that end up in your train/test split.  Make sure your script addresses this by averaging the estimate of out-of-sample RMSE over many different random train/test splits.  
+
 
 Three models for house prices  
 =====
@@ -711,6 +668,7 @@ $$
 
 This depends upon the choice of weights $w_1, \ldots, w_p$ for each feature variable. 
 
+
 Weighting
 =====
 
@@ -786,12 +744,12 @@ head(Xtrain, 2)
     lotSize age livingArea pctCollege bedrooms fireplaces bathrooms rooms
 142    0.33  32       1898         64        3          1       1.5     7
 51     0.24  10       1782         52        3          0       2.5     6
-    heatinghot air heatinghot water/steam heatingelectric fuelelectric
-142              0                      1               0            0
-51               1                      0               0            0
-    fueloil centralAirNo
-142       0            1
-51        0            0
+    heatinghot air heatinghot water/steam heatingelectric fuelelectric fueloil
+142              0                      1               0            0       0
+51               1                      0               0            0       0
+    centralAirNo
+142            1
+51             0
 ```
 
 ```r
@@ -799,15 +757,15 @@ head(Xtilde_train, 2) %>% round(3)
 ```
 
 ```
-    lotSize    age livingArea pctCollege bedrooms fireplaces bathrooms
-142  -0.248  0.147      0.237      0.818    -0.17      0.731    -0.611
-51   -0.394 -0.612      0.050     -0.351    -0.17     -1.091     0.911
-     rooms heatinghot air heatinghot water/steam heatingelectric
-142 -0.011         -1.335                  2.171          -0.475
-51  -0.441          0.749                 -0.460          -0.475
-    fuelelectric fueloil centralAirNo
-142       -0.483  -0.372        0.760
-51        -0.483  -0.372       -1.314
+    lotSize    age livingArea pctCollege bedrooms fireplaces bathrooms  rooms
+142  -0.248  0.147      0.237      0.818    -0.17      0.731    -0.611 -0.011
+51   -0.394 -0.612      0.050     -0.351    -0.17     -1.091     0.911 -0.441
+    heatinghot air heatinghot water/steam heatingelectric fuelelectric fueloil
+142         -1.335                  2.171          -0.475       -0.483  -0.372
+51           0.749                 -0.460          -0.475       -0.483  -0.372
+    centralAirNo
+142        0.760
+51        -1.314
 ```
 
 Example: KNN on the house-price data
@@ -864,7 +822,7 @@ plot(k_grid, rmse_grid, log='x')
 abline(h=rmse(ytest, yhat_test2)) # linear model benchmark
 ```
 
-<img src="03_linear_models-figure/unnamed-chunk-22-1.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" style="display: block; margin: auto;" />
+<img src="03_linear_models-figure/unnamed-chunk-19-1.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" style="display: block; margin: auto;" />
 
 
 Back to your "favorite" linear model
@@ -874,9 +832,45 @@ Back to your "favorite" linear model
 - See if you can turn that linear model into a better-performing KNN model.
 - Note: don't explicitly include interactions or polynomial terms in your KNN model!  It is sufficiently adaptable to find them, if they are there.  
 
+
+Feature engineering
+=====
+
+Feature engineering means applying domain-specific knowledge in order to:  
+
+  1) extract useful features from raw data, and/or  
+  2) improve the usefulness of existing features for predicting y.  
+
+Better features almost always beat a better model!  
+- Good feature engineering is absolutely vital to success in ML applications.  
+- Data scientists who work on ML pipelines spend a huge amount of their time thinking about how to engineer/extract more useful features from data sets.   
+
+Common steps in feature engineering  
+======
+
+- Extract numbers from time stamps (e.g. month, day of week, hour of day)  
+- Encode categorical variables as dummy variables (“one-hot encoding”)  
+- Apply nonlinear transformations (logs, powers, etc) to existing numerical variables  
+- Combine existing features to form new, derived features  
+
+***
+
+- Discretize: convert continuous features into categorical/discrete features   
+- Simplify complex features (E.g. heart-rate trace every second –> max/min/average heart rates for the day)  
+- Merge existing data with new sources that provide additional features  
+- etc!  
+
+
+Example
+======
+
+Let's see an example in `feature_engineer.R`.  
+
+
 Take-home messages
 =====
 
-- "Feature selection" is an important component of building a linear model.  
-- It can be used for its own sake (i.e. to build a linear predictive model) or as a pre-processing step to choose features for a non-linear model.
+- Linear models always require a choice of scale.  Using no transformation is still a choice!  
+- Selecting and engineering features/interactions are really important components of building a linear model (and for some nonlinear models we'll see later).  
 - But selecting features by hand is laborious, and selecting interactions by hand is even worse!  Stay tuned for more automated methods :-)  
+
