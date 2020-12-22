@@ -1,0 +1,102 @@
+,ID,Name,Price,Pumps,Interior,Restaurant,CarWash,Highway,Intersection,Stoplight,IntersectionStoplight,Gasolines,Competitors,Zipcode,Address,Income,Brand
+1,1,Shell,1.79,4,Y,N,N,N,Y,N,Intersection,3,N,78705,3201 N Lamar Blvd,12786,Shell
+2,2,Valero,1.83,4,Y,N,N,N,Y,N,Intersection,3,N,78705,3515 N Lamar Blvd,12786,Other
+3,3,7-Eleven,1.88,4,Y,N,N,N,Y,Y,Both,3,Y,78751,5101 N Lamar Blvd,41279,Other
+4,4,Texaco,1.88,4,Y,N,Y,N,Y,Y,Both,4,Y,78751,5301 N Lamar Blvd,41279,Chevron-Texaco
+5,5,Shell,1.84,6,Y,N,N,N,Y,Y,Both,3,N,78751,5630 N Lamar Blvd,41279,Shell
+6,6,Shell,1.83,8,Y,N,N,N,Y,N,Intersection,3,Y,78752,6301 N Lamar Blvd,37396,Shell
+7,7,Gulf,1.79,4,Y,N,N,N,Y,N,Intersection,3,Y,78752,6401 N Lamar Blvd,37396,Other
+8,8,Lamar Corner Store,1.89,2,Y,N,N,N,Y,Y,Both,3,N,78752,7545 N Lamar Blvd,37396,Other
+9,9,Shell,1.89,6,Y,N,N,N,Y,N,Intersection,4,N,78752,6515 Airport Blvd,37396,Shell
+10,10,Valero,1.83,6,Y,N,N,N,Y,N,Intersection,3,N,78751,3909 Guadalupe St,41279,Other
+11,11,Chevron,1.85,8,Y,N,N,N,Y,Y,Both,4,N,78705,2819 Guadalupe St,12786,Chevron-Texaco
+12,12,7-Eleven,1.97,4,Y,N,N,N,Y,Y,Both,3,N,78705,2600 Guadalupe St,12786,Other
+13,13,Shell,1.97,4,Y,N,N,N,Y,Y,Both,4,N,78705,2400 Rio Grande St,12786,Shell
+14,14,7-Eleven,1.95,4,Y,N,N,N,Y,Y,Both,3,N,78701,1814 Guadalupe St,87306,Other
+15,15,Shell,1.75,6,Y,N,N,N,Y,Y,Both,3,N,78702,1901 E Martin Luther King Jr Blvd,37690,Shell
+16,16,Shell,1.73,6,Y,N,N,N,Y,Y,Both,3,Y,78722,2204 Airport Blvd,54526,Shell
+17,17,Shell,1.75,6,Y,N,N,N,Y,Y,Both,4,Y,78722,3839 Airport Blvd,54526,Shell
+18,18,HEB Fuel,1.79,10,N,N,N,N,Y,N,Intersection,4,Y,78723,1801 E 51st St,42615,Other
+19,19,Exxon,1.79,20,Y,N,Y,N,Y,Y,Both,4,Y,78723,1660 E 51st St,42615,ExxonMobil
+20,20,7-Eleven,1.73,8,Y,N,N,N,Y,Y,Both,4,Y,78722,3848 Airport Blvd,54526,Other
+21,21,Citgo,1.75,4,Y,N,N,N,Y,Y,Both,3,Y,78722,3842 Airport Blvd,54526,Other
+22,22,Phillips 66,1.85,6,Y,N,N,N,Y,Y,Both,4,Y,78702,1149 Airport Blvd,37690,Other
+23,23,Double R Grocery,1.79,4,Y,N,N,N,Y,N,Intersection,4,Y,78702,1149 Airport Blvd,37690,Other
+24,24,Gulf,1.79,4,Y,N,N,N,Y,N,Intersection,3,N,78721,1135 Airport Blvd,36698,Other
+25,25,7-Eleven,1.84,6,Y,N,N,N,Y,Y,Both,4,N,78702,863 Airport Blvd,37690,Other
+26,26,Exxon,1.89,10,Y,Y,N,Y,Y,Y,Both,4,Y,78721,3926 Ed Bluestein Blvd,36698,ExxonMobil
+27,27,Shell,1.89,8,Y,Y,N,Y,Y,Y,Both,4,Y,78721,6105 Techni Center Dr,36698,Shell
+28,28,Exxon,1.89,16,Y,N,N,Y,Y,Y,Both,4,N,78723,6518 Ed Bluestein Blvd,42615,ExxonMobil
+29,29,Mobil,1.89,4,Y,N,N,N,Y,Y,Both,4,N,78723,3112 Manor Rd,42615,ExxonMobil
+30,30,Kool Corner,1.79,4,Y,N,N,N,Y,Y,Both,3,N,78723,6413 Manor Rd,42615,Other
+31,31,Gulf,1.79,4,Y,N,N,N,Y,N,Intersection,3,Y,78723,5301 Manor Rd,42615,Other
+32,32,Shell,1.79,4,Y,N,N,N,Y,N,Intersection,4,Y,78723,5210 Manor Rd,42615,Shell
+33,33,Conoco,1.79,4,Y,Y,N,N,Y,Y,Both,4,Y,78723,5029 Manor Rd,42615,Other
+34,34,Exxon,1.89,6,Y,N,N,Y,Y,Y,Both,4,Y,78751,4511 Airport Blvd,41279,ExxonMobil
+35,35,Gulf,1.74,8,Y,N,N,N,Y,N,Intersection,3,N,78722,2101 Manor Rd,54526,Other
+36,36,Chevron,1.92,8,Y,N,N,Y,Y,Y,Both,4,Y,78722,3735 N Interstate 35,54526,Chevron-Texaco
+37,37,Shell,1.85,12,Y,N,Y,Y,Y,Y,Both,4,Y,78751,3828 N Interstate 35,41279,Shell
+38,38,Shell,1.89,6,Y,N,N,Y,Y,N,Intersection,4,Y,78701,900 N Interstate 35,87306,Shell
+39,39,Gulf,1.87,8,Y,N,N,Y,Y,Y,Both,4,Y,78701,717 E 7th St,87306,Other
+40,40,Shell,1.89,6,Y,N,N,Y,Y,Y,Both,4,Y,78701,701 East Ave,87306,Shell
+41,41,Chevron,1.89,6,Y,N,Y,Y,Y,Y,Both,4,Y,78702,601 N Interstate 35,37690,Chevron-Texaco
+42,42,Citgo,1.81,4,Y,N,N,N,Y,N,Intersection,3,Y,78702,1621 E Cesar Chavez St,37690,Other
+43,43,Shell,1.79,6,Y,N,N,N,Y,N,Intersection,4,Y,78702,1700 E Cesar Chavez St,37690,Shell
+44,44,East 1st Grocery,1.77,4,Y,N,N,N,Y,Y,Both,1,N,78702,1811 E Cesar Chavez St,37690,Other
+45,45,Chevron,1.79,6,Y,N,Y,N,Y,Y,Both,3,Y,78741,1919 S Pleasant Valley Rd,31192,Chevron-Texaco
+46,46,HEB Fuel,1.79,12,Y,N,Y,N,Y,Y,Both,3,Y,78741,2512 E Riverside Dr,31192,Other
+47,47,Exxon,1.79,10,Y,N,N,N,Y,Y,Both,4,N,78741,2101 Wickersham Ln,31192,ExxonMobil
+48,48,Shell,1.79,8,Y,N,N,N,Y,Y,Both,4,N,78741,2001 E Riverside Dr,31192,Shell
+49,49,Gulf,1.75,4,Y,N,N,N,Y,Y,Both,3,Y,78741,1727 E Riverside Dr,31192,Other
+50,50,7-Eleven,1.79,4,Y,N,N,N,Y,Y,Both,3,Y,78741,1705 S Lakeshore Blvd,31192,Other
+51,51,Chevron,1.89,8,Y,N,Y,N,Y,Y,Both,3,N,78704,400 S Congress Ave,52306,Chevron-Texaco
+52,52,Conoco,1.99,4,Y,N,N,Y,Y,Y,Both,3,Y,78758,8523 Research Blvd,44476,Other
+53,53,Citgo,1.89,4,Y,N,N,N,Y,Y,Both,3,Y,78758,1600 Ohlen Rd,44476,Other
+54,54,Exxon,1.82,24,Y,N,N,N,N,N,None,3,N,78758,9200 Burnet,44476,ExxonMobil
+55,55,Exxon,1.82,20,Y,N,Y,Y,Y,Y,Both,3,N,78758,9061 Research Blvd,44476,ExxonMobil
+56,56,Gulf,1.79,8,Y,N,N,N,Y,N,Intersection,3,Y,78757,8400 Burnet,60856,Other
+57,57,Shell,1.84,8,Y,N,Y,N,Y,Y,Both,4,Y,78757,8224 Burnet,60856,Shell
+58,58,Chevron,1.86,8,Y,N,N,N,Y,Y,Both,3,Y,78757,8218 Burnet,60856,Chevron-Texaco
+59,59,Major Brand Gas,1.79,4,Y,N,N,N,Y,N,Intersection,3,Y,78757,1901 Anderson,60856,Other
+60,60,Citgo,1.89,4,Y,N,N,N,Y,N,Intersection,3,Y,78757,1809 Anderson,60856,Other
+61,61,Chevron,1.89,8,Y,N,N,N,Y,Y,Both,4,Y,78757,1700 Anderson,60856,Chevron-Texaco
+62,62,Shell,1.84,4,Y,N,N,N,Y,Y,Both,3,N,78756,1308 W Koenig Lane,63750,Shell
+63,63,Shell,1.85,8,Y,N,N,Y,Y,Y,Both,4,Y,78731,3310 Nrthland,79315,Shell
+64,64,Chevron,1.83,12,Y,N,Y,Y,Y,Y,Both,4,Y,78731,3324 Nrthland,79315,Chevron-Texaco
+65,65,Exxon,1.89,6,Y,N,N,N,Y,Y,Both,3,N,78731,3800 Dry Creek,79315,ExxonMobil
+66,66,Shell,1.99,8,Y,Y,N,Y,Y,N,Intersection,4,N,78746,3310 Capital of Texas Highway,128556,Shell
+67,67,Texaco,1.89,4,Y,N,N,N,Y,Y,Both,4,N,78746,3625 Bee Cave Rd,128556,Chevron-Texaco
+68,68,Shell,2.09,6,N,N,N,N,Y,N,Intersection,4,N,78746,98 Redbud Trail,128556,Shell
+69,69,Shell,1.99,8,N,N,N,N,Y,Y,Both,4,N,78746,2800 Bee Cave Road,128556,Shell
+70,70,Chevron,1.94,8,Y,N,Y,N,N,N,None,3,N,78746,2710 Bee Cave Road,128556,Chevron-Texaco
+71,71,Shell,2,12,N,Y,N,Y,N,N,None,4,N,78746,2451 Capital of Texas of Highway,128556,Shell
+72,72,Valero,1.94,6,Y,Y,N,N,Y,Y,Both,4,Y,78704,2900 South Lamar,52306,Other
+73,73,7-Eleven,1.93,4,Y,N,N,N,Y,Y,Both,4,Y,78704,2820 South Lamar,52306,Other
+74,74,Shell,1.89,8,Y,N,N,N,Y,N,Intersection,4,N,78704,2238 South Lamar,52306,Shell
+75,75,Mobil,1.84,20,Y,N,N,N,N,N,None,4,Y,78704,1403 South Lamar,52306,ExxonMobil
+76,76,Exxon,1.83,4,Y,Y,N,N,Y,Y,Both,3,Y,78704,1224 South Lamar,52306,ExxonMobil
+77,77,Signature Fuels,1.84,6,Y,N,N,N,N,N,None,4,N,78704,608 South Lamar,52306,Other
+78,78,Valero,2.09,4,Y,N,N,N,N,N,None,3,N,78704,1525 Barton Springs Road,52306,Other
+79,79,Chevron,1.94,8,Y,N,N,N,Y,N,Intersection,3,Y,78703,2402 Lake Austin Blvd,81903,Chevron-Texaco
+80,80,Phillips 66,1.93,8,Y,N,Y,N,Y,N,Intersection,3,Y,78703,2407 Lake Austin Blvd,81903,Other
+81,81,7-Eleven,1.95,4,Y,N,N,N,Y,N,Intersection,3,N,78703,2624 Lake Austin Blvd,81903,Other
+82,82,Texaco,1.96,8,N,N,Y,N,Y,Y,Both,4,N,78703,2400 Exposition Blvd,81903,Chevron-Texaco
+83,83,Shell,1.98,4,N,N,N,N,Y,Y,Both,4,N,78703,2701 Exposition Blvd,81903,Shell
+84,84,Shell,1.87,4,Y,N,N,N,Y,N,Intersection,3,N,78756,4001 Medical Parkway,63750,Shell
+85,85,Exxon,1.89,8,Y,N,N,N,Y,Y,Both,4,N,78756,1309 W 45th,63750,ExxonMobil
+86,86,Shell,1.99,4,Y,N,N,N,Y,Y,Both,4,N,78756,5300 Burnet,63750,Shell
+87,87,Around the Corner Store,1.94,2,Y,N,N,N,Y,N,Intersection,3,N,78756,2321 West North Loop Blvd.,63750,Other
+88,88,Exxon,1.99,6,N,N,N,N,Y,N,Intersection,3,Y,78731,5400 Balcones Drive,79315,ExxonMobil
+89,89,Chevron,1.79,16,Y,N,Y,N,Y,Y,Both,4,N,78731,3550 Far West Blvd.,79315,Chevron-Texaco
+90,90,Texaco,1.84,4,Y,N,N,N,Y,N,Intersection,3,N,78731,7007 Village Center Drive,79315,Chevron-Texaco
+91,91,Shell,1.89,8,N,N,Y,N,Y,N,Intersection,4,N,78731,3701 N Hills Drive,79315,Shell
+92,92,Valero,1.79,8,N,N,N,N,Y,Y,Both,3,N,78759,8101 Mesa,70095,Other
+93,93,Costco,1.73,12,N,N,N,Y,N,N,None,3,N,78759,10401 Research Blvd,70095,Other
+94,94,Shell,1.98,4,N,N,N,Y,Y,N,Intersection,3,N,78759,10940 Research Blvd,70095,Shell
+95,95,Exxon,1.77,8,Y,N,Y,Y,Y,Y,Both,3,N,78759,10800 Research Blvd,70095,ExxonMobil
+96,96,Signature Fuels,1.75,4,N,N,Y,N,Y,N,Intersection,3,N,78759,10401 Jollyville Rd,70095,Other
+97,97,Valero,1.77,8,Y,N,Y,N,Y,Y,Both,4,N,78759,10713 Jollyville Rd,70095,Other
+98,98,Texaco,1.99,8,Y,N,N,Y,Y,Y,Both,3,Y,78758,8630 Research Blvd,44476,Chevron-Texaco
+99,99,Shell,1.99,6,Y,Y,N,Y,Y,Y,Both,4,Y,78758,8540 Research Blvd,44476,Shell
+100,100,Valero,1.99,8,Y,N,N,Y,Y,Y,Both,3,Y,78758,8538 Research Blvd,44476,Other
+101,101,7-Eleven,1.95,4,Y,N,N,N,Y,Y,Both,3,N,78703,717 North Lamar,81903,Other

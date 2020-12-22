@@ -7,6 +7,7 @@ Welcome to the Spring 2021 edition of ECO 395M, a course on data mining and stat
 - readings  
 - other important administrative information   
 
+The exercises are [posted here.](https://github.com/jgscott/ECO395M/tree/master/exercises)    
 
 ## Topics outline  
 
