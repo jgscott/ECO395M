@@ -23,7 +23,7 @@ Readings:
 - [Introduction to GitHub](https://guides.github.com/activities/hello-world/)   
 - [Jeff Leek's guide to sharing data](https://github.com/jtleek/datasharing)  
 
-Watch these R walkthroughs out of class.  You can find the R scripts and data sets under the [R](R/) and [data](data/) folders, respectively. 
+Watch these R walkthroughs out of class.  You can find the R scripts and data sets under the [R](./r) and [data](./data) folders, respectively. 
 
 - [Intro to ggplot2](https://www.youtube.com/watch?v=UK2FhxMnmjQ)  
 - [Data workflow and bar plots](https://www.youtube.com/watch?v=k76R7ifcyvs)   
@@ -42,8 +42,8 @@ Watch these R walkthroughs out of class.  You can find the R scripts and data se
 Reading: Chapters 1-2 of "Introduction to Statistical Learning."
 
 In class:  
-- [loadhou.R](r/loadhou.R)  
-- [loadhou.csv](data/loadhou.csv)  
+- [loadhou.R](./r/loadhou.R)  
+- [loadhou.csv](./data/loadhou.csv)  
 
 
 ### Linear models  
