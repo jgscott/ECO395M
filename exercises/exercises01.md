@@ -1,8 +1,48 @@
 # ECO 395M: Exercises 1
 
-## 1) Data visualization: a bike share network
+## 1) Data visualization: gas prices  
 
-This problem serves primarily as a review of some of the material on data exploration and visualization, specifically using `ggplot2` and the `tidyverse` packages.    
+This problem is about making simple plots and telling stories using those plots.  
+
+For this exercise, you'll need to download the `GasPrices.csv` data set from the class website, which contains data from 101 gas stations in the Austin area collected in 2016.  There are lots of variables in this data set, but for our purposes here, the important ones are as follows:
+
+- ID: Order in which gas stations were visited  
+- Name: Name of gas station  
+- Price: Price of regular unleaded gasoline, gathered on Sunday, April 3rd, 2016  
+- Highway: Is the gas station accessible from either a highway or a highway access road?  
+- Stoplight: Is there a stoplight in front of the gas station?  
+- Competitors: Are there any other gas stations in sight?  
+- Zipcode: Zip code in which gas station is located  
+- Income: Median Household Income of the ZIP code where the gas station is located based on 2014 data from the U.S. Census Bureau  
+- Brand: ExxonMobil, ChevronTexaco, Shell, or Other.  
+
+
+### The theories
+
+People have a lot of pet theories about what explains the variation in prices between gas stations.  Here are several such theories:  
+
+A) Gas stations charge more if they lack direct competition in sight.  
+
+B) The richer the area, the higher the gas prices.  
+ 
+C) Gas stations at stoplights charge more.  
+
+D) Gas stations with direct highway access charge more.  
+
+E) Shell charges more than all other non-Shell brands.   
+
+__Which of these theories seem plausible, and which are unsupported by data?  Take each theory one by one and assess the evidence for or against the theory using a single plot.__  
+
+Include an annotation below each plot.  (This is especially easy to do in RMarkdown: just write a paragraph below the plot.)  Your annotation of each figure should include two main elements:  
+- Claim: a statement of the theory itself.  
+- Conclusion: how the figure informs your conclusion about whether the theory is supported or unsupported by the data.  
+
+Note: you don't have to run any statistical tests, fit models, or compute confidence intervals here.  Just make pictures and describe what you're seeing.  
+ 
+
+## 2) Data visualization: a bike share network
+
+This problem continues the review of data exploration and visualization using `ggplot2` and the `tidyverse` packages, but now asking you to bring in multiple variables into a single plot.      
 
 Bike-sharing systems are a new generation of traditional bike rentals where the whole process from rental to return is automatic.  There are thousands of municipal bike-sharing systems around the world (e.g. Citi bikes in NYC or "Boris bikes" in London), and they have attracted a great deal of interest because of their important role in traffic, environmental, and health issues---especially in the wake of the COVID-19 pandemic, when ridership levels on public-transit systems have plummeted.
 
@@ -41,12 +81,12 @@ Your task in this problem is to prepare three figures.
       filter(hr==8)
     ```
 
-Your write-up should include each plot, together with an informative caption below the plot.  Your caption should clearly explain the plot itself (e.g. what the axes are and what the panels show).  The caption should also contain a one-sentence _take-home lesson_ of what we have learned about ridership patterns from the plot.  
+Your write-up should include each plot, together with an informative annotation/caption below the plot.  Your caption should clearly explain the plot itself (e.g. what the axes are and what the panels show).  The caption should also contain a one-sentence _take-home lesson_ of what we have learned about ridership patterns from the plot.  
 
 
-## 2) Data visualization: flights at ABIA
+## 3) Data visualization: flights at ABIA
 
-This problem continues the themes of data exploration and data visualization using `ggplot2` and the `tidyverse`, but is more open-ended.      
+This problem continues the themes of data exploration and data visualization using `ggplot2` and the `tidyverse`, but is entirely open-ended.      
 
 Consider the data in [ABIA.csv](../data/ABIA.csv), which contains information on every commercial flight in 2008 that either departed from or landed at Austin-Bergstrom Interational Airport.  The variable codebook is as follows: 
 
@@ -80,7 +120,7 @@ Consider the data in [ABIA.csv](../data/ABIA.csv), which contains information on
 - SecurityDelay   in minutes  
 - LateAircraftDelay   in minutes  
 
-Your task is to create a figure, or set of related figures, that tell an interesting story about flights into and out of Austin.  You should annotate your figure(s) with a detailed caption, of course, but strive to make them as easy to understand as possible at a quick glance.  A single figure shouldn't need many, many paragraphs to convey its meaning.   For example, you might consider one of the following questions: 
+Your task is to create a figure, or set of related figures, that tell an interesting story about flights into and out of Austin.  You should annotate your figure(s), of course, but strive to make them as easy to understand as possible at a quick glance.  (A single figure shouldn't need many, many paragraphs to convey its meaning.)   For example, you might consider one of the following questions:  
 
 - What is the best time of day to fly to minimize delays, and does this change by airline?    
 - What is the best time of year to fly to minimize delays, and does this change by destination?  (You'd probably want to focus on a handful of popular destinations.)  
@@ -90,7 +130,7 @@ Your task is to create a figure, or set of related figures, that tell an interes
 But anything interesting will fly :-).  If you want to try your hand at mapping or looking at geography, you can cross-reference the airport codes here: [https://github.com/datasets/airport-codes](https://github.com/datasets/airport-codes).  Combine this with a mapping package like ggmap, and you should have lots of possibilities!  
 
 
-### 3) K-nearest neighbors  
+### 4) K-nearest neighbors  
 
 The data in [sclass.csv](../data/sclass.csv) contains data on over 29,000 Mercedes S Class vehicles---essentially every such car in this class that was advertised on the secondary automobile market during 2014.  For websites like Cars.com or Truecar that aim to provide market-based pricing information to consumers, the Mercedes S class is a notoriously difficult case.  There is a huge range of sub-models that are all labeled "S Class,"" from large luxury sedans to high-performance sports cars; one sub-category of S class even serves as the official pace car in Formula 1 Races.  Moreover, individual submodels involve cars with many different features.  This extreme diversity---unusual for a single model of car---makes it difficult to provide accurate pricing predictions to consumers.
 
