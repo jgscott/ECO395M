@@ -19,18 +19,18 @@ A mix of practice and principles:
 We’ll learn what to trust, how to use it, and how to learn more.
 
 
-First half: supervised learning.
+Supervised learning.
 ========================================================
 
 - Given past data on outcomes $y$ paired with features $x$, can we
 find patterns that allow us to predict $y$ using $x$?
 - Key characteristic: there is a single privileged outcome $y$.
-- Example: a house has 3 bedrooms ($x_1$), 2 bathrooms ($x_2$), 2100 square feet ($x_2$), and is located in Hyde Park ($x_4$).  What price $(y)$ should it sell for?
+- Example: a house has 3 bedrooms ($x_1$), 2 bathrooms ($x_2$), 2100 square feet ($x_2$), and is located in Hyde Park ($x_3$).  What price $(y)$ should it sell for?
 
 In real life, there might be hundreds or thousands of features.  If you know regression: this is like regression on steroids!
 
 
-Second half: unsupervised learning.
+Unsupervised learning.
 ========================================================
 
 - We still have multivariate data and want to find patterns.
@@ -66,33 +66,35 @@ Among economists, "data mining" is a dirty word.  Example: the "Lucas critique":
 This is a total caricature.  We'll strive to give data mining a better reputation :-)
 
 
-What does it mean for data to be "big"?
+About "data mining"...
 ========================================================
 
-Big in either or both:
+In data mining, our data sets tend to be big in either or both:
 - the number of observations (size $n$)
-- and in the number of features or predcitor variables (dimension $p$).
+- the number of features or predictor variables (dimension $p$).
 
 In these settings, you cannot:
 - Look at each individual variable and make a decision (t-tests).
-- Choose amongst a small set of candidate models (specification tests from stats or econometrics).
+- Choose among a small set of candidate models (specification tests from stats or econometrics).
 - Plot every variable to look for interactions or transformations.
 
 
 
-Good data mining = inference at scale
+About "data mining"...
 ========================================================
 
 Some data-mining tools are familiar, or familiar with a twist:
+- data visualization  
 - linear regression  
-- p-values
-- automatically select a set of relevant feature variables, then fit a linear model
+- p-values  
+- bootstrapping  
 
 Some are totally new:  
 - PCA  
 - K-means  
+- Tree-based models  
+- Models for networks  
 
-All require a different approach when $n$ and $p$ get really big.
 
 
 People use these tools everywhere
@@ -104,12 +106,13 @@ People use these tools everywhere
 - Text mining: Connect blogs/emails/news to sentiment, beliefs, or intent. Parsing unstructured data, e.g. EMR.
 - Big regression: mining data to predict asset prices; using unstructured data as controls in observational studies.
 
+
 The four pillars of data science
 ========================================================
 
 1. Data collection
-2. Data cleaning (pre-processing/hacking/“munging”)
-3. Analysis
+2. Data cleaning (pre-processing/hacking/tidying)
+3. Analysis  
 4. Summary (figures + prose)
 
 This course focuses a little on 2, heavily on 3-4, and not at all on 1.
@@ -135,6 +138,7 @@ You will analyze a lot of data in this course.  Our watchwords are _transparency
 figures, and someone else will marvel at it.
 - Data science is hard enough already: there is zero room for ambiguity or confusion about data or methods.
 - Any competent person should be able to read your description and reproduce exactly what you did.
+
 
 Data analysis and summary: principles
 ========================================================
@@ -189,7 +193,7 @@ R
 ========================================================
 
 A huge strength of R is that it is open-source.  R has a _core_, to which anyone can add contributed _packages_.
-- $\approx$ 10,000 packages c. Jan 2017, as varied as the people who write them.
+- $>10000$ packages, as varied as the people who write them.
 - Some are specific, others general.
 - Some are great, some decent and unpolished, some terrible.
 

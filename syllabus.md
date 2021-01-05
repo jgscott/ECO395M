@@ -4,26 +4,26 @@
 
 - Instructor: James Scott (james.scott@mccombs.utexas.edu)
 - Course website: http://www.github.com/jgscott/ECO395M/
-- Office hours: Mondays and Wednesdays, 1:30 to 2:45 PM, via Zoom.  See our course's Canvas site for the link.    
 - Teaching assistant: TBA 
+
+Office hours: Mondays and Wednesdays, 8:30 AM to 9:30 AM US Central time, via Zoom.  See our course's Canvas site for the link.  This time is not ideal for anyone, but it is the best compromise time I could come up with that would work across the huge range of time zones inhabited by students attending this course virtually: 
+- it's an uncommon class time.  
+- it's a normal start-of-the-day time for folks like me on US Central time.  
+- it's just stretching the bounds of plausibility for students on the west coast of the US (e.g. you could roll out of bed at 7 AM, grab a cup of coffee, and get some questions answered by 7:30 AM Pacific time).  
+- it's 10:30-11:30 PM in Beijing, which is definitely late, but a pretty common hour for graduate students to be up and working.  
 
 ## Overview
 
-This is a master's level course on data mining and statistical learning for students in the master's program in Economics at UT-Austin.  The course is intended as an overview, rather than an in-depth treatment of any particular topic.  We will move fast and cover a lot, but we will focus on practical applications rather than theory.  You'll see a lot of data sets, but not a lot of proofs.  
+This is a master's level course on data mining/machine learning for students in the master's program in Economics at UT-Austin.  The course is intended as an overview, rather than an in-depth treatment of any particular topic.  We will move fast and cover a lot, but we will focus on practical applications rather than theory.  You'll see a lot of data sets, but not a lot of proofs.  (Obviously the mathematical foundations of machine learning are important---and very interesting.  They're just not what this course is about.)  
 
-[The course homepage](README.md) will have a detailed week by week description of what we're doing in class, together with topic-by-topic reading lists. 
+[The course homepage](README.md) will have a detailed unit-by-unit description of what we're doing in class, together with topic-by-topic reading lists. 
 
 The prerequisites are the Statistics and Probability course and the Econometrics course in the Econ master's program.  
 
 
 ## Lectures
 
-Lectures will take place online, via Zoom, at the regularly scheduled time of 11 AM US Central time on Mondays and Wednesdays.  Join live and/or watch recordings of prior lectures via the Zoom tab on our course's Canvas page.  
-
-
-## Exercises
-
-I will post the exercises [here](exercises/).   
+Lectures will take place online, via Zoom, at the regularly scheduled time of 11 AM US Central time on Mondays and Wednesdays.  "Live" attendance (i.e. in real time) is strongly encouraged, but not required.  The main benefit of real-time attendance is that you'll get a chance to ask questions as we go along.  Join live and/or watch recordings of prior lectures via the Zoom tab on our course's Canvas page.  
 
 
 ## Software 
@@ -59,7 +59,7 @@ The core topics we will cover in this course are as follows.  The corresponding 
 
 If there's time, we will try to cover some or all of the following supplemental topics (readings TBA).  
 - Networks: basic concepts and visualization.  
-- Association rule mining.  
+- Recommender systems.   
 - Working with text data.  
 - Causal inference.  
 
@@ -69,7 +69,7 @@ If there's time, we will try to cover some or all of the following supplemental 
 There are no in-class exams and no final exam.  
 
 Your grade for this course will come from:  
-- 60% homework.  I will assign four homework assignments throughout the semester, which count for 15% of your final grade each.  I will post assignments on the [course homepage](README.md), along with their due dates.  
+- 60% homework.  I will assign four homework assignments throughout the semester, which count for 15% of your final grade each.  I will post the exercises [here](exercises/), along with their due dates.  
 - 40% final project, which will be like a bigger, more complex version of your homework problems.  
 
 ### Homework  
@@ -95,7 +95,7 @@ The assignment for the final project is simple: pose an interesting question; co
 
 This assignment is purposely open-ended, allowing you considerable freedom to follow a path dictacted by your own intellectual curiosity. Strive to write something that a statistically literate person of wide- ranging interests (for example, a future employer) would find engaging and impressive.  
 
-The project is due at 9:00 AM, US Central Time, on Monday, May 10, 2020.   Because of the quick turn-around required to grade final projects, I unfortunately cannot extend the grace policy to encompass the project.  But remember, you have all semester to get this sorted.    
+The project is due at 9:00 AM, US Central Time, on Monday, May 10, 2021.   Because of the quick turn-around required to grade final projects, I unfortunately cannot extend the grace policy to encompass the project.  But remember, you have all semester to get this sorted.    
 
 
 ### Groups are allowed

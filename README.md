@@ -18,22 +18,28 @@ The exercises are [posted here.](https://github.com/jgscott/ECO395M/tree/master/
 
 Topics: Good data-curation and data-analysis practices; R; Markdown and RMarkdown; the importance of replicable analyses; version control with Git and Github.  Visualization and data workflow.  
 
-Readings:  
-- [Getting starting with GitHub Desktop](https://help.github.com/en/desktop/getting-started-with-github-desktop)  
+Resources to learn Github and RMarkdown:  
 - [Introduction to RMarkdown](http://rmarkdown.rstudio.com) and [RMarkdown tutorial](https://rmarkdown.rstudio.com/lesson-1.html)  
 - [Introduction to GitHub](https://guides.github.com/activities/hello-world/)   
-- [Jeff Leek's guide to sharing data](https://github.com/jtleek/datasharing)  
+- [Getting starting with GitHub Desktop](https://help.github.com/en/desktop/getting-started-with-github-desktop)  
 
-Watch these R walkthroughs out of class.  You can find the R scripts and data sets for these videos under the [R](./r) and [data](./data) folders, respectively. 
+[Jeff Leek's guide to sharing data](https://github.com/jtleek/datasharing) is a great resource.  
+
+
+### Data visualization  
+
+To review material on visualization, please watch these R walkthroughs out of class.  You can find the R scripts and data sets for these videos under the [R](./r) and [data](./data) folders, respectively. 
 
 - [Intro to ggplot2](https://www.youtube.com/watch?v=UK2FhxMnmjQ)  
 - [Data workflow and bar plots](https://www.youtube.com/watch?v=k76R7ifcyvs)   
 - [Visualizing distributions](https://www.youtube.com/watch?v=wFpzPtdIfTg)   
 - [Line graphs](https://www.youtube.com/watch?v=LSDMuOE02ME)   
 
- Some of this might be review for you, so if that's the case, feel free to move quickly and/or skip familiar bits.  The idea of these walkthroughs is to give you the commands you'll need to complete the visualization exercises on Homework 1.  
+The idea of these walkthroughs is to give you the resources you'll need to complete the visualization exercises on Homework 1.   Some of this might be review for you, so if that's the case, feel free to move quickly and/or skip familiar bits.   
 
- On the other hand, if you'd like even _more_ review and practice with R, then I'd suggest working your way through Chapters 1-4 of [Statistical Inference via Data Science: A ModernDive into R and the Tidyverse](https://moderndive.com/index.html), by Ismay and Kim.  
+ On the other hand, if you'd like even _more_ review and practice with R, then I'd suggest working your way through Chapters 1-4 of [Statistical Inference via Data Science: A ModernDive into R and the Tidyverse](https://moderndive.com/index.html), by Ismay and Kim.  In particular, you should know how to create their "five named graphs" in R---those are scatter plots, boxplots, histograms, bar plots, and line graphs.  (The videos are designed to cover these, while the Ismay and Kim reading serves as an extra, optional resource.)  
+
+We'll spend some time in class practicing these skills by working in small groups on your homework problems.   
 
 
 ### Basic concepts in statistical learning  

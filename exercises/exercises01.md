@@ -19,19 +19,18 @@ For this exercise, you'll need to download the `GasPrices.csv` data set from the
 
 ### The theories
 
-People have a lot of pet theories about what explains the variation in prices between gas stations.  Here are several such theories:  
+People have a lot of pet theories about what explains the variation in prices between gas stations.  Here are several such theories below.  __Which of these theories seem plausible, and which are unsupported by data?  Take each theory one by one and assess the evidence for or against the theory using the suggested plot in parentheses.__  
 
-A) Gas stations charge more if they lack direct competition in sight.  
+A) Gas stations charge more if they lack direct competition in sight (boxplot).    
 
-B) The richer the area, the higher the gas prices.  
+B) The richer the area, the higher the gas price (scatter plot).  
  
-C) Gas stations at stoplights charge more.  
+C) Shell charges more than other brands (bar plot).   
 
-D) Gas stations with direct highway access charge more.  
+D) Gas stations at stoplights charge more (faceted histogram).  
 
-E) Shell charges more than all other non-Shell brands.   
+E) Gas stations with direct highway access charge more (your choice of plot).    
 
-__Which of these theories seem plausible, and which are unsupported by data?  Take each theory one by one and assess the evidence for or against the theory using a single plot.__  
 
 Include an annotation below each plot.  (This is especially easy to do in RMarkdown: just write a paragraph below the plot.)  Your annotation of each figure should include two main elements:  
 - Claim: a statement of the theory itself.  
@@ -72,8 +71,8 @@ The variables in this data set are as follows:
  
 Your task in this problem is to prepare three figures.
 
-- Plot A: a line graph showing average bike rentals (`total`) by hour of the day (`hr`).  
-- Plot B: a faceted line graph showing average bike rentals by hour of the day, faceted according to whether it is a working day (`workingday`).  
+- Plot A: a line graph showing average bike rentals (`total`) versus hour of the day (`hr`).  
+- Plot B: a faceted line graph showing average bike rentals versus hour of the day, faceted according to whether it is a working day (`workingday`).  
 - Plot C: a faceted bar plot showing average ridership __during the 8 AM hour__ by weather situation code (`weathersit`), faceted according to whether it is a working day or not.  Note: remember you can focus on a specific subset of rows of a data set using `filter`, e.g.
 
     ``` 
