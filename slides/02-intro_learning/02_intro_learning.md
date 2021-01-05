@@ -4,7 +4,8 @@ author: ECO 395M
 date: James Scott (UT-Austin)
 autosize: true
 font-family: 'Gill Sans'
-transition: none
+transition: none  
+
 
 Reference: Introduction to Statistical Learning, Chapters 1-2
 
@@ -74,7 +75,7 @@ The 8 ERCOT regions are shown at right.
 
 ***
 
-<img src="fig/ercot_regions.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="400px" style="display: block; margin: auto;" />
+<img src="fig/ercot_regions.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="800px" style="display: block; margin: auto;" />
 
 
 Example: predicting electricity demand

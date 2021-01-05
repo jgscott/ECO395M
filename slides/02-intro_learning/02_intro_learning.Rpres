@@ -4,7 +4,8 @@ author: ECO 395M
 date: James Scott (UT-Austin)
 autosize: true
 font-family: 'Gill Sans'
-transition: none
+transition: none  
+
 
 Reference: Introduction to Statistical Learning, Chapters 1-2
 
@@ -78,7 +79,7 @@ The 8 ERCOT regions are shown at right.
 
 ***
 
-```{r, out.width = "400px", fig.align='center', echo=FALSE}
+```{r, out.width = "800px", fig.align='center', echo=FALSE}
 knitr::include_graphics("fig/ercot_regions.png")
 ```
 

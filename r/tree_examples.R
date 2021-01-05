@@ -11,11 +11,12 @@ library(rpart)
 
 #--------------------------------------------------
 #fit a tree to load_coast data
-load_coast = read.csv('../data/load_coast.csv')
+load_tree = read.csv('../data/load_tree.csv')
 
-#first get a big tree using a small value of mindev
+# first get a big tree using a small value of mindev
 # small mindev leads to large tree
-temp = tree(COAST~KHOU_temp,data=load_coast,mindev=.00001)
+
+temp = tree(COAST~temp, data=load_tree, mindev=.00001)
 length(unique(temp$where))
 
 #then prune it down to one with 12 leaves
@@ -32,9 +33,9 @@ text(load.tree,col="blue",label=c("yval"),cex=.8)
 #plot data with fit
 load.fit = predict(load.tree) #get training fitted values
 
-plot(COAST ~ KHOU_temp, data=load_coast,cex=.5,pch=16) #plot data
+plot(COAST ~ temp, data=load_tree,cex=.5,pch=16, col=rgb(0,0,0,0.1)) #plot data
 oo=order(load_coast$KHOU_temp)
-lines(load.fit[oo] ~ KHOU_temp[oo], data=load_coast,col='red',lwd=3) #step function fit
+lines(load.fit[oo] ~ temp[oo], data=load_tree,col='red',lwd=3, type='s') #step function fit
 
 
 
