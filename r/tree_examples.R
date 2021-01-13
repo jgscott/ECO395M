@@ -1,124 +1,247 @@
-###################################################
-## Fit a regression tree to load data
-## The tree is plotted as well as a plot of the corresponding step function
-## fit to the data.
-## The cutpoints from tree are added to the plot so you can see how
-## the tree corresponds to the function.
-###################################################
-library(mosaic)
-library(tree)
+library(tidyverse)
+library(ggplot2)
 library(rpart)
+library(rpart.plot)
+library(rsample) 
 
-#--------------------------------------------------
-#fit a tree to load_coast data
+###
+# A classification tree
+###
+
+titanic = read.csv('../data/titanic.csv')
+
+# the syntax is very glm-like
+# just using the default control settings
+titanic_tree = rpart(survived ~ sex + age + passengerClass, data=titanic)
+
+# plot the tree
+rpart.plot(titanic_tree, type=4, extra=4)
+
+# the various summaries of the tree
+print(titanic_tree) # the structure
+summary(titanic_tree)  # more detail on the splits
+
+# in-sample fit, i.e. predict on the original training data
+# this returns predicted class probabilities
+predict(titanic_tree, newdata=titanic)
+
+
+###
+# Regression trees
+###
+
+# fit a tree to load_tree data
 load_tree = read.csv('../data/load_tree.csv')
 
-# first get a big tree using a small value of mindev
-# small mindev leads to large tree
+# grow a smallish tree
+# larger cp and insplit means stop at a smaller tree
+load.tree = rpart(COAST~temp, data=load_tree,
+                  control = rpart.control(cp = 0.002, minsplit=30))
+# this says: split only if you have at least 30 obs in a node,
+# and the split improves the fit by a factor of 0.002
 
-temp = tree(COAST~temp, data=load_tree, mindev=.00001)
-length(unique(temp$where))
+# plot the tree
+# see ?rpart.plot for the various plotting options here (type, extra)
+rpart.plot(load.tree, digits=-5, type=4, extra=1)
 
-#then prune it down to one with 12 leaves
-load.tree=prune.tree(temp,best=12)
-length(unique(load.tree$where))
+
+# plot data with fit
+
+# add the predictions to the data frame
+load_tree = load_tree %>%
+  mutate(COAST_pred = predict(load.tree)) %>%
+  arrange(temp)
+
+# now plot the fit over the original data
+ggplot(load_tree) + 
+  geom_point(aes(x=temp, y=COAST), alpha=0.1) + 
+  geom_step(aes(x=temp, y=COAST_pred), color='red', size=2)
+
+
+# Now let's grow a deeper tree and look at the cross-validation curve
+# default is 10-fold cross-validation
+load.tree = rpart(COAST~temp, data=load_tree,
+                  control = rpart.control(cp = 0.00001, minsplit=5))
+
+# This is pretty typical of CART models:
+# the cross-validated error bottoms out and goes back SLOWLY
+plotcp(load.tree)
+
+# If you want the actual numbers:
+printcp(load.tree)
+
+# hard to visualize!
+rpart.plot(load.tree)
+
+
+###
+# Fit a regression tree to COAST~temp+humidity
+###
+
+# small tree
+load.tree2 = rpart(COAST~temp + dewpoint, data=load_tree,
+                   control = rpart.control(cp = 0.0015))
+rpart.plot(load.tree2, digits=-5, type=4, extra=1)
+
+
+# plot tree and implied partition in 2D x space.
+load_tree = load_tree %>%
+  mutate(COAST_pred2 = predict(load.tree2)) %>%
+  arrange(temp)
+
+ggplot(load_tree) + 
+  geom_point(aes(x=temp, y=dewpoint, color=COAST_pred2)) + 
+  scale_color_continuous(type = "viridis")
+
+# This is pretty blocky
+# let's fit a bigger tree
+load.tree2 = rpart(COAST~temp + dewpoint, data=load_tree,
+                   control = rpart.control(cp = 0.00001))
+
+# cross-validated error plot.
+# the result is VERY typical of tree models:
+# an initial sharp drop followed by a long flat plateau and then a slow rise. 
+plotcp(load.tree2)
+
+# the vertical bars show the standard error of CV error across the 10 splits
+plotcp(load.tree2, ylim=c(0.26, 0.28))
+
+# cross-validated error has clearly bottomed out somewhere around cp = 1e-5
+# but cp around 5e-5 gives very similar results (within 1 se of minimum)
+
+# you could squint at the table...
+printcp(load.tree2)
+
+# a handy function for picking the smallest tree 
+# whose CV error is within 1 std err of the minimum
+cp_1se = function(my_tree) {
+  out = as.data.frame(my_tree$cptable)
+  thresh = min(out$xerror + out$xstd)
+  cp_opt = max(out$CP[out$xerror <= thresh])
+  cp_opt
+}
+
+cp_1se(load.tree2)
+
+# this function actually prunes the tree at that level
+prune_1se = function(my_tree) {
+  out = as.data.frame(my_tree$cptable)
+  thresh = min(out$xerror + out$xstd)
+  cp_opt = max(out$CP[out$xerror <= thresh])
+  prune(my_tree, cp=cp_opt)
+}
+
+# let's prune our tree at the 1se complexity level
+load.tree2_prune = prune_1se(load.tree2)
+
+# plot the predictions with this deeper (but still pruned) tree
+load_tree = load_tree %>%
+  mutate(COAST_pred2 = predict(load.tree2_prune)) %>%
+  arrange(temp)
+
+# this deeper tree shows a bit finer scale in the step function
+ggplot(load_tree) + 
+  geom_point(aes(x=temp, y=dewpoint, color=COAST_pred2)) + 
+  scale_color_continuous(type = "viridis")
+
+# this is perhaps a cleaner way to see the implied step function:
+# create the entire predicted response surface over a grid
+X_test = expand.grid(temp=seq(-5,40,by=0.5), dewpoint = seq(-15, 25, by=0.5))
+X_test = mutate(X_test, COAST_pred = predict(load.tree2_prune, X_test))
+
+# the resulting grid can be visualized in a tile plot using geom_tile
+# nonlinearities and interactions are clearly visible
+ggplot(X_test) + 
+  geom_tile(aes(x=temp, y=dewpoint, fill=COAST_pred)) + 
+  scale_fill_continuous(type = "viridis")
+
+
+###
+# Fit a classification tree to the penalty data.
+###
+
+pen = read.table('../data/pen2ref.txt',header=TRUE)
+
+head(pen)
+mean(pen$oppcall)
 
 #--------------------------------------------------
-#plot the tree and the fits.
-
-#plot the tree
-plot(load.tree,type="uniform")
-text(load.tree,col="blue",label=c("yval"),cex=.8)
-
-#plot data with fit
-load.fit = predict(load.tree) #get training fitted values
-
-plot(COAST ~ temp, data=load_tree,cex=.5,pch=16, col=rgb(0,0,0,0.1)) #plot data
-oo=order(load_coast$KHOU_temp)
-lines(load.fit[oo] ~ temp[oo], data=load_tree,col='red',lwd=3, type='s') #step function fit
-
-
-
-
-################################################################################
-## Fit a regression tree to COAST~temp+humidity from the electricity load data.
-## The tree is plotted as well as the corresponding partition of the two-dimensional
-## x space.
-################################################################################
-
-#--------------------------------------------------
-#big tree
-temp = tree(COAST ~ KHOU_temp + KHOU_dewpoint, data=load_coast, mindev=.00001)
-length(unique(temp$where))
-
-#--------------------------------------------------
-#then prune it down to one with 20 leaves
-load.tree = prune.tree(temp,best=20)
-
-#--------------------------------------------------
-# plot tree and partition in x.
-plot(load.tree,type="u")
-text(load.tree,col="blue",label=c("yval"),cex=.8)
-partition.tree(load.tree)
-
-
-################################################################################
-## Read in the California Housing data.
-## Transform some of the variables.
-## Divide data into train,val,test.
-## see cal_setup.R for details
-################################################################################
-source('cal_setup.R')
-
-################################################################################
-# Fit a regression tree to California Housing data:
-#    logMedVal ~ longitude+latitude.
-# Plot: The tree and the 2-dim partitoon.
-# Plot: The California map with the fits from the tree coded with colors.
-################################################################################
-
-library(tree)
-
-#--------------------------------------------------
-#first get big tree
-temp = tree(logMedVal~longitude+latitude,catrain,mindev=.0001)
-length(unique(temp$where))
-
-#then prune it
-caltrain.tree = prune.tree(temp,best=50)
-length(unique(caltrain.tree$where))
-
-#--------------------------------------------------
-#plot the tree
-plot(caltrain.tree,type="u")
-text(caltrain.tree,col="blue",label=c("yval"),cex=.8)
-
-
-partition.tree(caltrain.tree)
-
-
-
-################################################################################
-## Fit a classification tree to the penalty data.
-## Plot the tree.
-################################################################################
-
-library(tree)
-source('pen_setup.R')
-
-#--------------------------------------------------
-#simple tree on hockey data
-#first get big tree
-temp = tree(oppcall~.,data=pen,mindev=.0001)
+# simple tree on hockey data
+# first get big tree
+temp = rpart(oppcall ~ timespan + goaldiff + numpen + inrow2 + inrow3, data=pen,
+             control = rpart.control(cp = 0.0001, minsplit=5))
 length(unique(temp$where))
 
 #then prune it down 
-pen.tree=prune.tree(temp,best=15)
+pen.tree = prune_1se(temp)
 
 #plot the tree 
-par(mfrow=c(1,1))
-plot(pen.tree,type="uniform")
-options(digits=5)
-text(pen.tree,pretty=0,col="blue",label=c("yprob"),cex=.8)
-options(digits=7)
+rpart.plot(pen.tree, type=4, digits=-5, extra=1, cex=0.5)
+
+# if:
+#  - you are not winning (goaldiff < 1)
+#  - the last 2 penalties were called against you (inrow2=1)
+#  - it's been less than 6.8 minutes since the last penalty called
+# then there's a 69% chance the next call will be on the opponent
+
+# but if:
+#  - you are winning (goaldiff >= 1)
+#  - it's been more than 3.4 minutes since the last penalty
+#  - inrow3=0 (so not the case that the last three penalties were called on you)
+# then there's a 48% chance the next call will be on the opponent
+
+
+###
+# Bagging and random forests
+###
+library(tidyverse)
+library(ggplot2)
+library(rpart)
+library(rpart.plot)
+library(rsample) 
+library(randomForest)
+library(lubridate)
+library(modelr)
+
+# Read in the data
+load_tree = read.csv('../data/load_tree.csv')
+load_tree = mutate(load_tree,
+                       timestamp = ymd_hms(timestamp))
+
+# Let's use the functions in lubridate to engineer some relevant
+# features from the Time variable.
+# remember: factor tells R to treat a number as a category and make dummies.
+# This is important: we don't wanth month/day as a number, but as a label
+# the last line will get us a feature that models an overall upward trend
+load_tree = mutate(load_tree, 
+                       hour = hour(timestamp) %>% factor(),     # hour of day
+                       wday = wday(timestamp) %>% factor(),     # day of week (1 = Monday)
+                       month = month(timestamp) %>% factor(),   # month of year (1 = Jan)
+                       weeks_elapsed = time_length(timestamp - ymd_hms('2010-01-01 01:00:00'), unit='weeks'))
+
+head(load_tree)
+
+
+# let's split our data into training and testing
+load_split =  initial_split(load_tree, prop=0.8)
+load_train = training(load_split)
+load_test  = testing(load_split)
+
+# let's fit a single tree
+load.tree = rpart(COAST ~ temp + dewpoint + hour + wday + month + weeks_elapsed, data=load_train,
+                   control = rpart.control(cp = 0.00001))
+
+# now a random forest
+# notice: no tuning parameters!  just using the default
+load.forest = randomForest(COAST ~ temp + dewpoint + hour + wday + month + weeks_elapsed,
+                           data=load_train)
+
+# shows out-of-bag MSE as a function of the number of trees used
+plot(load.forest)
+
+
+# let's compare RMSE on the test set
+modelr::rmse(load.tree, load_test)
+modelr::rmse(load.forest, load_test)  # a lot lower!
+
 

@@ -20,13 +20,13 @@ Reference: Introduction to Statistical Learning Chapter 8
 Outline
 ========================================================
  
-1. Trees
-2. Trees 
-3. Trees
+1. Trees: examples and intuition     
+2. Fitting trees   
+3. Forests: ensembling trees  
 
 
 
-Decision trees
+Tree models
 ========================================================
 
 <img src="fig/umbrella_tree.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="700px" style="display: block; margin: auto;" />
@@ -36,7 +36,7 @@ Trees involve simple mini-decisions that combine to make a choice or prediction.
 Each decision is a _node_; the final choice or prediction is a _leaf node._  
 
 
-Decision trees
+Tree models
 ========================================================
 
 You can think of a tree as a form of regression model:  
@@ -45,35 +45,313 @@ You can think of a tree as a form of regression model:
 
 Based on previous data, the  the goal is to specify branches/choices that lead to good predictions in new scenarios.
 
-In other words, you want to estimate a __Tree Model__: instead of linear coefficients, we need to find ‘decision nodes’: binary splitting rules defined by some dimension of x.   
+In other words, you want to estimate a __Tree Model__. Instead of linear coefficients, we need to find 'decision nodes': binary splitting rules defined by the x features.   
 
 
-A regression tree  
+Tree models
 ========================================================
 
-Let's see a simple example on a familiar data set:  
-- x = temperature at Houston's Hobby airport in degrees C  
-- y = peak power consumption in the ERCOT coast region  
+Tree models come in two flavors.  
+- Classification tree: the leaf nodes are predicted class labels/probabilities for a categorical outcome.  (__"The predicted probability of rain is 90%, so take an umbrella."__)
+- Regression tree: the leaf nodes specify E(y | x) for a numerical outcome.  (__"The predicted amount of rain is 2 cm, so take an umbrella."__)     
 
-The tree looks as follows:    
-- all splits are of the form $x < t$ for some threshold $t$.  
-- the terminal leaf nodes are the predicted power consumption.  
 
-A regression tree  
+Tree models
 ========================================================
 
-<img src="fig/ercot_tree1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="800px" style="display: block; margin: auto;" />
+The goal of tree modeling: estimate the sequence of mini-decisions that get you to the leaves.
+- How many?  
+- What decisions? (Which features, which values of the features?)  
+- What order?    
 
-Making a prediction is like pinball: you "drop" a specific x down the tree and see which leaf it lands in.  This gives E(y | x).  
+The space of possible trees is _huge_.  We'll talk about fitting the tree later; for now, let's see some examples.  
 
-A regression tree  
+A classification tree  
 ========================================================
 
-<img src="fig/ercot_tree2.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="1000px" style="display: block; margin: auto;" />
+_Classification trees_ are for categorical outcomes (with binary outcomes as a special case).  
 
-This is the fitted regression function $f(x) = E(y \mid x)$.  
+Let's see an example trained on data from the Titanic:  
+- x: a passenger's sex, age, class of travel
+- y: whether the passenger survived the sinking of the ship  
+
+Goal: estimate $P(y \mid x)$
 
 
 A classification tree  
 ========================================================
 
+<img src="06-trees-figure/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto auto auto 0;" />
+
+***
+
+Each split involves a yes/no question about a single variable.  
+
+For numerical features (age), the yes/no question is whether $x$ exceeds some threshold $t$.  
+
+You might see/hear this called a "dendrogram," which is just a fancy Latin word for "tree picture."
+
+
+A classification tree  
+========================================================
+
+<img src="06-trees-figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto auto auto 0;" />
+
+***
+
+At each leaf node, we see fitted class probabilities.  These come from the training data.  
+
+To make a prediction, you "drop" your x down the tree, answering each yes/no question in turn.
+
+
+
+A classification tree  
+========================================================
+
+<img src="06-trees-figure/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto auto auto 0;" />
+
+***
+
+It's easier to see where the fitted probabilities come from if we show the number of observations in each node.  
+
+Let's reason through two quick examples. 
+
+
+A classification tree  
+========================================================
+
+<img src="06-trees-figure/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto auto auto 0;" />
+
+***
+
+x = {male, 3rd, 5 years}.
+
+P(survive | x) = 
+
+
+A classification tree  
+========================================================
+
+<img src="06-trees-figure/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto auto auto 0;" />
+
+***
+
+x = {female, 1st, 25 years}.
+
+P(survive | x) = 
+
+
+
+A regression tree  
+========================================================
+
+_Regression trees_ are for numerical (as opposed to categorical) outcomes.  Let's see one on a familiar data set:   
+- y = peak power consumption in the ERCOT coast region  
+- x = temperature at Houston's Hobby airport in degrees C (so all splits are of the form $\mathrm{temp} < t$ for some threshold $t$). 
+
+Goal: estimate $E(y \mid x)$
+
+
+A regression tree  
+========================================================
+
+<img src="06-trees-figure/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+
+Now the leaf nodes show E(y | x), estimated by the average response (y) for the x's that "land" in that leaf.  
+
+
+A regression tree  
+========================================================
+
+<img src="06-trees-figure/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
+
+__What does $f(x) = E(y \mid x)$ look like as a function of x?__  
+
+A regression tree  
+========================================================
+
+<img src="06-trees-figure/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
+
+__Hint:__ the tree partitions the x space into disjoint regions.  Within each region, E(y | x) is constant.
+
+
+A regression tree
+========================================================
+
+<img src="06-trees-figure/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" />
+
+This is the fitted regression function $f(x) \approx E(y \mid x)$.  It's a __step function__ (always the case with tree models).  
+
+
+
+A regression tree (two x's)
+========================================================
+
+What if we consider the same problem, but with an additional feature?  
+- $x_1$ = temperature at Houston's Hobby airport in degrees C  
+- $x_2$ = dewpoint at Houston's Hobby airport in degrees C  
+- y = peak power consumption in the ERCOT coast region  
+
+The linear model equivalent would look like $E(y \mid x) = \beta_0 + \beta_1 x_1 + \beta_2 x_2$...  What does the tree look like?  
+
+
+A regression tree (two x's)
+========================================================
+
+<img src="06-trees-figure/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
+
+Now each mini-decision can split on temperature or dewpoint (but not both).     
+
+
+A regression tree (two x's)
+========================================================
+
+<img src="06-trees-figure/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" style="display: block; margin: auto;" />
+
+The tree partitions (x1, x2) space into rectangles.  Within each rectangle, the fitted value E(y | x1, x2) is constant.  
+
+A regression tree (two x's)
+========================================================
+
+<img src="06-trees-figure/unnamed-chunk-13-1.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" style="display: block; margin: auto;" />
+
+The resulting fit is a step function in the 2D plane.  The regions of constant color show the steps.  
+
+
+A regression tree (two x's)
+========================================================
+
+<img src="06-trees-figure/unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" style="display: block; margin: auto;" />
+
+Key point: __notice the interaction!__  Do you see it?  
+
+
+Trees: a summary  
+=======
+- Trees use recursive binary splits to partition the feature space.
+- Each binary split is a rule that sends x left or right.
+- For numeric x, the decision rule is of the form if x < c.
+- For categorical x, the rule lists the set of categories sent left.  
+- The set of bottom nodes (or leaves) give a partition of the x space.  
+- To predict, we drop x down the tree until it lands in a leaf node.  
+   - For numeric y, we predict using that leaf's average y value from the training data.  
+   - For categorical y, predict using that leaf's  category proportions from the training data.   
+
+
+Tree models: pros and cons
+========================================================
+
+Pros:
+- Flexible fitters that can automatically detect nonlinearities and interactions.  
+- Invariant to transformations of the x variables.  
+- Handles categorical and numeric variables easily.  
+- Fast to fit.  
+- Interpretable (when small).  
+
+Tree models: pros and cons
+========================================================
+
+Cons:  
+- Inherently non-smooth (step functions).  
+- Don't scale to very large feature sets (hundreds or thousands of variables).  
+    - But can often fix this with dimension-reduction techniques.  
+- Not the best at out-of-sample performance.  
+    - Generally must be deep (and thus less interpretable).  
+    - But still not bad at prediction!  
+    - And by _ensembling_, or averaging multiple trees, we can get excellent off-the-shelf predictions.  
+
+
+
+Fitting trees
+========================================================
+
+As usual, we'll maximize data log-likelihood (minimize deviance)---here by fiddling with the tree's decision nodes.  (How many?  What order?  Which features?)
+
+Two common loss functions:   
+- Regression deviance: $\sum_{i=1}^n (y_i - \hat{y}_i(x_i))^2$    
+- Classification deviance: $-\sum_{i=1}^n \log \hat{p}_{y_i}(x_i)$    
+
+Instead of being based on $x \cdot \beta$, predicted $\hat{y}$ and $\hat{p}$ are functions of $x$ passed through the tree's decision nodes, just like we've seen.  
+
+
+Fitting trees
+========================================================
+
+How do we do the minimization?  
+
+Now we have a problem.
+- While trees are simple in some sense, once we view them as variables in an optimization, they are large and complex.     
+- A key to tree modeling is the success of the following heuristic algorithm for fitting trees to training data: grow big, prune back.  
+
+
+Grow big
+=========
+
+Use a greedy, recursive forward search to build a big tree, starting with all data in a single parent node.    
+
+For each parent node:  
+ 1. Search over all possible splitting rules to find the single split that gives the biggest decrease in loss (increase in fit).   This can be done very quickly.  
+ 2. Using this optimal rule, split the parent node into two children.    
+
+Then repeat recursively, treating each child as a new parent.  You typically stop splitting and growing when the size of the leaf node hits some minimum threshold (e.g., 10 obs. per leaf).   
+
+
+Grow big
+=========
+
+<img src="fig/tree_recursive.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="1000px" style="display: block; margin: auto;" />
+
+The key word is _recursive_---like how trees grow in the real world!  
+
+
+Prune back
+=========
+
+Given a current tree with D leaf nodes:     
+  1. Examine every pair of "sibling" leaf nodes (i.e. leaf nodes of the tree having the same parent) and check the increase in loss (decease in fit) from "pruning" that split.  
+  2.  Prune the "least useful" split, i.e. the prune that yields the smallest increase in loss (decrease in fit).  
+  
+Repeat recursively on the newly pruned tree having D-1 leaf nodes.  Stop when you've pruned all the way down to a single node.    
+
+__Let's see this process on the board.__
+
+
+Prune back
+=========
+
+
+
+Prune back
+=========
+
+Why grow, then prune?  To __generate a sequence of trees__ of sizes $D, D-1, D-2, \ldots, 2, 1$, each tree locally optimal for its size.   
+
+A good analogy is the lasso solution path:  
+- The big trees fit best, but have lots of splits and fewer data points in each leaf node.  (Lower bias, higher variance).   
+- The small trees fit less well, but are simpler and have more data points in each leaf node.  (Higher bias, lower variance.)
+
+We can then use cross-validation to pick the best tree.  
+
+
+CART
+=========
+class: small-code
+
+This fitting algorithm is called CART, for "classification and regression trees."
+
+CART is also sometimes called "recursive partitioning" and this is reflected in the R syntax:  
+
+```
+load.tree = rpart(COAST~temp + dewpoint, data=load,
+                  control = rpart.control(cp = 0.002, minsplit=30))
+```
+
+`control` gives optional parameters for controlling tree growth.  Here we split a node only if:  
+- it has at least 30 observations...
+- AND if the split improves the deviance by a factor of 0.001 (0.1%).    
+
+
+CART
+=========
+
+Let's go see some examples in `tree_examples.R`.  
