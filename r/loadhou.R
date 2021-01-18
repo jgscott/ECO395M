@@ -94,7 +94,7 @@ models = map(loadhou_folds$train, ~ knnreg(COAST ~ KHOU, k=100, data = ., use.al
 # each element of a list or atomic vector and returning
 # an object of the same length as the input.
 
-# map the RMSE calculation over the train models and test sets simultaneously
+# map the RMSE calculation over the trained models and test sets simultaneously
 errs = map2_dbl(models, loadhou_folds$test, modelr::rmse)
 
 # note:
