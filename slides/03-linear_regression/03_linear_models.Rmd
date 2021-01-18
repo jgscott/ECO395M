@@ -691,6 +691,7 @@ This depends upon the choice of weights $w_1, \ldots, w_p$ for each feature vari
 
 
 We can always choose the scales/weights to reflect our substantive knowledge of the problem.  For example:
+
 - a "typical" bedroom is about 200 square feet (roughly 12x16).  
 - a "typical" bathroom is about 50 square feet (roughly 8x6).  
 
