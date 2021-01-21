@@ -2,6 +2,7 @@
 title: "Classification"
 author: "James Scott"
 date: "ECO 395M: Data Mining and Statistical Learning"
+urlcolor: blue
 output:
   beamer_presentation
 ---
@@ -21,21 +22,23 @@ library(rsample)
 2. Logistic regression: the basics  
 3. Interpreting a logit model  
 4. Estimating a logit model: MLE  
-5. KNN for classification  
-6. Multinomial logit  
-7. Evaluating a classifier: likelihood and deviance  
-8. Naive Bayes classification
+5. Error rates and ROC curves
+6. KNN for classification  
+7. The multinomial logit model, a.k.a "softmax"
+8. Evaluating a classifier: likelihood and deviance  
+9. Naive Bayes classification  
 
 
 ## Classification
 
 
-In classification, the target variable $y$ is membership in a category.  We'll label these arbitrarily as $\{1, \ldots, M\}$---keep in mind that this is just a label, not a number with a meaningful magnitude!  
+In classification, the target variable $y$ is membership in a category. 
 
-- occupation: butcher, baker, or candlestick maker?  
-- consumer choices: Hyundai, Toyota, or Ford?  
-- college major: economics, mathematics, or literature?  
-- tumor type: malignant or benign?  
+- occupation: butcher, baker, candlestick maker... 
+- consumer choices: Hyundai, Toyota, Ford... 
+- college major: economics, mathematics, literature...  
+- tumor type: malignant or benign  
+- political slant of a new article: R or D  
 
 Each observation consists of:  
 
@@ -48,14 +51,14 @@ The classification problem: given new $x^{\star}$, predict $y^{\star}$ (or provi
 ## Linear probability model
 
 
-We'll start with binary classification (where $y$ is 0 or 1).  
+We'll start with binary classification (where we label the outcomes $y$ as 0 for no or 1 for yes, appropriately defined in context).    
 
 Recall the basic form of a supervised learning problem:  
 $$
 E(y \mid x) = f(x)  
 $$
 
-Suppose the outcome $y$ is binary (0/1).  Then:
+If $y$ is binary (0/1), then:
 $$
 \begin{aligned}
 E(y \mid x) &= 0 \cdot P(y = 0 \mid x) + 1 \cdot P(y = 1 \mid x) \\
@@ -87,12 +90,18 @@ This is called the _linear probability model_: the probability of a "yes" outcom
 
 ## LPM: spam classification
 
+![](fig/spam.jpeg){width=100%}
 
 
 Let's consider a simple spam classification problem:  
 
 - `spamfit.csv`: 3000 e-mails (40% spam) with 9 features.  
 - `spamtest.csv`: 601 testing e-mails for assessing performance.  
+
+## LPM: spam classification
+
+
+Here are the first few lines of our testing data.
 
 \bigskip
 
@@ -125,7 +134,12 @@ coef(lm_spam1) %>% round(3)
 ## LPM: spam classification
 
 
-In-sample performance, thresholding predicted probabilities at 0.5:
+Let's look at our in-sample performance by:  
+
+- thresholding our predicted probabilities at 0.5  
+- calculating the __confusion matrix__, which tabulates predicted class versus actual class.  
+
+\bigskip
 
 \footnotesize
 ```{r}
@@ -138,7 +152,9 @@ sum(diag(confusion_in))/sum(confusion_in)  # in-sample accuracy
 
 ## LPM: spam classification
 
-Out-of-sample performance:
+Let's do the same with out-of-sample performance:
+
+\bigskip
 
 \footnotesize
 ```{r}
@@ -152,7 +168,9 @@ sum(diag(confusion_out))/sum(confusion_out)  # out-of-sample accuracy
 ## LPM: spam classification
 
 
-How well are we doing?  Note that 60% of the training set isn't spam:
+How well is our model doing?  To answer this question, it helps to have a baseline.  
+
+Note that 60% of the training set isn't spam:
 ```{r}
 table(spamfit$y)
 ```
@@ -178,9 +196,9 @@ Our linear probability model had an 81.5% out-of-sample accuracy rate.  Therefor
 - Its relative improvement, or _lift_, is $\approx 81.5/64.1 = 1.27$.  
 
 
-## Some take-home lessons
+## Take-home lessons
 
-To get predicted classes from a model, we usually have to threshold predicted probabilities.   
+To get predicted classes from a model, we often have to threshold predicted probabilities.   
 
 - Seems like 0.5 is a reasonable baseline.  
 - But other thresholds might be appropriate for some problems.  
@@ -207,6 +225,7 @@ abline(v = c(0,1))
 
 ## LPM: illegal probabilities
 
+This is a bit inelegant, and it happens for a straightforward reason.  
 
 Recall the basic form of the linear probability model:
 $$
@@ -246,7 +265,7 @@ A standard choice is $g(z) = e^z/(1+e^z)$.
 \bigskip
 
 ```{r, echo=FALSE, fig.width = 4, fig.asp = 0.7, fig.align='center'}
-curve(exp(z)/(1+exp(z)), xname='z', from=-5, to=5, ylab='g(u)', las=1,
+curve(exp(z)/(1+exp(z)), xname='z', from=-5, to=5, ylab='g(z)', las=1,
       cex.axis=0.7, cex.main=0.7, cex.lab=0.7)
 abline(h=c(0,1), lty='dotted')
 ```
@@ -259,7 +278,7 @@ $$
 P(y = 1 \mid x) = \frac{\exp(x \cdot \beta)}{1 + \exp(x \cdot \beta)}
 $$
 
-This is a very common choice of link function, for a couple of good reasons.  One is interpretability: a little algebra shows that
+This is a very common choice of link function.  One reason is interpretability: a little algebra shows that
     $$
     \begin{aligned}
     \log \left[ \frac{p}{1-p} \right] &= x \cdot \beta \\
@@ -271,6 +290,7 @@ This is a very common choice of link function, for a couple of good reasons.  On
     
 ## Logistic regression is easy in R
 
+The R syntax is nearly identical to `lm`:  
 
 ```
 glm(y ~ x, data=mydata, family=binomial)
@@ -297,19 +317,34 @@ Let's fit a logit model to the spam data.
 \footnotesize
 ```{r}
 # Recall: the dot (.) says "use all variables not otherwise named"
-logit_spam1 = glm(y ~ ., data=spamfit, family='binomial')
+logit_spam = glm(y ~ ., data=spamfit, family='binomial')
 ```
 
 
 \normalsize
-We're warned that some emails are clearly spam or not spam (i.e. p = 0 or p=1 up to floating-point numerical precision.)  This `warning` is largely benign and isn't something to worry about.  
+We're warned that some emails are clearly spam or not spam.
+
+- This means p = 0 or p=1 up to floating-point numerical precision for at least one training-set example.  
+- This `warning` is largely benign and isn't something to worry about.  
+- However, if __all or most__ of the predicted probabilities are that extreme, then either your problem is really easy or your model might be overfitting the training data.   
+
+
+## Logistic regression in your inbox
+
+```{r, echo=FALSE, message=FALSE, fig.width = 4.5, fig.asp = 0.6, fig.align='center', warning=FALSE}
+spamtest = mutate(spamtest, yhat = predict(logit_spam, spamtest, type='response'))
+ggplot(spamtest) + 
+  geom_jitter(aes(x=factor(y), y=yhat), width=0.1, alpha=0.2) + 
+  labs(title="Test-set predicted probabilities", y = "P(spam | x)", x="Spam?") + 
+  stat_summary(aes(x=factor(y), y=yhat), fun='mean', col='red', size=1)
+```
 
 
 ## Interpeting coefficients in LR  
 
 \footnotesize
 ```{r}
-coef(logit_spam1) %>% round(2)
+coef(logit_spam) %>% round(2)
 ```
 \normalsize
 
@@ -326,7 +361,7 @@ So $e^{\beta_j}$ is an _odds multiplier_ or _odds ratio_ for for a one-unit incr
 
 \footnotesize
 ```{r}
-coef(logit_spam1) %>% round(2)
+coef(logit_spam) %>% round(2)
 ```
 \normalsize
 
@@ -338,7 +373,7 @@ The $\beta$ for `char.freq.free` is 1.1.  So having an extra `free` in an e-mail
 
 \footnotesize
 ```{r}
-coef(logit_spam1) %>% round(2)
+coef(logit_spam) %>% round(2)
 ```
 \normalsize
 
@@ -351,7 +386,7 @@ The $\beta$ for `char.freq.semicolon` is -1.7.  So having an extra semicolon in 
 
 \footnotesize
 ```{r}
-coef(logit_spam1) %>% round(2)
+coef(logit_spam) %>% round(2)
 ```
 \normalsize
 
@@ -363,119 +398,56 @@ Q: What is the odds multiplier for a coefficient of 0?
 
 ## LR for spam: out-of-sample 
 
+Let's go to the confusion matrix to check our out-of-sample performance.  
 
-\tiny
+\medskip
 
-```{r}
-logit_spam = glm(y ~ ., data=spamfit, family='binomial')
+\footnotesize
+
+```{r, warning=FALSE}
 phat_test_logit_spam = predict(logit_spam, spamtest, type='response')
 yhat_test_logit_spam = ifelse(phat_test_logit_spam > 0.5, 1, 0)
-confusion_out_logit = table(y = spamtest$y, yhat = yhat_test_logit_spam)
+confusion_out_logit = table(y = spamtest$y,
+                            yhat = yhat_test_logit_spam)
 confusion_out_logit
 ```
 \normalsize
 
-We did better!
+We did better than the linear probability model:  
 
 - Error rate (51+27)/601 $\approx$ 13%, or accuracy of 87%.  
 - Absolute improvement over LPM: $87 - 81.5 = 6.5\%$. 
 - Lift over LPM: $87/81.5 \approx 1.07$.
 
 
-## LR for spam: out-of-sample 
+## Estimating a logit model
 
 
+A logistic regression model is fit by the principle of __maximum likelihood__: _choose the parameters so that the observed data looks as likely as possible._
 
-We can take a slightly more nuanced look at the performance than simply calculating an overall accuracy/error rate.  Three simple metrics you should know about:  
-
-- true positive rate  (sensivity, recall)
-- the false positive rate  (specificity)
-- the false discovery rate  (precision, positive predictive value)
-
-
-
-
-## LR for spam: true positive rate
-
-
-
-The _true positive rate_ (TPR): among spam e-mails ($y=1$), how many are correctly flagged as spam ($\hat{y} = 1$)?  
-```{r, echo=FALSE}
-confusion_out_logit
-```
-
-Here the out-of-sample TPR is $165/(51+165) \approx 0.76$.  
-
-Synonyms for the TPR: sensitivity, recall.
-
-## LR for spam: false positive rate
-
-
-
-The _false positive rate_ (FPR): among non-spam e-mails ($y=0$), how many are wrongly flagged as spam ($\hat{y} = 1$)?  
-```{r, echo=FALSE}
-confusion_out_logit
-```
-
-Here the out-of-sample FPR is $27/(27+358) \approx 0.07$.  
-
-Synonyms: _specificity_ is the opposite of FPR, but conveys same information:
-$$
-\mbox{Specificity} = 1 - \mbox{FPR}
-$$
-So this procedure had a 93% out-of-sample specificity.
-
-
-## LR for spam: false discovery rate
-
-
-
-The _false discovery rate_ (FDR): among e-mails flagged as spam ($\hat{y}=1$), how many were actually not spam ($y = 0$)?  
-```{r, echo=FALSE}
-confusion_out_logit
-```
-
-Here the out-of-sample FDR is $27/(27+165) \approx 0.14$.  
-
-Synonyms: The _precision_/_positive predictive value_ is the opposite of FDR, but convey same information:
-$$
-\mbox{Precision} = \mbox{Positive Predictive Value} = 1 - \mbox{FDR}
-$$
-So this procedure had a 86% precision.  Among flagged spam e-mails, 86% were actually spam.  
-
-
-## Who uses these terms?
-
-
-All these synonyms for the same error rates can be a pain!  But their usage tends to be field-dependent.  
-
-- FPR, FNR, FDR: statistics, machine learning  
-- Sensivity, specificity, positive predictive value: medicine, epidemiology, and public health  
-- Precision and recall: database and search engine design, machine learning, computational linguistics
-
-Solution: always go back to the confusion matrix!  It tells the whole story.  Ironically, the confusion matrix _avoids confusion_ over terminology.
+Many fitting methods in machine learning are based on either maximum likelihood, or very similar principles.  Let's see the details for this model.  
 
 
 ## Estimating a logit model
 
+Recall from Prob/Stat that the likelihood function is the predicted probability of the observed data, as a function of the parameters.
 
-A logistic regression model is fit by the principle of maximum likelihood: _choose the parameters so that the observed data looks as likely as possible._
+In logistic regression, the likelihood is built from three assumptions/pieces:  
 
-In LR, each outcome $y_i$ is binary.  By assumption:
+1. The individual outcomes are binary.  
+2. The predicted probabilities are related to the model parameters via
 $$
 \begin{aligned}
 P(y_i = 1 \mid x_i) &= \frac{e^{x \cdot \beta}}{1 + e^{x \cdot \beta}} \\
 P(y_i = 0 \mid x_i) &= 1- \frac{e^{x \cdot \beta}}{1 + e^{x \cdot \beta}} = \frac{1}{1 + e^{x \cdot \beta}} \\
 \end{aligned}
 $$
-
+3. Each binary outcome is presumed independent of the others.  
 
 ## Estimating a logit model
 
 
-Recall from Prob/Stat that the likelihood function is the probability of the observed data as a function of the parameters.
-
-Let's think about the likelihood for a single observation (the $i$th one).  This answers the question: how likely was it that we saw this particular outcome (0 or 1) for observation $i$, assuming the true parameter was $\beta$?  
+Let's think about the likelihood for a single observation (the $i$th one).  This answers the question: how likely was it that we saw this particular outcome ($y=0$ or $y=1$) for observation $i$, assuming the true parameter was $\beta$?  
 
 Here's a convenient way to write it:  
 
@@ -503,10 +475,164 @@ $$
 This quantity can be maximized as a function of $\beta$ using an iterative numerical routine (typically Newton's method, sometimes gradient ascent or BFGS).  Details for another course (feel free to ask me)!  
 
 
+
+## Error rates
+
+
+We can take a slightly more nuanced look at the performance of a classifier than simply calculating an overall accuracy/error rate.
+
+Here are three simple metrics you should know about:  
+
+- true positive rate  (sensivity, recall)
+- the false positive rate  (specificity)
+- the false discovery rate  (precision, positive predictive value)
+
+Let's see these three in action on our logit classifier for spam.  
+
+
+## LR for spam: true positive rate
+
+
+The _true positive rate_ (TPR): among spam e-mails ($y=1$), how many are correctly flagged as spam ($\hat{y} = 1$)?  
+```{r, echo=FALSE}
+confusion_out_logit
+```
+
+Here the out-of-sample TPR is $165/(51+165) \approx 0.76$.  
+
+Synonyms for the TPR: sensitivity, recall.
+
+
+## LR for spam: false positive rate
+
+
+The _false positive rate_ (FPR): among non-spam e-mails ($y=0$), how many are wrongly flagged as spam ($\hat{y} = 1$)?  
+```{r, echo=FALSE}
+confusion_out_logit
+```
+
+Here the out-of-sample FPR is $27/(27+358) \approx 0.07$.  
+
+Synonyms: _specificity_ is the opposite of FPR, but conveys same information:
+
+$$
+\mbox{Specificity} = 1 - \mbox{FPR}
+$$
+
+So this procedure had a 93% out-of-sample specificity.
+
+
+## LR for spam: false discovery rate
+
+The _false discovery rate_ (FDR): among e-mails flagged as spam ($\hat{y}=1$), how many were actually not spam ($y = 0$)?  
+```{r, echo=FALSE}
+confusion_out_logit
+```
+
+Here the out-of-sample FDR is $27/(27+165) \approx 0.14$.  
+
+Synonyms: The _precision_/_positive predictive value_ is the opposite of FDR, but convey same information:
+
+$$
+\mbox{Precision} = \mbox{Positive Predictive Value} = 1 - \mbox{FDR}
+$$
+
+So this procedure had a 86% precision.  Among flagged spam e-mails, 86% were actually spam.  
+
+
+## Who uses these terms?
+
+
+All these synonyms for the same error rates can be a pain!  But their usage tends to be field-dependent.  
+
+- FPR, FNR, FDR: statistics, machine learning  
+- Sensivity, specificity, positive predictive value: medicine, epidemiology, and public health  
+- Precision and recall: database and search engine design, machine learning, computational linguistics
+
+Solution: always go back to the confusion matrix!  It tells the whole story.  Ironically, the confusion matrix _avoids confusion_ over terminology.
+
+
+## ROC curve
+
+In our discussion our these error rates for our spam classifier, we use a threshold of 50%.
+
+- $P(y=1 | x) \geq 0.5 \longrightarrow$ spam
+- $P(y=1 | x) < 0.5 \longrightarrow$ not spam
+
+But what if we varied the threshold?  
+
+This is the question addressed by a __ROC curve:__
+
+- a ROC ("receiver operating characteristic")\footnote{This name comes from radar operators in WWII.} curve is a graph showing the performance of a binary classifier at all classification thresholds.  
+- at each threshold $t$ we compute both the FPR and the TPR.  
+- we then graph TPR(t) versus FPR(t) as t varies.  
+
+
+## ROC curve for spam classifiers
+
+Let's look at the ROC curve for our two spam classifiers
+
+```{r, echo=FALSE, message=FALSE, fig.width = 4.5, fig.asp = 0.6, fig.align='center', warning=FALSE}
+library(foreach)
+phat_test_lm_spam = predict(lm_spam1, spamtest, type='response')
+phat_test_logit_spam = predict(logit_spam, spamtest, type='response')
+
+thresh_grid = seq(0.95, 0.05, by=-0.005)
+roc_curve_spam = foreach(thresh = thresh_grid, .combine='rbind') %do% {
+  yhat_test_linear_spam = ifelse(phat_test_lm_spam >= thresh, 1, 0)
+  yhat_test_logit_spam = ifelse(phat_test_logit_spam >= thresh, 1, 0)
+
+  # FPR, TPR for linear model
+  confusion_out_linear = table(y = spamtest$y, yhat = yhat_test_linear_spam)
+  confusion_out_logit = table(y = spamtest$y, yhat = yhat_test_logit_spam)
+  out_lin = data.frame(model = "linear",
+                       TPR = confusion_out_linear[2,2]/sum(spamtest$y==1),
+                       FPR = confusion_out_linear[1,2]/sum(spamtest$y==0))
+  out_logit = data.frame(model = "logit",
+                       TPR = confusion_out_logit[2,2]/sum(spamtest$y==1),
+                       FPR = confusion_out_logit[1,2]/sum(spamtest$y==0))
+  
+  rbind(out_lin, out_logit)
+} %>% as.data.frame()
+
+ggplot(roc_curve_spam) + 
+  geom_line(aes(x=FPR, y=TPR, color=model)) + 
+  labs(title="ROC curves: linear vs. logit models") +
+  theme_bw(base_size = 10)
+```
+
+
+
+## ROC curve for spam classifiers
+
+Zoomed in for FPR between 0 and 0.2.
+
+```{r, echo=FALSE, message=FALSE, fig.width = 4.5, fig.asp = 0.6, fig.align='center', warning=FALSE}
+ggplot(roc_curve_spam) + 
+  geom_line(aes(x=FPR, y=TPR, color=model)) + 
+  labs(title="ROC curves: linear vs. logit models") +
+  theme_bw(base_size = 10) + 
+  xlim(0, 0.20)
+```
+
+
+## ROC curve: summary
+
+A ROC curve plots TPR(t) vs. FPR(t) as functions of the classification threshold $t$.  
+
+- Thus in calculus lingo, it is a "parametric representation," where we choose to define the curve's x and y values in terms of another variable (here, the threshold) for simplicity.  
+- Lowering the classification threshold classifies more items as positive (y=1).  
+- This increases both False Positives and True Positives.  
+
+A ROC curve that is more "up and to the left" represents better performance, i.e. better detection of true positives at a fixed false positive rate.
+
+Some people report the area under the ROC curve (AUC) as [an overall measure of classifier performance.](https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc)    
+
+
 ## KNN for classification  
 
 
-Another approach to classification: back to K-nearest-neighbors.  Super intuitive:  
+Let's see another approach to classification: K-nearest-neighbors.  Super intuitive:  
 
 - Suppose we want to predict the class for some new $x^\star$.  
 - Let's ask: what is the most common class for training-set observations around $x^{\star}$?  
@@ -534,13 +660,6 @@ p1 = ggplot(D_toy) +
   theme_bw(base_size=10) +
   ylim(c(-1, 2.5)) + xlim(c(-1,2.5)) + 
   labs(color='Spam?') 
-p1
-```
-
-## KNN for classification  
-
-
-```{r, echo=FALSE, fig.width = 4, fig.asp = 0.6, fig.align='center', warning=FALSE}
 p1 + geom_point(data = D_toy[c(3, 106),], size=3,
                 mapping = aes(x=word.freq.free, y=char.freq.exclamation))
 ```
@@ -638,7 +757,7 @@ predict(ml1, fgl_test, type='probs') %>%
 
 
 
-How did we do?  
+How did we do?  Let's look at a confusion matrix:  
 \bigskip
 
 \footnotesize
@@ -651,7 +770,7 @@ sum(diag(conf_mat))/sum(conf_mat)
 ```
 
 
-## Evaluating a classifier: deviance
+## Evaluating a classifier
 
 
 In making decisions, both costs and probabilities matter.  E.g. if $P(y = 1 \mid x) = 0.3$, how would you respond differently if:  
@@ -785,14 +904,14 @@ $$
 
 The hard part is estimating the likelihood $P(x \mid y = k)$.  In words: how likely is it that we would have observed feature vector $x$ if the true class label were $k$?
 
-This is like regression in reverse!  See `congress109_bayes.r` for a teaser example.  
+This is like regression in reverse!  
 
 ## Naive Bayes
 
 
-Recall that $x = (x_1, x_2, \ldots, x_p)$ is a vector of $p$ features.  Our first strategy for estimating $P(x \mid y = k)$ is called "Naive Bayes."
+Recall that $x = (x_1, x_2, \ldots, x_p)$ is a vector of $p$ features.  The simplest strategy for estimating $P(x \mid y = k)$ is called "Naive Bayes."
 
-It's "naive" because we make the simplifying assumption that _every feature $x_j$ is independent_ of all other features:
+It's "naive" because we make the simplifying assumption that _every feature $x_j$ is independent_ of all other features, conditional on the class labels:
 $$
 \begin{aligned}
 P(x \mid y = k) &= P(x_{1}, x_{2}, \ldots, x_{p} \mid y = k) \\
@@ -815,8 +934,11 @@ The target variable $y \in \mbox{R, D}$ is the party affiliation of the represen
 
 ## Naive Bayes: a small example
 
+We'll focus on just a few phrases and famous politicians:  
 
+\bigskip
 
+\tiny
 ```{r}
 # read in data
 congress109 = read.csv("../data/congress109.csv", header=TRUE, row.names=1)
@@ -835,6 +957,10 @@ X_small[c('John McCain', 'Mike Pence', 'John Kerry', 'Edward Kennedy'),]
 
 
 Let's look at these counts summed across all members in each party:  
+
+\bigskip
+
+\tiny
 ```{r}
 y = congress109members$party
 
@@ -844,6 +970,7 @@ D_rows = which(y == 'D')
 colSums(X_small[R_rows,])
 colSums(X_small[D_rows,])
 ```
+\normalsize
 
 So we get the sense that some phrases are "more Republican" and some "more Democrat."  
 
@@ -852,7 +979,8 @@ So we get the sense that some phrases are "more Republican" and some "more Democ
 
 
 
-To make this precise, let's build a simplified "bag of phrases" model for a Congressional speech:   
+To make this precise, let's build our Naive Bayes model for a Congressional speech:   
+
 - Imagine that every phrase uttered in a speech is a random sample from a "bag of phrases," where each phrase has its own probability. (_This is the Naive Bayes assumption of independence._)
 - Here the bag consists of just four phrases: "minimum wage", "war on terror", "tax relief," and "hurricane katrina".
 - Each class (R or D) has its own probability vector associated with the phrases in the bag.  
@@ -862,18 +990,30 @@ To make this precise, let's build a simplified "bag of phrases" model for a Cong
 
 
 
-We can estimate these probability vectors for each class from the phrase counts in the training data.  For Republicans:
+We can estimate these probability vectors for each class from the phrase counts in the training data.
+
+For Republicans:
+
+\bigskip
+
+\tiny
+
 ```{r}
 probhat_R = colSums(X_small[R_rows,])
 probhat_R = probhat_R/sum(probhat_R)
-probhat_R
+probhat_R %>% round(3)
 ```
+\normalsize
 
 And for Democrats:
+
+\bigskip
+
+\tiny
 ```{r}
 probhat_D = colSums(X_small[D_rows,])
 probhat_D = probhat_D/sum(probhat_D)
-probhat_D
+probhat_D %>% round(3)
 ```
 
 
@@ -882,21 +1022,32 @@ probhat_D
 
 
 
-Let's now look at some particular member of Congress and try to build the "likelihood" for his or her phrase counts
+Let's now look at some particular member of Congress and try to build the likelihood, $P(x \mid y)$, for his or her phrase counts
+
+\bigskip
+
+\tiny
 ```{r}
 X_small['Sheila Jackson-Lee',]
 ```
+\normalsize
 
 Are Sheila Jackon-Lee's phrase counts $x = (11, 15, 3, 66)$ more likely under the Republican or Democrat probability vector?  
 
 ## Naive Bayes: a small example
 
 
+Recall $P(x \mid y = R)$:  
 
-Recall the Republican vector:
+\bigskip
+
+\tiny
+
 ```{r, echo=FALSE}
-probhat_R
+probhat_R %>% round(4)
 ```
+\normalsize
+
 Under this probability vector:  
 $$
 \begin{aligned}
@@ -914,10 +1065,17 @@ $$
 
 
 
-Now recall the Democratic vector:
+Now recall $P(x \mid y = D)$:  
+
+\bigskip
+
+\tiny
+
 ```{r, echo=FALSE}
-probhat_D
+probhat_R %>% round(4)
 ```
+\normalsize
+
 Under this probability vector:  
 $$
 \begin{aligned}
@@ -935,7 +1093,7 @@ $$
 
 
 
-Because these numbers are so tiny, it's much safer to work on a log scale:
+These numbers are tiny, so it's much safer to work on a log scale:
 $$
 \log P(x \mid y = k) = \sum_{j=1}^p x_{j} \log p^{(k)}_{j}
 $$
@@ -953,7 +1111,7 @@ sum(x_try * log(probhat_D))
 
 Let's use Bayes' rule (posterior $\propto$ prior times likelihood) to put this together with our prior, estimated using the empirical class frequencies:
 ```{r}
-table(y) %>% prop.table
+table(y) %>% prop.table %>% round(3)
 ```
 
 So:
@@ -968,8 +1126,7 @@ $$
 ## Naive Bayes: a small example
 
 
-
-- Turn this into a set of probabilities by normalizing, i.e. dividing by the sum across all classes:  
+To actually calculate a posterior, we must turn this into a set of probabilities by normalizing, i.e. dividing by the sum across all classes:  
 $$
 \begin{aligned}
 P(D \mid x) &= \frac{0.457 \cdot (1.293 \times 10^{-43})}{0.457 \cdot (1.293 \times 10^{-43} + 0.539 \cdot (3.765 \times 10^{-51})} \\
@@ -977,23 +1134,25 @@ P(D \mid x) &= \frac{0.457 \cdot (1.293 \times 10^{-43})}{0.457 \cdot (1.293 \ti
 \end{aligned}
 $$
 
-- So:  
-    1. Sheila Jackson-Lee is probably a Democrat, according to our model.   
-    2. The data completely overwhelm the prior!  This is often the case in Naive Bayes models.  
+So:  
+
+   1. Our model thinks Sheila Jackson-Lee is a Democrat.   
+   2. The data completely overwhelm the prior!  This is often the case in Naive Bayes models.  
+
 
 ## Naive Bayes: a bigger example
 
-
-
-Turn to `congress109_bayes.R` to see a larger example of Naive Bayes classification, where we fit our model with all 1000 phrase counts.    
+Let's turn to `congress109_bayes.R` to see a larger example of Naive Bayes classification, where we fit our model with all 1000 phrase counts.    
 
 
 ## Naive Bayes: summary
 
 
-- Works by directly modeling $P(x \mid y)$, versus $P(y \mid x)$ as in logit.  
+- Works by directly modeling $P(x \mid y)$, versus $P(y \mid x$).  
+- This __regression in reverse__ only works because we assume that each feature in $x$ is independent, given the class labels.  
 - Simple and easy to compute, and therefore scalable to very large data sets and classification problems.    
-- Works even more with feature variables $P$ than observations $N$.  
+- Unlike a logit model, it works even more with features $P$ than examples $N$.  
 - Often too simple: the "naive" assumption of independence really is a drastic simplification.  
 - The resulting probabilities are useful for classification purposes, but often not believeable as probabilities.  
 - Most useful when the features $x$ are categorical variables (like phrase counts!)  Very common in text analysis.  
+

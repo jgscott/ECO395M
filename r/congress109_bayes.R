@@ -1,68 +1,47 @@
 library(tidyverse)
+library(ggplot2)
+library(naivebayes)
+library(modelr)
+library(rsample)
+
 library(foreach)
 
 # read in data
 congress109 = read.csv("../data/congress109.csv", header=TRUE, row.names=1)
 congress109members = read.csv("../data/congress109members.csv", header=TRUE, row.names=1)
 
-# corpus statistics
-N = nrow(congress109)
-D = ncol(congress109)
-
-
 # First split into a training and set set
-X_NB = congress109  # feature matrix
-y_NB = 0+{congress109members$party == 'R'}  # target variable
+# our naive bayes function expects X and Y separated out
+X_NB = as.matrix(congress109)  # feature matrix
+y_NB = factor(congress109members$party)
 
+# so let's manually create a train/test split
+# a bit more annoying than initial_split, but not too bad
+N = length(y_NB)
 train_frac = 0.8
-train_set = sort(sample.int(N, floor(train_frac*N)))
+train_set = sample.int(N, floor(train_frac*N)) %>% sort
 test_set = setdiff(1:N, train_set)
 
 # training and testing matrices
-# Notice the smoothing (pseudo-count) to the training matrix
-# this ensures we don't have zero-probability events
-X_train = X_NB[train_set,] + 1/D
-y_train = y_NB[train_set]
+X_train = X_NB[train_set,]
 X_test = X_NB[test_set,]
+
+# Training and testing response vectors
+y_train = y_NB[train_set]
 y_test = y_NB[test_set]
 
-# First construct our vectors of probabilities under D (0) and R (1) classes
-# smoothing the training matrix of counts was important so that we get no zeros here
-pvec_0 = colSums(X_train[y_train==0,])
-pvec_0 = pvec_0/sum(pvec_0)
-pvec_1 = colSums(X_train[y_train==1,])
-pvec_1 = pvec_1/sum(pvec_1)
+# train the model: this function is in the naivebayes package.
+# see you "congress109_bayes_detailed" if you want to see a 
+# version where we step through these calculations "by hand",
+# not relying on a package to build the classifier.
+nb_model = multinomial_naive_bayes(x = X_train, y = y_train)
 
+# predict on the test set
+y_test_pred = predict(nb_model, X_test)
 
-# bar plots of most R and D phrases
-sort(pvec_0) %>% sort(decreasing=TRUE) %>% head(25) %>% barplot(las=2, cex.names=0.6)
-sort(pvec_1) %>% sort(decreasing=TRUE) %>% head(25) %>% barplot(las=2, cex.names=0.6)
+# look at the confusion matrix
+table(y_test, y_test_pred)
 
-# priors
-priors = table(y_train) %>% prop.table
-
-
-# now try a query doc in the test set
-i = 6
-test_doc = X_test[i,]
-test_doc %>% sort
-sum(test_doc * log(pvec_0)) + log(priors[1])
-sum(test_doc * log(pvec_1)) + log(priors[2])
-y_test[i]
-
-
-# classify all the docs in the test set
-yhat_test = foreach(i = seq_along(test_set), .combine='c') %do% {
-  test_doc = X_test[i,]
-  logp0 = sum(test_doc * log(pvec_0)) + log(priors[1])
-  logp1 = sum(test_doc * log(pvec_1)) + log(priors[2])
-  0 + {logp1 > logp0}
-}
-
-confusion_matrix = table(y_test, yhat_test)
-confusion_matrix
-
-# overall error rate
-1-sum(diag(confusion_matrix))/length(test_set)
-
-# pretty good!
+# some examples of misses
+misses = which(y_test != y_test_pred)
+congress109members[test_set[misses],]

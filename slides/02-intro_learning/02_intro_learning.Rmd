@@ -37,7 +37,7 @@ In data mining/ML/AI, this is called "supervised learning."  In intro Prob/Stats
 ## Introduction to predictive modeling   
 
 
-A useful way to frame this problem is to think that $y$ and $x$ are related like this:
+A useful way to frame this problem is to postulate that:  
 
 $$
 y_i = f(x_i) + e_i  
@@ -46,6 +46,7 @@ $$
 - $y_i$ is a numerical _outcome_ or _target_ variable  
 - $x_i = (x_{i1}, x_{i2}, ... x_{iP})$ is a vector of features
 - $f$ is an unknown function    
+- each pair $(x_i, y_i)$ is called an "example"  
 
 Our main purpose is to:  
 
