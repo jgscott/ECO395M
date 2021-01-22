@@ -19,9 +19,9 @@ library(rsample)
  
 1. Goals of model selection and regularization 
 2. Model selection by stepwise selection   
-3. Regularized regression: an overview
-4. Cross validation  
-5. Aside on software and sparse matrices
+3. Regularized regression and the lasso: an overview  
+4. Aside on software and sparse matrices
+5. Hockey case study  
 6. Dimension reduction  
 
 Note: although we talk about _regression_ here, everything applies to logistic regression as well (and hence classification).  
