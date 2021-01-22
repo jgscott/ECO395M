@@ -1,3 +1,5 @@
+library(gamlr)
+
 semiconductor = read.csv("../data/semiconductor.csv")
 n = nrow(semiconductor)
 
@@ -13,16 +15,15 @@ length(coef(fwd)) # chooses around 70 coef
 
 
 #### lasso (glmnet does L1-L2, gamlr does L0-L1)
-library(gamlr) 
 
-# for gamlr, and most other functions, you need to create your own numeric
-# design matrix.  We'll do this as a sparse `simple triplet matrix' using 
-# the sparse.model.matrix function.
-scx = sparse.model.matrix(FAIL ~ ., data=semiconductor)[,-1] # do -1 to drop intercept!
-# here, we could have also just done x = as.matrix(semiconductor[,-1]).
+# for gamlr, and many other fitting functions,
+# you need to create your own numeric feature matrix.
+scx = model.matrix(FAIL ~ .-1, data=semiconductor) # do -1 to drop intercept!
+scy = semiconductor$FAIL
+
+# Note: there's also a "sparse.model.matrix"
+# here our matrix isn't sparse.
 # but sparse.model.matrix is a good way of doing things if you have factors.
-
-scy = semiconductor$FAIL # pull out `y' too just for convenience
 
 # fit a single lasso
 sclasso = gamlr(scx, scy, family="binomial")
@@ -30,7 +31,7 @@ plot(sclasso) # the path plot!
 
 # AIC selected coef
 # note: AICc = AIC with small-sample correction.  See ?AICc
-AICc(sclasso)
+AICc(sclasso)  # the AIC values for all values of lambda
 plot(sclasso$lambda, AICc(sclasso))
 plot(log(sclasso$lambda), AICc(sclasso))
 
@@ -43,7 +44,8 @@ log(sclasso$lambda[which.min(AICc(sclasso))])
 sum(scbeta!=0) # chooses 30 (+intercept) @ log(lambda) = -4.5
 
 # Now without the AIC approximation:
-# cross validated lasso (verb just prints progress)
+# cross validated lasso (`verb` just prints progress)
+# this takes a little longer, but still so fast compared to stepwise
 sccvl = cv.gamlr(scx, scy, nfold=10, family="binomial", verb=TRUE)
 
 # plot the out-of-sample deviance as a function of log lambda
