@@ -521,14 +521,13 @@ __Bagging__---or Bootstrap Aggregating:
 - involves averaging the predictions from multiple trees.  
 - is a way to _reduce estimation variance without adding bias,_ thereby preventing trees from overfitting quite so badly.  
 - doesn't address interpretability (but hey, deep trees are hard to interpret anyway!)   
+\pause
 
 Let's see _how_ bagging works, before we consider _why_ it works:  
 
 - __Bootstrap__: resample the data with replacement $B$ times, to get $B$ "jittered" versions of your original data set (each size $n$).  
 - __Fit__: for each bootstrapped data set, fit a deep tree by CART.  
 - __Aggregate__: when you want to predict $y$ for some $x$, average the predictions from this "forest" of B trees.
-
-## Why on earth would this work?  
 
 Remember our basic intuition for why averaging works in the most basic problem of all: estimating a mean.    
 
@@ -552,8 +551,8 @@ It's kind of the same in bagging, where we think $y_i  = f(x) + e_i$:
 $$
 f(x) = \frac{1}{B} \sum_b \hat{f}^{(b)}(x)  
 $$
-- Stuff that's real gets captured in most or all of the bootstrapped estimates.    
-- Stuff that happens "by chance" is idiosyncratic to only a few estimates, and gets "washed out" in the averaging.\footnote{\tiny The math is a bit more complicated than on the previous slide, because the bootstrapped estimates are correlated with each other.  But they're not perfectly correlated, which is the source of variance reduction.}    
+- Wiggles in $f(x)$ that are real captured in most or all of the bootstrapped estimates.    
+- Wiggles that are over-fit to a few data points, "by chance," are idiosyncratic to only a few estimates, and get "washed out" in the averaging.\footnote{\tiny The math is a bit more complicated than on the previous slide, because the bootstrapped estimates are correlated with each other.  But they're not perfectly correlated, which is the source of variance reduction.}    
 
 Leo Breiman.  __Brilliant.__  
 
@@ -616,7 +615,7 @@ You need $B$ large enough to enjoy the effect of averaging.
 
 Bagging "works" because it usually gives you a smoother (lower-variance) fit than a single tree.  This is quite a general phenomenon:
 
-- we can often improve a high-variance nonparametric regression model by bagging it.  This is the simplest form of "ensembling" or "model averaging."   
+- we can often improve a high-variance nonparametric regression model by bagging it.  This is the simplest form of "ensembling" or "model averaging"---super useful idea.   
 - the corrollary is that a stable, low-variance estimator (e.g. a linear model) usually won't be improved by bagging.  
 - trees are ideal candidates for bagging because they're high-variance, flexible fitters than are also quite fast to fit.  
 
@@ -633,16 +632,30 @@ A "random forest" starts from bagging...
 - We still take $B$ bootstrapped samples of the original data and fit a tree to each one.  
 - We still average the predictions of the $B$ different trees.  
 
-But it adds more randomness.  Within each bootstrapped sample:  
+But it adds __more randomness.__  Within each bootstrapped sample:  
 
   - We don't search over __all__ the features in x when we do our greedy build of a big tree.  
   - Instead, we randomly choose a subset of $m < p$ features to use in building that tree.    
 
-This does two things:  
+This does two things:
 
 - it simplifies each tree, reducing its variance  
 - it diversifies the $B$ trees, decorrelating their predictions  
 
+
+## Random forests
+
+Why would using fewer features in each tree actually help!?  
+
+An analogy: evolutionary co-adaptation.  
+
+- Co-adaptation occurs when two or more traits/genes undergo adaptation together as a group.  
+- Co-adapted traits involve mutually adjusted changes.  Classic example: flowering plants and pollinating insects.  
+
+A common way that trees overfit is by learning heavily "co-adapted" sets of features, i.e. deep interactions that explain noise.    
+
+- Example: "No Democratic presidential incumbent without military service has ever beaten a challenger whose last name is worth more in Scrabble."  
+- By forcing each tree to rely on only a few features, we force it to learn robust, generalizable relationships.  
 
 ## Random forests
 
@@ -655,14 +668,14 @@ Some notes:
 
 - bagging is just random forests with $m=p$, but you'll typically see better performance with $m < p$.  
 - there is no explicit regularization parameter, as in the lasso and single-tree models.  
-- random forests might be the most popular "off the shelf" nonparametric regression technique.  They're effective, fast, and require little or no tuning.  
+- random forests might be the most popular "off the shelf" nonparametric regression technique.  They're effective, fast, and require little or no tuning via CV (the default settings perform well).  
 
 
 ## "Out-of-bag" error estimation 
 
-Random forests has a nice built-in way to estimate the generalization error of the model.  
+With random forests, there's a nice built-in way to estimate the generalization error of the model.  
 
-- In each bootstrap sample ("bag"), some of your original observations of "in the bag" (on average, about 2/3).  
+- In each bootstrap sample ("bag"), some of your original observations are "in the bag" (math says: about 2/3, on average).  
 - The rest are "out of bag."  
 
 By carefully keeping track of which trees use which observations, you can get "out-of-bag" predictions.  
@@ -673,4 +686,9 @@ By carefully keeping track of which trees use which observations, you can get "o
 
 ## Random forests: example  
 
-Let's go back to `tree_examples.R` to see random forests in action.  
+Let's go to `random_forest_example.R` to see random forests in action.  
+
+
+## Boosting
+
+

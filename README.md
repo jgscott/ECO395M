@@ -9,6 +9,13 @@ Welcome to the Spring 2021 edition of ECO 395M, a course on data mining and stat
 
 The exercises are [posted here.](https://github.com/jgscott/ECO395M/tree/master/exercises)    
 
+## Office hours
+
+All office hours are held via Zoom:
+
+- James: Mondays and Wednesdays, 8:30 AM to 9:30 AM US Central time.  
+- Rui: Tuesdays, 7:00 PM US Central time.  
+
 ## Topics outline  
 
 

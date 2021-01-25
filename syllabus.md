@@ -4,7 +4,7 @@
 
 - Instructor: James Scott (james.scott@mccombs.utexas.edu)
 - Course website: http://www.github.com/jgscott/ECO395M/
-- Teaching assistant: TBA 
+- Teaching assistant: Rui Zou (ruizuo11@utexas.edu)
 
 Office hours: Mondays and Wednesdays, 8:30 AM to 9:30 AM US Central time, via Zoom.  See our course's Canvas site for the link.  This time is not ideal for anyone, but it is the best compromise time I could come up with that would work across the huge range of time zones inhabited by students attending this course virtually: 
 - it's an uncommon class time.  
