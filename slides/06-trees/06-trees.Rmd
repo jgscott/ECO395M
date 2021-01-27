@@ -816,7 +816,7 @@ There's a cottage industry in machine learning of proposing alternatives to PD p
 - [Individual Conditional Expectation](https://christophm.github.io/interpretable-ml-book/ice.html), or ICE, plots.  
 - [Accumulated Local Effect](https://christophm.github.io/interpretable-ml-book/ale.html#ale), or ALE, plots.  
 
-This topic broadly falls under the area of __interpretable machine learning.__  Lots of papers and R packages (e.g. `ICEbox`) if you're interested!  
+This topic broadly falls under the area of [interpretable machine learning.](https://christophm.github.io/interpretable-ml-book/)  Lots of papers and R packages (e.g. `ICEbox`) if you're interested!  
 
 ## Boosting
 
@@ -909,7 +909,7 @@ Boosting has three main tuning parameters:
 - $D$, the depth of each tree.  
 - $\lambda$, the "shrinkage" or "crush" factor. Typically small, e.g. $0.05$.
 
-Boosting can work great, but it's more sensitive to these tuning parameters.  
+Boosting can work great, but it tends to be pretty sensitive to these tuning parameters.  
 
 - Because each tree is "guided" by knowledge of what the prior trees missed, you'd expect boosting to do a little better than random forests.  
 - And indeed, it is often possible outperform random forests with careful tuning.  
