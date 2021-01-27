@@ -105,7 +105,7 @@ In-class:
 
 ### Trees
 
-[Slides on trees](notes/trees.pdf).  
+[Slides here.](slides/06-trees/06-trees.pdf)  
 
 Reading: Chapter 8 of _Introduction to Statistical Learning_.
 

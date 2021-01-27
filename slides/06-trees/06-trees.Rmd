@@ -3,6 +3,7 @@ title: "Tree models"
 author: "James Scott"
 date: "ECO 395M: Data Mining and Statistical Learning"
 output: beamer_presentation
+urlcolor: blue 
 ---
 
 ```{r setup, include=FALSE}
@@ -19,16 +20,29 @@ prune_1se = function(my_tree) {
 
 ```
 
+## Outline
+
+1. Overview of tree models  
+2. Classification and regression trees: some examples  
+3. Fitting trees  
+4. Bagging: bootstrap aggregating  
+5. Random forests  
+6. Case study 1: back to the Houston power grid  
+7. Interpreting black-box models: feature importance and partial dependence plots  
+8. Boosting  
+9. Case study 2: Capital Metro ridership data  
+
 ## Tree models
 
-```{r, out.width = "300px", fig.align='center', echo=FALSE}
+```{r, out.width = "275px", fig.align='center', echo=FALSE}
 knitr::include_graphics("fig/umbrella_tree.png")
 ```
 
-Trees involve simple mini-decisions that combine to make a choice or prediction.  
+Trees involve simple mini-decisions that, taken sequentially, result in a choice or prediction.  
 
 Each decision is a _node_; the final choice or prediction is a _leaf node._  
 
+__Tree models are among the most useful "general-purpose" function approximators in all of machine learning.__
 
 ## Tree models
 
@@ -529,6 +543,9 @@ Let's see _how_ bagging works, before we consider _why_ it works:
 - __Fit__: for each bootstrapped data set, fit a deep tree by CART.  
 - __Aggregate__: when you want to predict $y$ for some $x$, average the predictions from this "forest" of B trees.
 
+
+## Why on earth would this work?  
+
 Remember our basic intuition for why averaging works in the most basic problem of all: estimating a mean.    
 
 $$
@@ -593,7 +610,7 @@ Fits from 100 bootstrapped samples.
 ```{r, echo=FALSE, fig.align='center', fig.width=4.5, fig.asp = 0.6, message=FALSE}
 g1 + geom_line(data=boot_summ, aes(x,y_hat), col='blue', alpha=1, size=1)
 ```
-Average of fits from 100 bootstrapped samples.    
+Average of fits from 100 bootstrapped samples.  OK, still overfit, but not nearly so badly!     
 
 
 ## Bagging: a summary  
@@ -615,7 +632,7 @@ You need $B$ large enough to enjoy the effect of averaging.
 
 Bagging "works" because it usually gives you a smoother (lower-variance) fit than a single tree.  This is quite a general phenomenon:
 
-- we can often improve a high-variance nonparametric regression model by bagging it.  This is the simplest form of "ensembling" or "model averaging"---super useful idea.   
+- we can often improve a high-variance nonparametric regression model by bagging it.  This is the simplest form of "ensembling" or "model averaging"---a super useful, very general idea.   
 - the corrollary is that a stable, low-variance estimator (e.g. a linear model) usually won't be improved by bagging.  
 - trees are ideal candidates for bagging because they're high-variance, flexible fitters than are also quite fast to fit.  
 
@@ -637,7 +654,7 @@ But it adds __more randomness.__  Within each bootstrapped sample:
   - We don't search over __all__ the features in x when we do our greedy build of a big tree.  
   - Instead, we randomly choose a subset of $m < p$ features to use in building that tree.    
 
-This does two things:
+Why would using fewer features in each tree actually help!? 
 
 - it simplifies each tree, reducing its variance  
 - it diversifies the $B$ trees, decorrelating their predictions  
@@ -645,17 +662,19 @@ This does two things:
 
 ## Random forests
 
-Why would using fewer features in each tree actually help!?  
+A maybe-useful analogy: evolutionary co-adaptation.  
 
-An analogy: evolutionary co-adaptation.  
+- Co-adaptation occurs when two or more traits/genes/organisms undergo mutual adaptation together as a group.  Classic example: flowering plants and pollinating insects.  
 
-- Co-adaptation occurs when two or more traits/genes undergo adaptation together as a group.  
-- Co-adapted traits involve mutually adjusted changes.  Classic example: flowering plants and pollinating insects.  
+- But if the environmental conditions change, heavily co-adapted organisms can suffer.  They're "overfit" to conditions that no longer exist.    
+
+\pause
 
 A common way that trees overfit is by learning heavily "co-adapted" sets of features, i.e. deep interactions that explain noise.    
 
 - Example: "No Democratic presidential incumbent without military service has ever beaten a challenger whose last name is worth more in Scrabble."  
-- By forcing each tree to rely on only a few features, we force it to learn robust, generalizable relationships.  
+- By forcing each tree to rely on only a few features, we prevent its features from "co-adapting" with each other in brittle, non-generalizable ways.  
+
 
 ## Random forests
 
@@ -668,14 +687,14 @@ Some notes:
 
 - bagging is just random forests with $m=p$, but you'll typically see better performance with $m < p$.  
 - there is no explicit regularization parameter, as in the lasso and single-tree models.  
-- random forests might be the most popular "off the shelf" nonparametric regression technique.  They're effective, fast, and require little or no tuning via CV (the default settings perform well).  
+- random forests might be the most popular "off the shelf" nonparametric regression technique.  They're effective, fast, and require little or no tuning via CV (default settings do well).  
 
 
 ## "Out-of-bag" error estimation 
 
 With random forests, there's a nice built-in way to estimate the generalization error of the model.  
 
-- In each bootstrap sample ("bag"), some of your original observations are "in the bag" (math says: about 2/3, on average).  
+- In each bootstrap sample ("bag"), some of your original observations are "in the bag" (math says: about $1-1/e \approx 2/3$, on average).  
 - The rest are "out of bag."  
 
 By carefully keeping track of which trees use which observations, you can get "out-of-bag" predictions.  
@@ -683,12 +702,258 @@ By carefully keeping track of which trees use which observations, you can get "o
 - This is a decent way to estimate out-of-sample performance.  
 - We typically use this to reassure ourselves we've used enough trees in the forest.  
 
-
 ## Random forests: example  
 
-Let's go to `random_forest_example.R` to see random forests in action.  
+Let's go to `random_forest_example.R`.
+
+Then we'll come back to discuss a couple of follow-up topics:
+
+- variable importance plots  
+- partial dependence functions  
+
+## Variable importance plots  
+
+We've seen on our example how random forests can give us a variable importance measure, like this:   
+
+```{r, out.width = "300px", fig.align='center', echo=FALSE}
+knitr::include_graphics("fig/load_forest_importance_plot.png")
+```
+
+This is calculated by procedure similar to a permutation test: we compare out-of-bag performance of the model, versus the same model with a "shuffled" version of the predictor.  
+
+
+## Partial dependence functions 
+
+Our RF model also gave us a "partial dependence plot":
+
+```{r, out.width = "225px", fig.align='center', echo=FALSE}
+knitr::include_graphics("fig/partial_dependence.png")
+```
+
+This shows the relationship between power load and temperature, taking account of the joint effect of other features.  
+
+It seems to make sense, but it's a bit mysterious at first how R computes this.  __What, exactly, is this thing?__
+
+## Partial dependence functions 
+
+The partial dependence (PD) function attempts to represent the marginal effect that one (or maybe two) features have on the predicted outcome of a model.
+
+- A PD function can be defined for any model, not just random forests.  It is chiefly a tool for visualizing and understanding a model, rather than direct prediction.  
+- A PD function is focused on a specific variable $x_j$, or maybe two variables.  (More than 2 gets unwieldy.)  
+- Plotting the PD function can show whether the relationship between the target $y$ and feature $x_j$ is linear, monotonic, or more complex.
+
+
+## Partial dependence functions
+
+Suppose that $x_S$ is a "subset of interest" of your model's features, and that $x_C$ is all the other features in the model.
+
+- Usually, there are only one or two features in the set S.
+- The feature(s) in S are those whose effect on the prediction $\hat{y} = \hat{f}(x)$ we wish to understand.  
+- Together, $x_S$ and $x_C$ contain all the features:  $f(x) = f(x_S, x_C)$.  
+
+\pause
+
+The partial dependence function is defined pointwise over $x_S$ by marginalizing out the features in $x_C$:
+$$
+r_S(x_S) = E_{x_C}( f(x_S, x_C) ) \approx \frac{1}{N} \sum_{i=1}^N f \left( x_S, x_C^{(i)} \right)
+$$
+
+This expected value is taken under the true probability distribution that generated features $x_C$.  
+
+## Partial dependence functions
+
+Let's unpack that formula a bit:  
+
+$$
+r_S(x_S) = E_{x_C}( f(x_S, x_C) ) \approx \frac{1}{N} \sum_{i=1}^N f \left( x_S, x_C^{(i)} \right)
+$$
+
+
+In words, to estimate the PD function, you:  
+
+- pick a target value of $x_S$ where you want to evaluate $r_S(x_S)$
+- evaluate $f \left( x_S, x_C^{(i)} \right)$ at all points $x_C^{(i)}$ in your training set.
+- average these function evaluations  
+- Keep repeating for across a grid of target values of $x_S$, and you build up the PD function one point $(x_S, r_S(x_S))$ at a time.     
+
+The partial dependence function at a particular feature value $x_S$ represents __the average prediction if we force all data points to assume that feature value.__  
+
+## Partial dependence functions
+
+
+```{r, out.width = "300px", fig.align='center', echo=FALSE}
+knitr::include_graphics("fig/pd4up.png")
+```
+
+## Partial dependence functions: disadvantages
+
+Realistic max number of features in a PD function is two; hard to overcome, it's just a limitation of our screens and brains.  
+
+PD functions are easy to over-interpret in regions of $x_S$ space with little data.
+
+- But this problem is mitigated by showing the distribution of the $x_S$ points in the training data.
+- Example: a rug on the $x$ axis, or histogram.   
+
+\pause
+
+PD functions __implicitly assume independence of $x_S$ and $x_C$.__  Remember, the PD at $x_S$ is the average prediction if we force all data points to assume that feature value.
+
+- E.g. suppose we calculate $r_S$ at `temp=5` (41 degrees F).   
+- So we fixing `temp=5` and average across the other features.
+- But this average includes points where `temp=5, month=August` (umm, not in Houston!)
+
+
+## Partial dependence functions: disadvantages
+
+The assumption of independence is by far the biggest downside to PD functions: when the features are correlated, we hallucinate new data points in areas of the feature distribution with low probability:     
+
+- `temp=5, month=August` for Houston weather
+- `height=200cm, weight=50kg` for an adult human.  
+- etc.  
+
+There's a cottage industry in machine learning of proposing alternatives to PD plots.  E.g.  
+
+- [Individual Conditional Expectation](https://christophm.github.io/interpretable-ml-book/ice.html), or ICE, plots.  
+- [Accumulated Local Effect](https://christophm.github.io/interpretable-ml-book/ale.html#ale), or ALE, plots.  
+
+This topic broadly falls under the area of __interpretable machine learning.__  Lots of papers and R packages (e.g. `ICEbox`) if you're interested!  
+
+## Boosting
+
+Like Random Forests, boosting is an ensemble method in that the overall fit is produced from many trees.
+
+\pause
+
+The idea however, is totally different. In Boosting we:
+
+- Fit the data with a single tree.
+- Crush the fit so that it does not work very well.  (Huh?!)  
+- Look at the part of y not captured by the crushed tree and fit a new tree to what is "left over."
+- Crush the new tree. Your new fit is the sum of the two trees.
+- Repeat the above steps iteratively. At each iteration you fit "what is left over"
+with a tree, crush the tree, and then add the new crushed tree into the fit.
+- Your final fit is the sum of many trees.  
 
 
 ## Boosting
 
+Unlike many ideas, this one is actually much clearer when you write it out as an algorithm.  This assumes a numeric $y$:
 
+1. Set $\hat{f}^{(0)}(x) = 0$ and set $r_i = y_i$ for every training-data point.  
+2. For $b = 1, 2, \ldots, B$, repeat:  
+
+   - Fit a tree $\hat{g}^{(b)}$ with $D$ splits to the training-data pairs $(x_i, r_i)$.  
+   - Update $\hat{f}^{(b)}$ as
+   $$
+   \hat{f}^{(b)}  \longleftarrow \hat{f}^{(b-1)} + \lambda \hat{g}^{(b)}(x)   \quad \mbox{where} \quad \lambda \in (0,1)
+   $$
+   - Update $r_i$ as 
+   $$
+   r_i \longleftarrow r_i - \lambda \hat{g}^{(b)}(x_i)  
+   $$
+3. Output the final boosted model as 
+$$
+\hat{f}(x) =  \sum_{b=1}^B \lambda \hat{g}^{(b)}(x)  
+$$
+
+
+## Boosting
+
+What's going on here?  Let's examine the core loop.
+
+For $b = 1, 2, \ldots, B$, repeat:  
+
+   - Fit a tree $\hat{g}^{(b)}$ with $D$ splits to the training-data pairs $(x_i, r_i)$.  \textcolor{red}{This fits a "simple" tree to the current working residuals $r_i$, i.e. what the current working model cannot explain.}  
+   
+   \pause
+   
+   - Update $\hat{f}^{(b)}$ as
+   $$
+   \hat{f}^{(b)}  \longleftarrow \hat{f}^{(b-1)} + \lambda \hat{g}^{(b)}(x)   \quad \mbox{where} \quad \lambda \in (0,1)
+   $$
+   \textcolor{red}{"Shrink" this step's learned model by a factor of $\lambda$ and add its contribution to the current working model, correcting the errors of the prior working model.}
+   
+   \pause
+   
+   - \textcolor{red}{Update the working residuals:}
+   $$
+   r_i \longleftarrow r_i - \lambda \hat{g}^{(b)}(x_i)  
+   $$
+ 
+      
+## Boosting
+
+Boosting represents $f(x)$ as the sum of many "weak learners."  In this respect, it's like two techniques we've already met:  
+
+- Linear regression: sum of weighted features.  
+$$
+\hat{f}(x) = \sum_{j=1}^P \beta_j x_j  
+$$
+
+- Random forests: sum of simple bootstrapped tree fits  
+$$
+\hat{f}(x) = \sum_{b=1}^B \frac{1}{B} \hat{f}^{(b)}(x) 
+$$
+
+- Boosting: sum of "shrunken" tree fits to partial residuals   
+$$
+\hat{f}(x) =  \sum_{b=1}^B \lambda \hat{g}^{(b)}(x)  
+$$
+
+
+## Boosting
+
+Boosting has three main tuning parameters:  
+
+- $B$, the number of boosting steps.  
+- $D$, the depth of each tree.  
+- $\lambda$, the "shrinkage" or "crush" factor. Typically small, e.g. $0.05$.
+
+Boosting can work great, but it's more sensitive to these tuning parameters.  
+
+- Because each tree is "guided" by knowledge of what the prior trees missed, you'd expect boosting to do a little better than random forests.  
+- And indeed, it is often possible outperform random forests with careful tuning.  
+- But boosting is more brittle!  Random forests work pretty well on most problems "out of the box," with no tuning.    
+
+## Boosting
+
+Let's see an example in `capmetro.R`.  
+
+## Boosting for categorical $y$
+
+Boosting for categorical $y$ works in an analogous manner, but it is messier how you define "the part left over" at each stage.  You can’t just use residuals.
+Also you can’t just add up the fit.
+
+But it is the same idea:
+
+- fit what is left over
+- crush fit
+- repeat many times
+- aggregate crushed fits at the end  
+
+## Round-up
+
+We've seen three techniques for building tree models.
+
+- CART: recursive partitions, pruned back, tree chosen by CV.  
+- randomForest: average many simple CART trees.  Pretty robust, basically eliminates need for CV.  
+- Boosted Trees: repeatedly fit simple trees to residuals.  Fast, but it is tough to avoid over-fitting (requires full CV).  "Should" work better than random forests, but it's more sensitive to tuning parameters.  
+
+There are many other tree-based algorithms.  For example:  
+
+- Bayesian Additive Regression Trees: mix many simple trees. Robust prediction, comes with Bayesian error bars, but suffers with non-constant variance.  
+
+Trees are poor in high dimension, but fitting them to low dimensional summaries (e.g. principal components) is a good option.  
+
+## Round-up
+
+There are also many other nonparametric learning algorithms.  
+
+- Neural Networks (and deep learning): many recursive logistic regressions.   
+- Support Vector Machines: move from Low-D to High-D, then classify.  
+- Gaussian Processes, splines, wavelets, etc: use sums of curvy "basis" functions in regression.  
+
+Some of these are great, but all take a ton of tuning.
+
+- __Nothing's better out-of-the-box than trees__, at least with modest-dimensional feature. 
+- But: when the (simpler) linear model fits, it will do better.  This is often the case in very high dimensions.  

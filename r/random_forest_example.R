@@ -26,12 +26,7 @@ load_tree = mutate(load_tree,
                    month = month(timestamp),   # month of year (1 = Jan)
                    weeks_elapsed = time_length(timestamp - ymd_hms('2010-01-01 01:00:00'), unit='weeks'))
 
-# treating the time variables as categorical rather than numerical
-load_tree_with_factors = mutate(load_tree, 
-                   hour = hour(timestamp) %>% factor(),     # hour of day
-                   wday = wday(timestamp) %>% factor(),     # day of week (1 = Monday)
-                   month = month(timestamp) %>% factor(),   # month of year (1 = Jan)
-                   weeks_elapsed = time_length(timestamp - ymd_hms('2010-01-01 01:00:00'), unit='weeks'))
+
 
 
 
@@ -44,14 +39,15 @@ load_train = training(load_split)
 load_test  = testing(load_split)
 
 # let's fit a single tree
-load.tree = rpart(COAST ~ temp + dewpoint + hour + wday + month + weeks_elapsed, data=load_train,
-                  control = rpart.control(cp = 0.00001))
+load.tree = rpart(COAST ~ temp + dewpoint + hour + wday + month + weeks_elapsed,
+                  data=load_train, control = rpart.control(cp = 0.00001))
 
 # now a random forest
 # notice: no tuning parameters!  just using the default
 # downside: takes longer because we're fitting hundreds of trees (500 by default)
+# the importance=TRUE flag tells randomForest to calculate variable importance metrics
 load.forest = randomForest(COAST ~ temp + dewpoint + hour + wday + month + weeks_elapsed,
-                           data=load_train)
+                           data=load_train, importance = TRUE)
 
 # shows out-of-bag MSE as a function of the number of trees used
 plot(load.forest)
@@ -61,3 +57,29 @@ plot(load.forest)
 modelr::rmse(load.tree, load_test)
 modelr::rmse(load.forest, load_test)  # a lot lower!
 
+# variable importance measures
+# how much does mean-squared error increase when we ignore a variable?
+varImpPlot(load.forest, type=1)
+
+
+# partial dependence plots
+# these are trying to isolate the partial effect of specific features
+# on the outcome
+partialPlot(load.forest, load_test, 'temp', las=1)
+partialPlot(load.forest, load_test, 'hour', las=1)
+partialPlot(load.forest, load_test, 'wday', las=1)
+partialPlot(load.forest, load_test, 'month', las=1)
+
+# a two-dimensional partial dependence plot:
+# need to use pdp::partial...
+# not going to run this in class because it takes awhile
+p2 = pdp::partial(load.forest, pred.var = c('temp', 'dewpoint'))
+
+
+# One possible additional feature engineering step here:
+# what if we treat the time variables as categorical rather than numerical
+load_tree_with_factors = mutate(load_tree, 
+                                hour = hour %>% factor(),     # hour of day
+                                wday = wday %>% factor(),     # day of week (1 = Monday)
+                                month = month %>% factor()   # month of year (1 = Jan)
+                          )
