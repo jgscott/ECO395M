@@ -114,7 +114,7 @@ Reading: Chapter 8 of _Introduction to Statistical Learning_.
 
 ### Unsupervised learning: clustering    
 
-[Slides here.](slides/08-clustering/08-clustering.pdf)  
+[Slides here.](slides/07-clustering/07-clustering.pdf)  
 Reading: chapter 10.3 of _Introduction to Statistical Learning_.
 
 In class:  
@@ -123,15 +123,19 @@ In class:
 - [linkage_minmax.R](r/linkage_minmax.R)  
 
 
-### Unsupervised learning, continued: PCA, networks, and association rules
+### Unsupervised learning: PCA 
 
 Reading: rest of chapter 10 of _Introduction to Statistical Learning_.
 
-[Slides on PCA here.](slides/09-PCA/09-PCA.pdf)  
-- [pca_intro.R](r/pca_intro.R)  
-- [congress109.R](r/congress109.R)  
-- [NCI60.R](r/NCI60.R)  
+[Slides on PCA here.](slides/08-PCA/08-PCA.pdf)  
 
+- [pca_intro.R](r/pca_intro.R)  
+- [nbc.R](r/nbc.R), [nbc_showdetails.csv](data/nbc_showdetails.csv), [nbc_pilotsurvey.csv](data/nbc_pilotsurvey.csv)   
+- [congress109.R](r/congress109.R)   
+- [ercot_PCA.R](r/ercot_PCA.R), [ercot.zip](data/ercot.zip)  
+
+
+### Unsupervised learning: networks and association rules
 
 [Intro slides on networks](notes/networks_intro.pdf).  
 
@@ -146,14 +150,18 @@ Miscellaneous:
 - a little Python utility for [scraping Spotify playlists](https://github.com/nithinphilips/spotifyscrape)  
 
 
-
 ### Text
 
 [Slides on text](notes/text_intro.pdf).   
+
 - [tm_examples.R](r/tm_examples.R) 
 - [smallbeer.R](r/smallbeer.R) 
 
+
+### Treatments
+
 [A bit on treatment-effect estimation](slides/arx/Treatments.pdf). 
+
 
 ### Resampling methods (CV, bootstrap)  
 

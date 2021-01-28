@@ -69,17 +69,3 @@ partialPlot(load.forest, load_test, 'temp', las=1)
 partialPlot(load.forest, load_test, 'hour', las=1)
 partialPlot(load.forest, load_test, 'wday', las=1)
 partialPlot(load.forest, load_test, 'month', las=1)
-
-# a two-dimensional partial dependence plot:
-# need to use pdp::partial...
-# not going to run this in class because it takes awhile
-p2 = pdp::partial(load.forest, pred.var = c('temp', 'dewpoint'))
-
-
-# One possible additional feature engineering step here:
-# what if we treat the time variables as categorical rather than numerical
-load_tree_with_factors = mutate(load_tree, 
-                                hour = hour %>% factor(),     # hour of day
-                                wday = wday %>% factor(),     # day of week (1 = Monday)
-                                month = month %>% factor()   # month of year (1 = Jan)
-                          )

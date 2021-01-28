@@ -739,7 +739,7 @@ It seems to make sense, but it's a bit mysterious at first how R computes this. 
 The partial dependence (PD) function attempts to represent the marginal effect that one (or maybe two) features have on the predicted outcome of a model.
 
 - A PD function can be defined for any model, not just random forests.  It is chiefly a tool for visualizing and understanding a model, rather than direct prediction.  
-- A PD function is focused on a specific variable $x_j$, or maybe two variables.  (More than 2 gets unwieldy.)  
+- A PD function is focused on a specific variable $x_j$, or maybe two variables.  (More than two gets unwieldy.)  
 - Plotting the PD function can show whether the relationship between the target $y$ and feature $x_j$ is linear, monotonic, or more complex.
 
 
@@ -774,12 +774,12 @@ In words, to estimate the PD function, you:
 - pick a target value of $x_S$ where you want to evaluate $r_S(x_S)$
 - evaluate $f \left( x_S, x_C^{(i)} \right)$ at all points $x_C^{(i)}$ in your training set.
 - average these function evaluations  
-- Keep repeating for across a grid of target values of $x_S$, and you build up the PD function one point $(x_S, r_S(x_S))$ at a time.     
+- Keep repeating across a grid of target values of $x_S$, and you build up the PD function one point $(x_S, r_S(x_S))$ at a time.     
 
 The partial dependence function at a particular feature value $x_S$ represents __the average prediction if we force all data points to assume that feature value.__  
 
-## Partial dependence functions
 
+## Partial dependence functions
 
 ```{r, out.width = "300px", fig.align='center', echo=FALSE}
 knitr::include_graphics("fig/pd4up.png")
@@ -787,7 +787,9 @@ knitr::include_graphics("fig/pd4up.png")
 
 ## Partial dependence functions: disadvantages
 
-Realistic max number of features in a PD function is two; hard to overcome, it's just a limitation of our screens and brains.  
+Realistic max number of features in a PD function is two.
+
+No simple way to get error bars.  
 
 PD functions are easy to over-interpret in regions of $x_S$ space with little data.
 
@@ -799,19 +801,19 @@ PD functions are easy to over-interpret in regions of $x_S$ space with little da
 PD functions __implicitly assume independence of $x_S$ and $x_C$.__  Remember, the PD at $x_S$ is the average prediction if we force all data points to assume that feature value.
 
 - E.g. suppose we calculate $r_S$ at `temp=5` (41 degrees F).   
-- So we fixing `temp=5` and average across the other features.
+- So we fix `temp=5` and average across the other features.
 - But this average includes points where `temp=5, month=August` (umm, not in Houston!)
 
 
 ## Partial dependence functions: disadvantages
 
-The assumption of independence is by far the biggest downside to PD functions: when the features are correlated, we hallucinate new data points in areas of the feature distribution with low probability:     
+The assumption of independence is by far the biggest downside to PD functions: when the features are correlated, we end hallucinating notional data points in areas of the joint feature distribution with low probability:     
 
 - `temp=5, month=August` for Houston weather
 - `height=200cm, weight=50kg` for an adult human.  
 - etc.  
 
-There's a cottage industry in machine learning of proposing alternatives to PD plots.  E.g.  
+There's a cottage industry in machine learning of proposing alternatives to PD plots.  For example: 
 
 - [Individual Conditional Expectation](https://christophm.github.io/interpretable-ml-book/ice.html), or ICE, plots.  
 - [Accumulated Local Effect](https://christophm.github.io/interpretable-ml-book/ale.html#ale), or ALE, plots.  
@@ -820,7 +822,7 @@ This topic broadly falls under the area of [interpretable machine learning.](htt
 
 ## Boosting
 
-Like Random Forests, boosting is an ensemble method in that the overall fit is produced from many trees.
+Like Random Forests, boosting is an ensemble method, in that the overall fit is produced from many trees.
 
 \pause
 
@@ -921,8 +923,9 @@ Let's see an example in `capmetro.R`.
 
 ## Boosting for categorical $y$
 
-Boosting for categorical $y$ works in an analogous manner, but it is messier how you define "the part left over" at each stage.  You can’t just use residuals.
-Also you can’t just add up the fit.
+Boosting for categorical $y$ works in an analogous manner, but it is messier how you define "the part left over" at each stage.  You can't just use residuals.
+
+Also, you can’t just add up the fit.
 
 But it is the same idea:
 
@@ -936,10 +939,10 @@ But it is the same idea:
 We've seen three techniques for building tree models.
 
 - CART: recursive partitions, pruned back, tree chosen by CV.  
-- randomForest: average many simple CART trees.  Pretty robust, basically eliminates need for CV.  
-- Boosted Trees: repeatedly fit simple trees to residuals.  Fast, but it is tough to avoid over-fitting (requires full CV).  "Should" work better than random forests, but it's more sensitive to tuning parameters.  
+- Random forests: average many simple CART trees.  Pretty robust, basically eliminates need for CV.  
+- Boosted trees: repeatedly fit simple trees to residuals.  Fast, but it is tough to avoid over-fitting (requires full CV).  "Should" work better than random forests, but it's more sensitive to tuning parameters.  
 
-There are many other tree-based algorithms.  For example:  
+There are many other tree-based algorithms.  E.g. a popular one is:  
 
 - Bayesian Additive Regression Trees: mix many simple trees. Robust prediction, comes with Bayesian error bars, but suffers with non-constant variance.  
 
@@ -949,7 +952,7 @@ Trees are poor in high dimension, but fitting them to low dimensional summaries 
 
 There are also many other nonparametric learning algorithms.  
 
-- Neural Networks (and deep learning): many recursive logistic regressions.   
+- Neural Networks (and deep learning): many recursive GLMs (e.g. logit models) chained together.   
 - Support Vector Machines: move from Low-D to High-D, then classify.  
 - Gaussian Processes, splines, wavelets, etc: use sums of curvy "basis" functions in regression.  
 
