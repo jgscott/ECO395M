@@ -4,6 +4,7 @@ library(rsample)  # for creating train/test splits
 library(caret)
 library(modelr)
 library(parallel)
+library(foreach)
 
 # read in the data: make sure to use the path name to
 # wherever you'd stored the file
