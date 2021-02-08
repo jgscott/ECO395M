@@ -1,71 +1,106 @@
 # ECO 395M: Exercises 2
 
-Due date: links must be submitted by 5 PM on Friday, March 6, 2020  
+Due date: links must be submitted by 9 AM on Monday, March 1, 2021  
 
-## Saratoga house prices
-
-Return to the data set on house prices in Saratoga, NY that we considered in class.  Recall that a starter script here is in `saratoga_lm.R`.  
-
-- See if you can "hand-build" a model for price that outperforms the "medium" model that we considered in class.  Use any combination of transformations, polynomial/spline terms, and interactions that you want.  
-- Are there any variables or interactions that seem to be especially strong drivers of house prices?  You can judge this question by assessing how much a variable or interaction improves the out-of-sample RMSE when it is included in the model.  
-- Then see if you can turn this hand-built linear model into a better-performing nonparametric model.  Note: don't explicitly include interactions or polynomial terms in your KNN model.  The method is sufficiently adaptable to find them, if they are there.  However, if your linear model did include composite features (like sqft of house per acre of land, or something like that), then you _should_ include those in KNN.  Make sure to _standardize_ your variables before applying KNN, and make sure to include a plot of RMSE versus K.   
-
-Write your report as if you were describing your price-modeling strategies for a local taxing authority, who needs to form predicted market values for properties in order to know how much to tax them.  Keep the focus on the conclusions and model performance, rather than on the technical details.   
-
-Note: When measuring out-of-sample performance, there is _random variation_ due to the particular choice of data points that end up in your train/test split.  Make sure your script addresses this by averaging the estimate of out-of-sample RMSE over many different random train/test splits.   
+## More visualization practice
 
 
-## A hospital audit
+## Problem 1: visualization
 
-The data in [brca.csv](../data/brca.csv) consist of 987 [screening mammograms](https://www.nlm.nih.gov/medlineplus/mammography.html) administered at a hospital in Seattle, Washington. Five radiologists, each of whom frequently read mammograms, were selected at random from those at the hospital. For each radiologist, roughly 200 of the mammograms each had read were selected at random. Each row of the data set corresponds to a single woman's mammogram.  The radiologist who read it is identified by a three-number code (1-999).
+__Background__.  This problem takes you back to the data visualization unit.  Remember, data visualization is one of the most important tools of data science, and it's almost always an important part of building a regression model. The basic skills of "group/pipe/summarize" and plotting are really useful for exploring data, so it's good to keep them sharp.  
 
-For each patient, two outcomes are recorded.  The first is an indicator of whether the patient was recalled by the radiologist for further diagnostic screening after the radiologist read the mammogram (1=Recalled for further diagnostic screening, 0=Not recalled).  The second outcome is an indicator of whether there was an actual diagnosis of breast cancer within 12 months following the screening mammogram (1=Yes, 0=No).   Ideally, the radiologist should be: (1) minimizing false negatives, i.e. recalling the patients who do end up getting cancer, so that they can be treated as early as possible; and (2) also minimizing false positives, i.e. not recalling the patients who do not end up getting cancer, so that they are not alarmed unnecessarily.  Of course, this ideal not attainable.  Mammography is inexact, and sometimes there will be mistakes.
+__Data and problem__: The data in `capmetro_UT.csv` contains data from Capital Metro, which runs the bus network in Austin, including shuttles (like the West Campus and 40 Acres routes) to, from, and around UT.  The data tracks ridership on buses in the UT area, which is measured by an optical scanner that counts how many people get on and off the bus at each stop.
 
-### Data
+Each row in the data set corresponds to a 15-minute period between the hours of 6 AM and 10 PM, each and every day, from September through November 2018.  The variables are:  
 
-In addition to the cancer and recall outcomes, several risk factors for breast cancer identified in previous studies are provided in the data set. Referent values for a “typical patient are indicated by asterisks:
-- age: 40-49*, 50-59, 60-69, 70 and older  
-- history of breast biopsy/surgery: 0=No*, 1=Yes  
-- breast cancer symptoms: 0=No*, 1=Yes  
-- menopause/hormone-therapy status: Pre-menopausal, Post-menopausal & no hormone replacement
-therapy (HT), Post-menopausal & HT*, Post-menopausal & unknown HT  
-- previous mammogram: 0=No*, 1=Yes  
-- breast density classification: 1=Almost entirely fatty, 2=Scattered fibroglandular tissue*, 3=Heterogenously dense, 4=Extremely dense  
+- timestamp: the beginning of the 15-minute window for that row of data  
+- boarding: how many people got on board any Capital Metro bus on the UT campus in the specific 15 minute window  
+- alighting: how many people got off ("alit") any Capital Metro bus on the UT campus in the specific 15 minute window  
+- day_of_week and weekend: Monday, Tuesday, etc, as well as an indicator for whether it's a weekend.  
+- temperature: temperature at that time in degrees F  
+- hour_of_day: on 24-hour time, so 6 for 6 AM, 13 for 1 PM, 14 for 2 PM, etc.  
+- month: July through December  
 
+Your task in this problem is __to make two faceted plots__ and to answer questions about them.     
 
-### Audit goals
+- One panel of line graphs that plots __average boardings__ grouped by hour of the day, day of week, and month.  You should facet by day of week.  Each facet should include three lines, one for each month, colored differently and with colors labeled with a legend.  Give the figure an informative caption in which you explain what is shown in the figure and address the following questions, citing evidence from the figure.  Does the hour of peak boardings change from day to day, or is it broadly similar across days?   Why do you think average boardings on Mondays in September look lower, compared to other days and months?   Similarly, why do you think average boardings on Weds/Thurs/Fri in November look lower?  
 
-The goal of this case study is to examine the performance of the radiologists. This kind of statistical audit is a crucial link in the chain of modern evidence-based hospital practice. Specifically, your audit should address two questions.
-
-First question: are some radiologists more clinically conservative than others in recalling patients, holding patient risk factors equal?
-
-Some advice: imagine two radiologists who see the mammogram of a single patient, who has a specific set of risk factors. If radiologist A has a higher probability of recalling that patient than radiologist B, we’d say that radiologist A is more conservative (because they have a lower threshold for wanting to double-check the patient’s results). So if all five radiologists saw the same set of patients, we’d easily find out whether some radiologists are more conservative than others.  The problem is that the radiologists don’t see the same patients. So we can’t just look at raw recall rates—some radiologists might have seen patients whose clinical situation mandated more conservatism in the first place. Can you build a classification model that addresses this problem, i.e. that holds risk factors constant in assessing whether some radiologists are more conservative than others in recalling patients?
-
-Second question: when the radiologists at this hospital interpret a mammogram to make a decision on whether to recall the patient, does the data suggest that they should be weighing some clinical risk factors more heavily than they currently are?
-
-Again, some advice: let’s focus on family history as a specific risk factor (a similar line of reasoning applies to any risk factor). Consider two different regression models: Model A, which regresses a patient’s cancer outcome on the radiologist’s recall decision; and Model B, which regresses a patient’s cancer outcome on the radiologist’s recall decision AND the patient’s family history. If the radiologist were appropriately accounting for a patient’s family history of breast cancer in interpreting the mammogram and deciding whether to recall the patient for further screening, would you expect that Model B would be any better than Model A at predicting cancer status? Why or why not? If it turns out that Model B is significantly better than Model A, what does that say about the radiologist’s process for making a recall decision?
-
-Prepare your write-up as if you were address the senior doctors in charge of the oncology unit.  You can assume they are familiar with best practices in statistical learning, but that they care most fundamentally about the medicine and take-home lessons of your analysis, rather than the technical details.  
+- One panel of scatter plots showing boardings (y) vs. temperature (x) in each 15-minute window, faceted by hour of the day, and with points colored in according to whether it is a weekday or weekend.  Give the figure an informative caption in which you explain what is shown in the figure and answer the following question, citing evidence from the figure.  When we hold hour of day and weekend status constant, does temperature seem to have a noticeable effect on the number of UT students riding the bus?    
+These are exactly the kind of figures that Capital Metro planners might use to understand seasonal and intra-week variation in demand for UT bus service.  They're also the kind of figures you'd make to assist in building a model to predict ridership (even though, in this problem you won't actually be building that model).    
 
 
-## Predicting when articles go viral
+### Notes:
 
-The data in [online_news.csv](../data/online_news.csv) contains data on 39,797 online rticles published by Mashable during 2013 and 2014.  The target variable is `shares`, i.e. how many times the article was shared on social media.  The other variables are article-level features: things like how long the headline is, how long the article is, how positive or negative the "sentiment" of the article was, and so on.  The full list of features is in [online_news_codes.txt](../data/online_news_codes.txt).  
+All you need to turn in here are the two figures and their captions.  Keep each figure + caption to a single page combined (i.e. two pages, one page for first figure + caption, a second page for second figure + caption).    
 
-Mashable is interested in building a model for whether the article goes viral or not.  They judge this on the basis of a cutoff of 1400 shares -- that is, the article is judged to be "viral" if shares > 1400.  (This cutoff is somewhat but not entirely arbitrary, because it ultimately has to do with pricing for any ads that appear next to those articles.)  Mashable wants to know if there's anything they can learn about how to improve an article's chance of reaching this threshold.  (E.g. by telling people to write shorter headlines, snarkier articles, or whatever.)  
+Second, a feature of R is that it orders categorical variables alphabetically by default.  This doesn't make sense for something like the day of the week or the month of the year.  So if you want to re-order these variables in their usual order, try pasting the following block of code into your R script at the top, and executing it before you start further work on it.  
+```
+# Recode the categorical variables in sensible, rather than alphabetical, order
+capmetro_UT = mutate(capmetro_UT,
+               day_of_week = factor(day_of_week,
+                 levels=c("Mon", "Tue", "Wed","Thu", "Fri", "Sat", "Sun")),
+               month = factor(month,
+                 levels=c("Sep", "Oct","Nov")))
+```
 
-First approach this problem from the standpoint of regression.  That is, try building your best model for `shares`, or perhaps some transformation of `shares`, using any tools you know (linear modeling, KNN, etc).  To assess the performance of your model on a test set, you should _threshold_ the model's predictions:
-- if predicted shares exceeds 1400, predict the article as "viral"
-- if predicted shares are 1400 or lower, predict the article as "not viral"
+## Problem 2: Saratoga house prices
 
-Then compare the predicted viral status with whether the actual test article exceeded 1400 shares.  Note that while the predictions of your model are numerical (shares), the ultimate evaluation is in terms of a binary prediction (shares > 1400).  Report the confusion matrix, overall error rate, true positive rate, and false positive rate for your best model.  Make sure to average these quantities across multiple train/test splits.  How do these numbers compare with a reasonable baseline or "null" model (such as the model which always predicts "not viral")?  
+Return to the data set on house prices in Saratoga, NY that we considered in class.  Recall that a starter script here is in `saratoga_lm.R`.  For this data set, you'll run a "horse race" (i.e. a model comparison exercise) between two model classes: linear models and KNN.  
 
-As a second pass, approach this problem from the standpoint of classification.  That is, define a new variable `viral = ifelse(shares > 1400, 1, 0)` and build your very best model for directly predicting viral status as a target variable.  As above, report the confusion matrix, overall error rate, true positive rate, and false positive rate for your best model.  Make sure to average these quantities across multiple train/test splits. 
+- Build the best linear model for price that you can.  It should clearly outperform the "medium" model that we considered in class.  Use any combination of transformations, engineering features, polynomial terms, and interactions that you want; and use any strategy for selecting the model that you want.  
+- Now build the best K-nearest-neighbor regression model for price that you can.  Note: you still need to choose which features should go into a KNN model, but you don't explicitly include interactions or polynomial terms.  The method is sufficiently adaptable to find interactions and nonlinearities, if they are there.   But do make sure to _standardize_ your variables before applying KNN, or at least do something that accounts for the large differences in scale across the different variables here.  
 
-Which approach performs better: regress first and threshold second, or threshold first and regress/classify second?  Why do you think this is?
+Which model seems to do better at achieving lower out-of-sample mean-squared error?   Write a report on your findings as if you were describing your price-modeling strategies for a local taxing authority, who needs to form predicted market values for properties in order to know how much to tax them.  Keep the main focus on the conclusions and model performance; any relevant technical details should be put in an appendix.  
 
-Note: don't use the `url` variable as a predictor; it's there for reference only, although you can definitely waste a lot of time reading them all!  
-
+Note: When measuring out-of-sample performance, there is _random variation_ due to the particular choice of data points that end up in your train/test split.  Make sure your script addresses this by averaging the estimate of out-of-sample RMSE over many different random train/test splits, either randomly or by cross-validation.   
 
 
+## Problem 3: Classification and retrospective sampling
+
+Consider the data in `german_credit.csv` on loan defaults from a German bank.  The outcome variable of interest in this data set is `default`: a 0/1 indicator for whether a loan fell into default at some point before it was paid back to the bank.  All other variables are features of the loan or borrower that might, in principle, help the bank predict whether a borrower is likely to default on a loan.
+
+This data was collected in a retrospective, "case-control" design.  Defaults are rare, and so the bank sampled a set of loans that had defaulted for inclusion in the study.  It then attempted to match each default with similar sets of loans that had not defaulted, including all reasonably close matches in the analysis.  This resulted in a substantial oversampling of defaults, relative to a random sample of loans in the bank's overall portfolio.  
+
+Of particular interest here is the "credit history" variable (`history`), in which a borrower's credit rating is classified as "Good", "Poor," or "Terrible."  Make a bar plot of default probability by credit history, and build a logistic regression model for predicting default probability, using the variables `duration + amount + installment + age + history + purpose + foreign`.
+
+What do you notice about the `history` variable vis-a-vis predicting defaults?  What do you think is going on here?  In light of what you see here, do you think this data set is appropriate for building a predictive model of defaults, if the purpose of the model is to screen prospective borrowers to classify them into "high" versus "low" probability of default?  Why or why not---and if not, would you recommend any changes to the bank's sampling scheme?    
+
+
+## Problem 4: Children and hotel reservations
+
+The files `hotels_dev.csv` and `hotels_val.csv` contains data on tens of thousands of hotel stays from a major U.S.-based hotel chain.  The goal of this problem is simple: to build a predictive model for whether a hotel booking will have children on it.  
+
+Why would that be important?  For an equally simple reason: when booking a hotel stay on a website, parents often enter the reservation exclusively for themselves and forget to include their children on the form.  Obviously, the hotel isn't going to turn parents away from their room if they neglected to mention that their children would be staying with them.  But __not__ knowing about those children does, at least in the aggregate, prevent the hotel from making accurate forecasts of resource utilization.   So if, for example, you could use the _other_ features associated with a booking to forecast that a bunch of kids were going to show up unannounced, you might know to order more chicken nuggets for the restaurant and less tequila for the bar.  (Or maybe more tequila, depending on how frazzled the parents who stay at your hotel tend to be.)  In any event, as a hotel operator, if you can forecast the arrival of those kids a bit better, you can  be just a bit more efficient, operationally speaking.  This is an excellent use case for an ML model: a piece of software that can scan the bookings for the week ahead and produce an estimate for how likely each one is to have a "hidden" child on it.  
+
+The target variable of interest is `children`: a dummy variable for whether the booking has children on it.  All other variables in the data set can be used to predict the `children` variable, and the names are pretty self-explanatory.   
+
+### Model building
+
+Using only the data in `hotels.dev.csv`, please compare the out-of-sample performance of the following models:  
+
+1. baseline 1: a small model that uses only the `market_segment`, `adults`, `customer_type`, and `is_repeated_guest` variables as features.   
+2. baseline 2: a big model that uses all the possible predictors _except_ the `arrival_date` variable (main effects only).  
+3. the best linear model you can build, including any engineered features that you can think of that improve the performance (interactions, features derived from time stamps, etc).  
+
+Use the `hotels_dev.csv` file for your __entire__ model building and testing pipeline.  That is, you'll create your train/test splits using `hotels_dev` only, and not testing at all on `hotels_val`.  Everything in `hotels_val` should be held back for the next part of this exercise.
+
+Note: you can measure out-of-sample performance in any reasonable way that we've talked about in class or that you've encountered in the reading, as long as you are clear how you're doing it.  
+
+
+### Model validation: step 1
+
+Once you've built your best model and assessed its out-of-sample performance using `hotels_dev`, now turn to the data in `hotels_val`.  Now you'll __validate__ your model using this entirely fresh subset of the data, i.e. one that wasn't used to fit OR test as part of the model-building stage.  (Using a separate "validation" set, completely apart from your training and testing set, is a generally accepted best practice in machine learning.)  
+
+Produce an ROC curve for your best model, using the data in `hotels_val`: that is, plot TPR(t) versus FPR(t) as you vary the classification threshold t.  
+
+
+### Model validation: step 2
+
+Next, create 20 folds of `hotels_val`.  There are 4,999 bookings in `hotels_val`, so each fold will have about 250 bookings in it -- roughly the number of bookings the hotel might have on a single busy weekend.  For each fold:  
+
+1. Predict whether each booking will have children on it.  
+2. Sum up the predicted probabilities for all the bookings in the fold.  This gives an estimate of the expected number of bookings with children for that fold.  
+3. Compare this "expected" number of bookings with children versus the actual number of bookings with children in that fold.
+
+How well does your model do at predicting the total number of bookings with children in a group of 250 bookings?  Summarize this performance across all 20 folds of the `val` set in an appropriate figure or table.  
 

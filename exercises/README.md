@@ -3,9 +3,9 @@
 I will post homeworks below at least three weeks before the due date.   
 
 - [Exercises 1](exercises01.md): Due by 9 AM on Monday, February 8.     
-<!-- - [Exercises 2](exercises02.md): Due by 9 AM on Monday, March 1.     
-- [Exercises 3](exercises03.md): Due by 10 AM on Monday, April 5.      
-- [Exercises 4](exercises04.md): Due at 5 PM on Monday, April 26.   -->
+- [Exercises 2](exercises02.md): Due by 9 AM on Monday, March 1.     
+<!-- - [Exercises 3](exercises03.md): Due by 10 AM on Monday, April 5.      
+- [Exercises 4](exercises04.md): Due at 5 PM on Monday, April 26. -->
 
 
 # Project  
