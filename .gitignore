@@ -40,3 +40,6 @@ data/ercot/weather_processed/temperature.csv
 data/ercot/weather_processed/temperature_impute.csv
 data/ercot/weather_processed/windSpeed.csv
 data/ercot/weather_processed/windSpeed_impute.csv
+
+# homework rubrics
+hw_rubrics/

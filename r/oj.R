@@ -121,7 +121,7 @@ rmse(reg_ads, oj_test)
 rmse(reg_ads2, oj_test)
 rmse(reg_ads3, oj_test)
 
-# Let's be a little more systematic and use K-fold cross validationg
+# Let's be a little more systematic and use K-fold cross validation
 oj_folds = crossv_kfold(oj, k=10)
 
 # map the model-fitting function over the training sets
