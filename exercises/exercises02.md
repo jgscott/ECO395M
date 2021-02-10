@@ -19,7 +19,7 @@ Each row in the data set corresponds to a 15-minute period between the hours of 
 - day_of_week and weekend: Monday, Tuesday, etc, as well as an indicator for whether it's a weekend.  
 - temperature: temperature at that time in degrees F  
 - hour_of_day: on 24-hour time, so 6 for 6 AM, 13 for 1 PM, 14 for 2 PM, etc.  
-- month: July through December  
+- month: which month  
 
 Your task in this problem is __to make two faceted plots__ and to answer questions about them.     
 
