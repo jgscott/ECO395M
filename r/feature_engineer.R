@@ -56,7 +56,7 @@ ggplot(load_combined) +
 # as well as a general upward trend as time marches on (pop growth).  
 # We also expect power consumption to vary on a finer time scale:
 #   - across the day (wake vs. sleep)
-#   - aross the week (weekend vs. weekday)
+#   - across the week (weekend vs. weekday)
 
 # Let's use the functions in lubridate to engineer some relevant
 # features from the Time variable.
