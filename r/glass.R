@@ -1,7 +1,10 @@
-#### ******* Forensic Glass ****** ####
-library(MASS) 	## a library of example datasets
+#### Forensic Glass
 library(tidyverse)
-library(class)
+library(ggplot2)
+library(MASS) 	## a library of example datasets
+library(caret)
+library(modelr)
+library(rsample)
 data(fgl) 		## loads the data into R; see help(fgl)
 
 # goal: automatic classification of glass shards into 6 types
@@ -24,7 +27,7 @@ p0 + geom_boxplot(aes(x=type, y=Ba))
 p0 + geom_boxplot(aes(x=type, y=Mg))
 p0 + geom_boxplot(aes(x=type, y=Na))
 
-# some a decent for partially separating some of the class
+# some a decent for partially separating some of the classes
 p0 + geom_boxplot(aes(x=type, y=Al))
 
 # some are more subtle
@@ -33,106 +36,53 @@ p0 + geom_boxplot(aes(x=type, y=Si))
 p0 + geom_boxplot(aes(x=type, y=Fe))
 
 
+# Let's scale our features
+# this says: "scale everything except the "type" variable"
+fgl_scale = fgl %>%
+  mutate(across(!type, scale))
 
 ## for illustration, consider the RIxMg plane (i.e., just 2D)
-X = dplyr::select(fgl, RI, Mg) 
-y = fgl$type
-n = length(y)
+ggplot(data = fgl_scale) +
+  geom_point(aes(x=RI, y=Mg, shape=type))
 
 # select a training set
-n_train = round(0.8*n)
-n_test = n - n_train
-train_ind = sample.int(n, n_train)
-X_train = X[train_ind,]
-X_test = X[-train_ind,]
-y_train = y[train_ind]
-y_test = y[-train_ind]
+fgl_split = initial_split(fgl_scale, 0.8)
+fgl_train = training(fgl_split)
+fgl_test = testing(fgl_split)
 
-# scale the training set features
-scale_factors = apply(X_train, 2, sd)
-X_train_sc = scale(X_train, scale=scale_factors)
 
-# scale the test set features using the same scale factors
-X_test_sc = scale(X_test, scale=scale_factors)
-
-# Fit two KNN models (notice the odd values of K)
-knn3 = class::knn(train=X_train_sc, test= X_test_sc, cl=y_train, k=3)
-knn25 = class::knn(train=X_train_sc, test= X_test_sc, cl=y_train, k=25)
-
+# Fit two KNN models (notice the odd values of K -- easier to break ties)
+# for whatever reason caret's knn function is called "knn3"
+knn_K5 = caret::knn3(type ~ RI + Mg, data=fgl_scale, k=5)
+knn_K25 = caret::knn3(type ~ RI + Mg, data=fgl_scale, k=25)
 
 ## plot them to see how it worked
 
 # put the data and predictions in a single data frame
-knn_trainset = data.frame(X_train_sc, type = y_train)
-knn3_testset = data.frame(X_test_sc, type = y_test, type_pred = knn3)
-knn25_testset = data.frame(X_test_sc, type = y_test, type_pred = knn25)
+fgl_test = fgl_test %>%
+  mutate(type_pred_K5 = predict(knn_K5, fgl_test, type='class'),
+         type_pred_K25 = predict(knn_K25, fgl_test, type='class'))
 
-
-p1 = ggplot(data=knn_trainset) +
+ggplot(data=fgl_test) +
 	geom_point(aes(x=RI, y=Mg, shape=type), size=2)
-p1
-p1 + geom_point(data=knn3_testset, mapping=aes(x=RI, y=Mg, shape=type_pred), color='red')
-p1 + geom_point(data=knn25_testset, mapping=aes(x=RI, y=Mg, shape=type_pred), color='red')
+
+ggplot(data=fgl_test) +
+  geom_point(aes(x=RI, y=Mg, shape=type_pred_K5,
+                 color=(type==type_pred_K5)))
+
+ggplot(data=fgl_test) +
+  geom_point(aes(x=RI, y=Mg, shape=type_pred_K25,
+                 color=(type==type_pred_K25)))
 
 # test set errors?
-knn3_testset
-knn25_testset
+fgl_test
 
 # Make a table of classification errors
-table(knn3, y_test)
-sum(knn3 != y_test)/n_test
-table(knn25, y_test)
-sum(knn25 != y_test)/n_test
+xtabs(~type + type_pred_K5, data=fgl_test)
+xtabs(~type + type_pred_K25, data=fgl_test)
 
+# performance:
+nrow(fgl_test)
+xtabs(~type + type_pred_K5, data=fgl_test) %>% diag %>% sum
+xtabs(~type + type_pred_K25, data=fgl_test) %>% diag %>% sum
 
-# In-class goals for today:
-# Build a KNN classifier using all the available features (not just Mg and RI)
-# Notes:
-# 1) Remember to scale your X's!
-# 	1b) remember to scale the test-set X's by the same factor as the training set!
-# 2) choose K to optimize out-of-sample error rate
-# 3) average over multiple train/test splits to minimize the effect of Monte Carlo variability
-
-
-
-## for illustration, consider the RIxMg plane (i.e., just 2D)
-# X = dplyr::select(fgl, RI, Mg)
-X = dplyr::select(fgl, -type)
-X = select(fgl, -Si, -Fe, -type)
-y = fgl$type
-n = length(y)
-
-# select a training set
-n_train = round(0.8*n)
-n_test = n - n_train
-
-
-library(foreach)
-library(mosaic)
-k_grid = seq(1, 25, by=1)
-err_grid = foreach(k = k_grid,  .combine='c') %do% {
-  out = do(250)*{
-    train_ind = sample.int(n, n_train)
-    X_train = X[train_ind,]
-    X_test = X[-train_ind,]
-    y_train = y[train_ind]
-    y_test = y[-train_ind]
-    
-    # scale the training set features
-    scale_factors = apply(X_train, 2, sd)
-    X_train_sc = scale(X_train, scale=scale_factors)
-    
-    # scale the test set features using the same scale factors
-    X_test_sc = scale(X_test, scale=scale_factors)
-    
-    # Fit KNN models (notice the odd values of K)
-    knn_try = class::knn(train=X_train_sc, test= X_test_sc, cl=y_train, k=k)
-    
-    # Calculating classification errors
-    sum(knn_try != y_test)/n_test
-  } 
-  mean(out$result)
-}
-
-
-plot(k_grid, err_grid)
