@@ -334,11 +334,13 @@ We'll walk through the example in `semiconductor.R`, which illustrates:
 ## Regularization: sparse matrices 
 
 
-Often, your feature matrix will be very sparse (i.e, mostly zeros).  
+Often, your feature matrix will be very sparse (i.e, mostly zeros).    
+
 - This is especially true when you have lots of factors (categorical variables) as features.  
 - It is then efficient to ignore zero elements in actually storing $X$.  
 
 A simple triplet matrix is a very common storage format:  
+
 - It only stores the nonzero elements  
 - The row ‘i’, column ‘j’, and entry value ‘v’.
 
@@ -530,6 +532,7 @@ $$
 
 
 This poses a pretty substantial estimation problem:  
+
 - only 12 months per year, and perhaps 40 years of data.  
 - Yet _thousands_ of other stocks in the market.  
 
@@ -649,3 +652,12 @@ Can you interpret the summaries?
 - Much more on PCA later!  
 
 Let's see an example in `gasoline.R`.
+
+## Other common DR strategies  
+
+We won't go into these, but it's nice to have a list of a few common ones for reference.
+
+- ICA (like PCA for discrete data)
+- Factor models (like PCA with an explicit model for noise)  
+- tSNE (mostly used for visualization in 2 dimensions)  
+- autoencoders and variational autoencoders (nonlinear dimensionality reduction via neural networks)  

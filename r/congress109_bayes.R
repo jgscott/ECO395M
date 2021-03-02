@@ -16,7 +16,10 @@ X_NB = as.matrix(congress109)  # feature matrix
 y_NB = factor(congress109members$party)
 
 # so let's manually create a train/test split
-# a bit more annoying than initial_split, but not too bad
+# a bit more annoying than initial_split, but not too bad.
+# Plus, good to see this pipeline, since a lot of ML
+# packages expect y and X separated out like this, rather than
+# invoked via an lm-like formula syntax
 N = length(y_NB)
 train_frac = 0.8
 train_set = sample.int(N, floor(train_frac*N)) %>% sort
@@ -31,8 +34,8 @@ y_train = y_NB[train_set]
 y_test = y_NB[test_set]
 
 # train the model: this function is in the naivebayes package.
-# see you "congress109_bayes_detailed" if you want to see a 
-# version where we step through these calculations "by hand",
+# Check out "congress109_bayes_detailed" if you want to see a 
+# version where we step through these calculations "by hand", i.e.
 # not relying on a package to build the classifier.
 nb_model = multinomial_naive_bayes(x = X_train, y = y_train)
 
@@ -41,6 +44,9 @@ y_test_pred = predict(nb_model, X_test)
 
 # look at the confusion matrix
 table(y_test, y_test_pred)
+
+# overall test-set accuracy
+sum(diag(table(y_test, y_test_pred)))/length(y_test)
 
 # some examples of misses
 misses = which(y_test != y_test_pred)
