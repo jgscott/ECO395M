@@ -53,8 +53,8 @@ fgl_test = testing(fgl_split)
 
 # Fit two KNN models (notice the odd values of K -- easier to break ties)
 # for whatever reason caret's knn function is called "knn3"
-knn_K5 = caret::knn3(type ~ RI + Mg, data=fgl_scale, k=5)
-knn_K25 = caret::knn3(type ~ RI + Mg, data=fgl_scale, k=25)
+knn_K5 = caret::knn3(type ~ RI + Mg, data=fgl_train, k=5)
+knn_K25 = caret::knn3(type ~ RI + Mg, data=fgl_train, k=25)
 
 ## plot them to see how it worked
 
