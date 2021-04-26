@@ -43,3 +43,5 @@ data/ercot/weather_processed/windSpeed_impute.csv
 
 # homework rubrics
 hw_rubrics/
+data/ercot/temperature_impute.csv
+data/ercot/dewpoint_impute.csv

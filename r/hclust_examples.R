@@ -26,7 +26,7 @@ which(cluster1 == 3)
 
 
 # Using max ("complete") linkage instead
-hier_protein2 = hclust(protein_distance_matrix, method='complete')
+hier_protein2 = hclust(protein_distance_matrix, method='single')
 
 # Plot the dendrogram
 plot(hier_protein2, cex=0.8)
@@ -56,7 +56,7 @@ sigma = attr(X,"scaled:scale")
 distance_between_cars = dist(X)
 
 # Now run hierarchical clustering
-h1 = hclust(distance_between_cars, method='complete')
+h1 = hclust(distance_between_cars, method='single')
 
 # Cut the tree into 10 clusters
 cluster1 = cutree(h1, k=10)

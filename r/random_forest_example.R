@@ -59,7 +59,7 @@ modelr::rmse(load.forest, load_test)  # a lot lower!
 
 # variable importance measures
 # how much does mean-squared error increase when we ignore a variable?
-varImpPlot(load.forest, type=1)
+vi = varImpPlot(load.forest, type=1)
 
 
 # partial dependence plots

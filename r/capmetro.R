@@ -85,24 +85,9 @@ capmetro362 = filter(capmetro, zone==362)
 capmetro362_split = initial_split(capmetro362)
 # training and testing sets
 n = nrow(capmetro362)
-n_train = floor(0.8*n)
-n_test = n - n_train
-train_cases = sample.int(n, size=n_train, replace=FALSE)
 
 capmetro362_train = training(capmetro362_split)
 capmetro362_test = testing(capmetro362_split)
-
-# y_all = capmetro362$boarding
-# x_all = model.matrix(~day + temperature + min_of_day + precipYes + inSemester, data=capmetro362)
-# 
-# y_train = y_all[train_cases]
-# x_train = x_all[train_cases,]
-# 
-# y_test = y_all[-train_cases]
-# x_test = x_all[-train_cases,]
-# 
-# # fit the RF model with default parameter settings
-# forest1 = randomForest(x=x_train, y=y_train, xtest=x_test)
 
 forest1 = randomForest(boarding ~ day + temperature + min_of_day + precipYes + inSemester,
                        data=capmetro362_train)

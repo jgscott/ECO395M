@@ -136,6 +136,14 @@ Reading: rest of chapter 10 of _Introduction to Statistical Learning_.
 - [ercot_PCA.R](r/ercot_PCA.R), [ercot.zip](data/ercot.zip)  
 
 
+### Text
+
+[Slides on text](notes/text_intro.pdf).   
+
+- [tm_examples.R](r/tm_examples.R) 
+- [smallbeer.R](r/smallbeer.R) 
+
+
 ### Unsupervised learning: networks and association rules
 
 [Intro slides on networks](notes/networks_intro.pdf).  
@@ -151,12 +159,7 @@ Miscellaneous:
 - a little Python utility for [scraping Spotify playlists](https://github.com/nithinphilips/spotifyscrape)  
 
 
-### Text
 
-[Slides on text](notes/text_intro.pdf).   
-
-- [tm_examples.R](r/tm_examples.R) 
-- [smallbeer.R](r/smallbeer.R) 
 
 
 ### Treatments

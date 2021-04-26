@@ -37,6 +37,9 @@ which(clust1$cluster == 5)
 qplot(Weight, Length, data=cars, color=factor(clust1$cluster))
 qplot(Horsepower, CityMPG, data=cars, color=factor(clust1$cluster))
 
+# ggplot 2 equivalent
+ggplot(cars) + 
+  geom_point(aes(Weight, Length, color=factor(clust1$cluster)))
 
 # Using kmeans++ initialization
 clust2 = kmeanspp(X, k=6, nstart=25)
