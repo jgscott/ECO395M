@@ -6,11 +6,8 @@
 - Course website: http://www.github.com/jgscott/ECO395M/
 - Teaching assistant: Rui Zou (ruizuo11@utexas.edu)
 
-Office hours: Mondays and Wednesdays, 8:30 AM to 9:30 AM US Central time, via Zoom.  See our course's Canvas site for the link.  This time is not ideal for anyone, but it is the best compromise time I could come up with that would work across the huge range of time zones inhabited by students attending this course virtually: 
-- it's an uncommon class time.  
-- it's a normal start-of-the-day time for folks like me on US Central time.  
-- it's just stretching the bounds of plausibility for students on the west coast of the US (e.g. you could roll out of bed at 7 AM, grab a cup of coffee, and get some questions answered by 7:30 AM Pacific time).  
-- it's 10:30-11:30 PM in Beijing, which is definitely late, but a pretty common hour for graduate students to be up and working.  
+Office hours: dates and times TBA.  
+
 
 ## Overview
 
@@ -23,7 +20,7 @@ The prerequisites are the Statistics and Probability course and the Econometrics
 
 ## Lectures
 
-Lectures will take place online, via Zoom, at the regularly scheduled time of 11 AM US Central time on Mondays and Wednesdays.  "Live" attendance (i.e. in real time) is strongly encouraged, but not required.  The main benefit of real-time attendance is that you'll get a chance to ask questions as we go along.  Join live and/or watch recordings of prior lectures via the Zoom tab on our course's Canvas page.  
+Lectures will take place in person starting from the week of January 31st.  For the first two weeks of class, we will meet via Zoom.  You can access the video stream via Canvas, by clicking on the Zoom tab in the left sidebar.  
 
 
 ## Software 
@@ -36,17 +33,19 @@ Please install the following free pieces of software on your own machine:
 
 ## Readings
 
-The course readings involve a compilation of free, high-quality sources available online.    
+The course readings are all free and available online.  Our main reference is _An Introduction to Statistical Learning_ by James, Witten, Hastie, and Tibshirani.  The book is [freely available here](http://www-bcf.usc.edu/~gareth/ISL/).  I'll refer to it as "ISL" in the course outline.  We will pretty much move beginning to end through this book, in order.  
 
-- _ISL_: Selections from _An Introduction to Statistical Learning_ by James, Witten, Hastie, and Tibshirani.  The book is [freely available here](http://www-bcf.usc.edu/~gareth/ISL/).  I'll refer to it as "ISL" in the course outline.  We will pretty much move beginning to end through this book, in order.  
-- _Elements_: selections from [_Elements of Statistical Learning_](http://statweb.stanford.edu/~tibs/ElemStatLearn/), by Hastie, Tibshirani, and Friedman.  A standard reference on data mining from a more statistical perspective.  Referrered to as "Elements" in the course outline.  This is a more advanced treatment of much of the material in ISL, and I will highlight selections from this book as optional, supplemental reading.  
-- _Shalizi_: selections from [Advanced Data Analysis from an Elementary Point of View](http://www.stat.cmu.edu/~cshalizi/ADAfaEPoV/ADAfaEPoV.pdf), by Cosma Shalizi.  Another textbook whose author has kindly posted a free version on the web.  Referred to as "Shalizi" in the course outline.  As with "Elements," I will highlight selections from this book as optional, supplemental reading.  
+I'll also occasionally draw on two other references:
+
+- _Elements_: selections from [_Elements of Statistical Learning_](http://statweb.stanford.edu/~tibs/ElemStatLearn/), by Hastie, Tibshirani, and Friedman.  A standard reference on data mining from a more statistical perspective.  Referrered to as "Elements" in the course outline.  This is a more advanced treatment of much of the material in ISL, and I will highlight selections from this book as optional, supplemental reading.   
+- _DSGI_: selections from [_Data Science in R: A Gentle Introduction_](https://bookdown.org/jgscott/DSGI/), by James Scott.  
 
 
 ## Outline of topics  
 
 The core topics we will cover in this course are as follows.  The corresponding readings are in parentheses.  See the [course homepage](README.md) for more details on each topic.    
 - The data scientist's toolbox: R; Markdown and RMarkdown; version control with Git and Github (lecture notes).  
+- Data wrangling (DSGI Ch 6)
 - Statistical learning: some introductory concepts (ISL Ch 1-2)
 - Linear regression (ISL Ch 3).  
 - Classification (ISL Ch 4).  
@@ -95,7 +94,7 @@ The assignment for the final project is simple: pose an interesting question; co
 
 This assignment is purposely open-ended, allowing you considerable freedom to follow a path dictacted by your own intellectual curiosity. Strive to write something that a statistically literate person of wide- ranging interests (for example, a future employer) would find engaging and impressive.  
 
-The project is due at 9:00 AM, US Central Time, on Monday, May 10, 2021.   Because of the quick turn-around required to grade final projects, I unfortunately cannot extend the grace policy to encompass the project.  But remember, you have all semester to get this sorted.    
+The project is due at 9:00 AM, US Central Time, on Monday, May 9, 2021.   Because of the quick turn-around required to grade final projects, I unfortunately cannot extend the grace policy to encompass the project.  But remember, you have all semester to get this sorted.    
 
 
 ### Groups are allowed
@@ -124,11 +123,10 @@ I do not round grades.  Attendance is not an explicit component of your class gr
 
 ### If you need help, please just ask :-)  
 
-Your success in this class is important to me. We will all need accommodations becausewe all learn differently. If there are aspects of this course that prevent you from learning or exclude you, please let me know as soon as possible. Together we’ll develop strategies to meet both your needs and the requirements of the course. I also encourage you to reach out to the student resources available through UT. Many are listed on this syllabus, but I am happy to connect you with a person or Center if you would like.   This includes any of the following:  
+Your success in this class is important to me. We will all need accommodations becausewe all learn differently. If there are aspects of this course that prevent you from learning or exclude you, please let me know as soon as possible. Together we’ll develop strategies to meet both your needs and the requirements of the course. I also encourage you to reach out to the student resources available through UT.  I am happy to connect you with a person or Center if you would like.   This includes any of the following:  
 
 - Services for Students with Disabilities.  This class respects and welcomes students of all backgrounds, identities, and abilities. If there are circumstances that make our learning environment and activities difficult, if you have medical information that you need to share with me, or if you need specific arrangements in case the building needs to be evacuated, please let me know. I am committed to creating an effective learning environment for all students, but I can only do so if you discuss your needs with me as early as possible. I promise to maintain the confidentiality of these discussions. If appropriate, also contact (Services for Students with Disabilities)[https://diversity.utexas.edu/disability/], 512-471-6259 (voice) or 1-866-329- 3986 (video phone).  
 - Counseling and Mental Health Center.  Do your best to maintain a healthy lifestyle this semester by eating well, exercising, avoiding drugs and alcohol, getting enough sleep and taking some time to relax. This will help you achieve your goals and cope with stress.  Yet all of us benefit from support during times of struggle. You are not alone. There are many helpful resources available on campus and an important part of the college experience is learning how to ask for help. Asking for support sooner rather than later is often helpful.  If you or anyone you know experiences any academic stress, difficult life events, or feelings like anxiety or depression, we strongly encourage you to seek support.  (http://www.cmhc.utexas.edu/individualcounseling.html)  
-- The Sanger Learning Center.  All students are welcome to take advantage of Sanger Center’s classes and workshops, private learning specialist appointments, peer academic coaching, and tutoring for more than 70 courses in 15 different subject areas. For more information, please visit (http://www.utexas.edu/ugs/slc) or call 512-471-3614 (JES A332).  
 
 
 ### Names and pronouns

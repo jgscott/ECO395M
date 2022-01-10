@@ -92,7 +92,7 @@ dim(x)
 naive = gamlr(cbind(d,x),y)
 coef(naive)["d",] # effect is AICc selected <0
 
-## problem here is that the lasso regularizations away the confounders!
+## problem here is that the lasso regularizes away the confounders!
 ## it can explain variation in y using one variable (d) or multiple variables correlated with d.
 ## it picks the most parsimonious solution!
 ## see e.g. https://projecteuclid.org/euclid.ba/1484103680

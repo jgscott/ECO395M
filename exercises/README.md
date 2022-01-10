@@ -2,15 +2,10 @@
 
 I will post homeworks below at least three weeks before the due date.   
 
-- [Exercises 1](exercises01.md): Due by 9 AM on Monday, February 8.     
-- [Exercises 2](exercises02.md): Due by 9 AM on Friday, March 12.     
-- [Exercises 3](exercises03.md): Due by 9 AM on Friday, April 9.      
-- [Exercises 4](exercises04.md): Due at 9 AM on Friday, May 7.  
-
 
 # Project  
 
-Projects are due at 9:00 AM, US Central Time, on Thursday, May 13.  
+Projects are due at 9:00 AM, US Central Time, on Monday, May 9.  
 
 I have posted a [set of project guidelines](https://github.com/jgscott/ECO395M/blob/master/exercises/project-guidelines.pdf) to give you some more specifics about how to prepare and submit your reports.  But the basic idea is what we've discussed before: find a problem and data set that interests you, approach it using the tools we've learned in class, and write a report.  
 

@@ -151,7 +151,7 @@ summary(colSums(X))
 scrub_cols = which(colSums(X) == 0)
 X = X[,-scrub_cols]
 
-pca_simon = prcomp(X, scale=TRUE)
+pca_simon = prcomp(X, rank=2, scale=TRUE)
 plot(pca_simon) 
 
 # Look at the loadings

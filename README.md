@@ -1,22 +1,22 @@
 # ECO 395M: Data Mining and Statistical Learning
 
-Welcome to the Spring 2021 edition of ECO 395M, a course on data mining and statistical learning for students in the Master's program in Economics at UT-Austin.  All course materials can be found through this GitHub page.  Please see the [course syllabus](syllabus.md) for details about:  
+Welcome to the Spring 2022 edition of ECO 395M, a course on data mining and statistical learning for students in the Master's program in Economics at UT-Austin.  All course materials can be found through this GitHub page.  Please see the [course syllabus](syllabus.md) for details about:  
 
 - expectations  
 - assignments and grading  
 - readings  
 - other important administrative information   
 
-The exercises are [posted here.](https://github.com/jgscott/ECO395M/tree/master/exercises)    
+The exercises will be [posted here](https://github.com/jgscott/ECO395M/tree/master/exercises) as they are assigned throughout the semester.  
 
 ## Office hours
 
-All office hours are held via Zoom:
+Dates and times TBA.  
 
-- James: Mondays and Wednesdays, 8:30 AM to 9:30 AM US Central time.  
-- Rui: Tuesdays, 7:00 PM US Central time.  
 
 ## Topics outline  
+
+I assume that you start the semester with a basic understanding of R and data visualization, at the level of [Lessons 1-5 of Data Science in R: A Gentle Introduction](https://bookdown.org/jgscott/DSGI/plots.html).  This material was covered in ECO 394D, and although we'll review some of these skills in the course of learning new stuff, it's expected that you're familiar with these lessons from day 1.  
 
 
 ### The data scientist's toolbox
@@ -33,20 +33,14 @@ Resources to learn Github and RMarkdown:
 [Jeff Leek's guide to sharing data](https://github.com/jtleek/datasharing) is a great resource.  
 
 
-### Data visualization  
+### Data wrangling  
 
-To review material on visualization, please watch these R walkthroughs out of class.  You can find the R scripts and data sets for these videos under the [R](./r) and [data](./data) folders, respectively. 
+For introductory material on data wrangling, we'll rely on [Lesson 6 of DSGI](https://bookdown.org/jgscott/DSGI/data-wrangling.html).  Please read and practice this material thoroughly; we'll practice more class, working through a series of examples.  
 
-- [Intro to ggplot2](https://www.youtube.com/watch?v=UK2FhxMnmjQ)  
-- [Data workflow and bar plots](https://www.youtube.com/watch?v=k76R7ifcyvs)   
-- [Visualizing distributions](https://www.youtube.com/watch?v=wFpzPtdIfTg)   
-- [Line graphs](https://www.youtube.com/watch?v=LSDMuOE02ME)   
+If you'd like even _more_ review and practice with R, then I'd suggest working your way through Chapters 1-4 of [Statistical Inference via Data Science: A ModernDive into R and the Tidyverse](https://moderndive.com/index.html), by Ismay and Kim.  This is roughly at the same level as our main reference.
 
-The idea of these walkthroughs is to give you the resources you'll need to complete the visualization exercises on Homework 1.   Some of this might be review for you, so if that's the case, feel free to move quickly and/or skip familiar bits.   
+A more advanced and much more comprehensive guide can be found in [R for Data Science](https://r4ds.had.co.nz/), by Wickham and Grolemund.  
 
- On the other hand, if you'd like even _more_ review and practice with R, then I'd suggest working your way through Chapters 1-4 of [Statistical Inference via Data Science: A ModernDive into R and the Tidyverse](https://moderndive.com/index.html), by Ismay and Kim.  In particular, you should know how to create their "five named graphs" in R---those are scatter plots, boxplots, histograms, bar plots, and line graphs.  (The videos are designed to cover these, while the Ismay and Kim reading serves as an extra, optional resource.)  
-
-We'll spend some time in class practicing these skills by working in small groups on your homework problems.   
 
 
 ### Basic concepts in statistical learning  

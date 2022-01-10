@@ -8,7 +8,7 @@ library(gamlr)
 hh = read.csv("../data/microfi_households.csv", row.names="hh")
 hh$village = factor(hh$village)
 
-# each row is a househouse
+# each row is a household
 head(hh, 10)
 
 ## household networks: based on survey data about household interactions
