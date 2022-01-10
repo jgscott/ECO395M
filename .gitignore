@@ -45,3 +45,7 @@ data/ercot/weather_processed/windSpeed_impute.csv
 hw_rubrics/
 data/ercot/temperature_impute.csv
 data/ercot/dewpoint_impute.csv
+
+# old exercises
+exercises_old/ 
+
