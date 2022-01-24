@@ -1,6 +1,6 @@
 # Exercises
 
-I will post homeworks below at least three weeks before the due date.   
+I will post homeworks below at least two weeks before the due date.   
 
 
 # Project  

@@ -41,6 +41,12 @@ If you'd like even _more_ review and practice with R, then I'd suggest working y
 
 A more advanced and much more comprehensive guide can be found in [R for Data Science](https://r4ds.had.co.nz/), by Wickham and Grolemund.  
 
+For material in class, please download the following data sets and example R script:  
+- [nycflights13.csv](./data/nycflights.csv) and [nycflights_wrangle.R](./r/nycflights_wrangle.R)  
+- [olympics_top20.csv](./data/olympics_top20.csv)  
+- [artwork_tate.csv](./data/artwork_tate.csv)  
+- [billboard.csv](./data/billboard.csv)  
+
 
 
 ### Basic concepts in statistical learning  
