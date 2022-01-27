@@ -1,6 +1,8 @@
 # Exercises
 
-I will post homeworks below at least two weeks before the due date.   
+Follow the guidelines given below for how to submit.  
+
+- [Exercises 1](exercises01.md): Due Friday, Feb 11 by 5 PM Central time.  
 
 
 # Project  
@@ -10,7 +12,7 @@ Projects are due at 9:00 AM, US Central Time, on Monday, May 9.
 I have posted a [set of project guidelines](https://github.com/jgscott/ECO395M/blob/master/exercises/project-guidelines.pdf) to give you some more specifics about how to prepare and submit your reports.  But the basic idea is what we've discussed before: find a problem and data set that interests you, approach it using the tools we've learned in class, and write a report.  
 
 
-# How to prepare and submit your reports
+# How to prepare and submit your HW and projects
 
 For both HW and projects, you will be evaluated both on the technical correctness (50%) and the overall intellectual quality (50%) of your approach and write-up.  Strive to make each write-up self-contained and something that a future employer would find engaging and impressive.  Please try as far as possible to [follow the suggestions given here.](https://jgscott.github.io/teaching/writeups/write_ups/).  These guidelines are geared more towards the longer writeups for more complex data sets, but even for short problems, their general spirit should be followed.       
 
