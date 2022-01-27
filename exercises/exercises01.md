@@ -81,8 +81,8 @@ Note that by default a bar plot will order the artists in alphabetical order.  T
 
 The data in [olympics_top20.csv](../data/olympics_top20.csv) contains information on every Olympic medalist in the top 20 sports by participant count, all the way back to 1896. Use these data to answer the following questions.   (The names of the columns should be self-explanatory.)  
 
-A) What is the 95th percentile of heights for female competitors in Athletics events (i.e., track and field)?  
-B) Which single women's event had the greatest variability in competitor's heights across the entire history of the Olympics, as measured by the standard deviation?  
+A) What is the 95th percentile of heights for female competitors across all Athletics events (i.e., track and field)?  Note that `sport` is the broad sport (e.g. Athletics) whereas `event` is the specific event (e.g. 100 meter sprint).  
+B) Which single women's `event` had the greatest variability in competitor's heights across the entire history of the Olympics, as measured by the standard deviation?  
 C) How has the average age of Olympic swimmers changed over time? Does the trend look different for male swimmers relative to female swimmers?  Create a data frame that can allow you to visualize these trends over time, then plot the data with a line graph with separate lines for male and female competitors.  Give the plot an informative caption answering the two questions just posed.  
 
 
