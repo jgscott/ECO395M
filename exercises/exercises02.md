@@ -2,8 +2,6 @@
 
 Due date: links must be submitted by 5 PM on Monday, March 7, 2021  
 
-## More visualization practice
-
 
 ## Problem 1: visualization
 
