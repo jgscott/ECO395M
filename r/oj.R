@@ -2,7 +2,6 @@
 # Orange juice regression
 ###
 library(tidyverse)
-library(ggplot2)
 library(rsample)
 library(modelr)
 

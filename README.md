@@ -11,7 +11,9 @@ The exercises will be [posted here](https://github.com/jgscott/ECO395M/tree/mast
 
 ## Office hours
 
-Dates and times TBA.  
+Tuesday, 1-2 PM, via Zoom (link on Canvas).
+
+Wednesdays in person, 2:30-3:30 PM, CBA 6.478.  
 
 
 ## Topics outline  
