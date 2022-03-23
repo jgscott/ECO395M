@@ -87,7 +87,7 @@ Write a short report, no more than the equivalent of about 4 pages, detailing yo
 
 ## Predictive model building: California housing  
 
-The data in `CAhousing.csv` containts data at the census-tract level on residential housing in the state of California.  Each row is a [census tract](https://libguides.lib.msu.edu/tracts), and the columns are as follows:  
+The data in [CAhousing.csv](../data/CAhousing.csv) containts data at the census-tract level on residential housing in the state of California.  Each row is a [census tract](https://libguides.lib.msu.edu/tracts), and the columns are as follows:  
 
 - longitude, latitude: coordinates of the geographic centroid of the census tract  
 - housingMedianAge: median age in years of all residential households in the census tract  
