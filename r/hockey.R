@@ -30,7 +30,7 @@ image(player[1:7, 1:40], asp=0.6)
 
 head(config,10)
 full_strength_goals = which(rowSums(config) == 0)
-length(full_strength)
+length(full_strength_goals)
 
 # set up x and y inputs
 x0 = player[full_strength_goals,]

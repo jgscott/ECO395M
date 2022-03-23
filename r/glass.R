@@ -1,6 +1,5 @@
 #### Forensic Glass
 library(tidyverse)
-library(ggplot2)
 library(MASS) 	## a library of example datasets
 library(caret)
 library(modelr)
@@ -8,7 +7,7 @@ library(rsample)
 data(fgl) 		## loads the data into R; see help(fgl)
 
 # goal: automatic classification of glass shards into 6 types
-# features: refactive index, plus concentrations of 8 elements
+# features: refractive index, plus concentrations of 8 elements
 summary(fgl)
 
 # the target variable is type:
@@ -43,7 +42,7 @@ fgl_scale = fgl %>%
 
 ## for illustration, consider the RIxMg plane (i.e., just 2D)
 ggplot(data = fgl_scale) +
-  geom_point(aes(x=RI, y=Mg, shape=type))
+  geom_point(aes(x=RI, y=Mg, shape=type, color=type))
 
 # select a training set
 fgl_split = initial_split(fgl_scale, 0.8)

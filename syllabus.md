@@ -94,7 +94,7 @@ The assignment for the final project is simple: pose an interesting question; co
 
 This assignment is purposely open-ended, allowing you considerable freedom to follow a path dictacted by your own intellectual curiosity. Strive to write something that a statistically literate person of wide- ranging interests (for example, a future employer) would find engaging and impressive.  
 
-The project is due at 9:00 AM, US Central Time, on Monday, May 9, 2021.   Because of the quick turn-around required to grade final projects, I unfortunately cannot extend the grace policy to encompass the project.  But remember, you have all semester to get this sorted.    
+The project is due at 9:00 AM, US Central Time, on Monday, May 9, 2022.   Because of the quick turn-around required to grade final projects, I unfortunately cannot extend the grace policy to encompass the project.  But remember, you have all semester to get this sorted.    
 
 
 ### Groups are allowed
