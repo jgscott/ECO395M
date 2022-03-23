@@ -1,6 +1,6 @@
 # ECO 395M: Exercises 3
 
-Due date: Wednesday, April 6, 5 PM US Central Time  
+Due date: Wednesday, April 6, 5 PM US Central Time.  Email submissions to ruizuo11@utexas.edu.  
 
 ## What causes what?  
 
