@@ -1,5 +1,4 @@
 library(tidyverse)
-library(ggplot2)
 
 ### data on tv shows from NBC market research
 

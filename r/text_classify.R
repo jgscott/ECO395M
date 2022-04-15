@@ -27,7 +27,6 @@ corpus_train = Corpus(DirSource(train_dirs))
 
 corpus_train = corpus_train %>% tm_map(., content_transformer(tolower)) %>% 
         tm_map(., content_transformer(removeNumbers)) %>% 
-				tm_map(., content_transformer(removeNumbers)) %>% 
 				tm_map(., content_transformer(removePunctuation)) %>%
 				tm_map(., content_transformer(stripWhitespace)) %>%
 				tm_map(., content_transformer(removeWords), stopwords("SMART"))
@@ -59,7 +58,6 @@ corpus_test = corpus_test %>% tm_map(., content_transformer(tolower)) %>%
 # create training and testing feature matrices
 DTM_train = DocumentTermMatrix(corpus_train)
 DTM_train # some basic summary statistics
-
 
 # restrict test-set vocabulary to the terms in DTM_train
 DTM_test = DocumentTermMatrix(corpus_test,

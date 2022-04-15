@@ -56,14 +56,14 @@ sigma = attr(X,"scaled:scale")
 distance_between_cars = dist(X)
 
 # Now run hierarchical clustering
-h1 = hclust(distance_between_cars, method='single')
+h1 = hclust(distance_between_cars, method='complete')
 
 # Cut the tree into 10 clusters
 cluster1 = cutree(h1, k=10)
 summary(factor(cluster1))
 
 # Examine the cluster members
-which(cluster1 == 1)
+which(cluster1 == 2)
 
 # Plot the dendrogram
 plot(h1, cex=0.3)

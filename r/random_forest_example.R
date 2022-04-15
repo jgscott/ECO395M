@@ -2,7 +2,6 @@
 # Bagging and random forests
 ###
 library(tidyverse)
-library(ggplot2)
 library(rpart)
 library(rpart.plot)
 library(rsample) 

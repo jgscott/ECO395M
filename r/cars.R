@@ -1,4 +1,4 @@
-library(ggplot2)
+library(tidyverse)
 library(LICORS)  # for kmeans++
 library(foreach)
 library(mosaic)

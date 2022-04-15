@@ -1,5 +1,4 @@
 library(tidyverse)
-library(ggplot2)
 library(usmap)
 library(lubridate)
 library(randomForest)
