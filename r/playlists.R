@@ -57,7 +57,7 @@ summary(playtrans)
 # Now run the 'apriori' algorithm
 # Look at rules with support > .01 & confidence >.1 & length (# artists) <= 5
 musicrules = apriori(playtrans, 
-	parameter=list(support=.01, confidence=.1, maxlen=2))
+	parameter=list(support=.005, confidence=.005, maxlen=4))
                          
 # Look at the output... so many rules!
 inspect(musicrules)

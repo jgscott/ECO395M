@@ -101,25 +101,17 @@ content(simon[[2]])
 content(simon[[3]])
 
 # cosine similarity
-i = 15
-j = 16
-sum(tfidf_simon[i,] * (tfidf_simon[j,]))/(sqrt(sum(tfidf_simon[i,]^2)) * sqrt(sum(tfidf_simon[j,]^2)))
-
-
-# the full set of cosine similarities
-# two helper functions that use some linear algebra for the calculations
-cosine_sim_docs = function(dtm) {
-	crossprod_simple_triplet_matrix(t(dtm))/(sqrt(col_sums(t(dtm)^2) %*% t(col_sums(t(dtm)^2))))
-}
-
-# use the function to compute pairwise cosine similarity for all documents
+# use the cosine_sim_docs function to compute pairwise cosine similarity for all documents
 cosine_sim_mat = cosine_sim_docs(tfidf_simon)
+
 # Now consider a query document
 content(simon[[17]])
 cosine_sim_mat[17,]
 
 # looks like document 16 has the highest cosine similarity
 sort(cosine_sim_mat[17,], decreasing=TRUE)
+
+# and they are about a very similar thing
 content(simon[[16]])
 content(simon[[17]])
 
@@ -180,13 +172,3 @@ content(simon[[10]])
 content(simon[[11]])
 
 # Conclusion: even just these two-number summaries still preserve a lot of information
-
-
-# Now look at the word view
-# 5-dimensional word vectors
-word_vectors = pca_simon$rotation[,1:5]
-word_vectors[984,]
-
-d_mat = dist(t(word_vectors))
-
-
