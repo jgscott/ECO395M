@@ -23,7 +23,7 @@ meta(adam)
 content(adam)
 
 ## apply to all of Simon Cowell's articles
-## (probably not THE Simon Cowell: https://twitter.com/simoncowell)
+## (probably not THE Simon Cowell)
 ## "globbing" = expanding wild cards in filename paths
 file_list = Sys.glob('../data/ReutersC50/C50train/SimonCowell/*.txt')
 simon = lapply(file_list, readerPlain) 
@@ -78,9 +78,9 @@ findAssocs(DTM_simon, "genetic", .5)
 
 ## Finally, drop those terms that only occur in one or two documents
 ## This is a common step: the noise of the "long tail" (rare terms)
-##	can be huge, and there is nothing to learn if a term occured once.
+##	can be huge, and there is nothing to learn if a term occurred once.
 ## Below removes those terms that have count 0 in >95% of docs.  
-## Probably a bit stringent here... but only 50 docs!
+## Probably a bit extreme in most cases... but here only 50 docs!
 DTM_simon = removeSparseTerms(DTM_simon, 0.95)
 DTM_simon # now ~ 1000 terms (versus ~3000 before)
 

@@ -1,7 +1,5 @@
 library(tidyverse)
 library(tm)
-library(gamlr)
-library(randomForest)
 library(naivebayes)
 
 # Remember to source in the "reader" wrapper function
