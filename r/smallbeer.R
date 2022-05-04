@@ -1,9 +1,18 @@
+library(tidyverse)
+library(gamlr)
+
 ## small beer dataset
 beer = read.csv("../data/smallbeer.csv", 
 	colClasses=c(rep("factor",3),rep("numeric",2)))
-	
-head(beer)
-nrow(beer)
+
+nrow(beer)	
+view(beer)
+
+# very little variation to estimate an elasticity!
+beer %>% filter(description == '10 BARREL APOCALYPSE IPA 6PK        ')
+
+# more variation = more hope
+beer %>% filter(description == 'STELLA ARTOIS 6PK BTL               ')
 
 # complete pooling: one elasticity for all beers
 allforone = lm(log(units) ~ log(price), data=beer)
@@ -16,17 +25,18 @@ oneforall = lm(log(units) ~ log(price)*item, data=beer)
 coef(oneforall)
 hist(coef(oneforall)) ## super noisy zeros
 
-# getting the elasticities?
+# getting the elasticities? a bit annoying but this code does it
 price_main = coef(oneforall)[2]
 which_int = grep("log(price):item", names(coef(oneforall)), fixed=TRUE)
 price_int = coef(oneforall)[which_int]
 
+# add the main effect to all the relevant interactions
+# to get each beer's elasticity
 hist(price_main + price_int)
 
 ## Clear this won't work
 
 # build some regression designs
-library(gamlr)
 
 x1 = sparse.model.matrix(~log(price)*item + factor(week)-1, data=beer)
 head(x1)
@@ -56,10 +66,10 @@ xitem = sparse.model.matrix(~item-1, lmr=1e-5, data=beer)
 xweek = sparse.model.matrix(~week-1, lmr=1e-5, data=beer)
 xx = cbind(xweek, xitem)
 
-# isolate variation in log(price) predicted by item and week
+# isolate/partial out variation in log(price) predicted by item and week
 pfit = gamlr(x=xx, y=log(beer$price), lmr=1e-5, standardize=FALSE)
 
-# isolate variation in quantity sold predicted by item and week
+# isolate/partial out variation in quantity sold predicted by item and week
 qfit = gamlr(x=xx, y=log(beer$units), lmr=1e-5, standardize=FALSE)
 
 # Calculate residuals: variation in price and units sold that

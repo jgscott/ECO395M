@@ -102,11 +102,11 @@ content(simon[[3]])
 
 # cosine similarity
 # use the cosine_sim_docs function to compute pairwise cosine similarity for all documents
-cosine_sim_mat = cosine_sim_docs(tfidf_simon)
+cosine_sim_mat = dist(as.matrix(tfidf_simon))
 
 # Now consider a query document
 content(simon[[17]])
-cosine_sim_mat[17,]
+cosine_sim_mat
 
 # looks like document 16 has the highest cosine similarity
 sort(cosine_sim_mat[17,], decreasing=TRUE)
@@ -127,9 +127,8 @@ clust5 = cutree(tree_simon, k=5)
 
 # inspect the clusters
 which(clust5 == 3)
-content(simon[[12]])
-content(simon[[13]])
-content(simon[[21]])
+content(simon[[10]])
+content(simon[[11]])
 
 
 

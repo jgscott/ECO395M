@@ -1,6 +1,7 @@
 library(tidyverse)
 library(tm)
 library(naivebayes)
+library(Matrix)
 
 # Remember to source in the "reader" wrapper function
 # it's stored as a Github gist at:

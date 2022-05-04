@@ -169,8 +169,14 @@ Miscellaneous:
 [A bit on treatment-effect estimation](slides/arx/Treatments.pdf). 
 
 
-### Resampling methods (CV, bootstrap)  
+### Resampling methods   
 
+[Slides here.](slides/bootstrap_VAR.pdf)    
+    
+ In class:  
+- [portfolio.R](r/portfolio.R)  
+
+<!-- 
 [Slides here.](http://rpubs.com/jgscott/resampling)    
   
 In class:  
@@ -180,7 +186,7 @@ In class:
 - [chymotrypsin.csv](data/chymotrypsin.csv)   
 - [ethanol.csv](data/ethanol.csv)    
 - [predimed.csv](data/predimed.csv)    
-
+ -->
 
 
 
