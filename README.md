@@ -1,6 +1,6 @@
 # ECO 395M: Data Mining and Statistical Learning
 
-Welcome to the Spring 2022 edition of ECO 395M, a course on data mining and statistical learning for students in the Master's program in Economics at UT-Austin.  All course materials can be found through this GitHub page.  Please see the [course syllabus](syllabus.md) for details about:  
+Welcome to the Spring 2023 edition of ECO 395M, a course on data mining and statistical learning for students in the Master's program in Economics at UT-Austin.  All course materials can be found through this GitHub page.  Please see the [course syllabus](syllabus.md) for details about:  
 
 - expectations  
 - assignments and grading  
@@ -33,22 +33,6 @@ Resources to learn Github and RMarkdown:
 - [Getting starting with GitHub Desktop](https://help.github.com/en/desktop/getting-started-with-github-desktop)  
 
 [Jeff Leek's guide to sharing data](https://github.com/jtleek/datasharing) is a great resource.  
-
-
-### Data wrangling  
-
-For introductory material on data wrangling, we'll rely on [Lesson 6 of DSGI](https://bookdown.org/jgscott/DSGI/data-wrangling.html).  Please read and practice this material thoroughly; we'll practice more class, working through a series of examples.  
-
-If you'd like even _more_ review and practice with R, then I'd suggest working your way through Chapters 1-4 of [Statistical Inference via Data Science: A ModernDive into R and the Tidyverse](https://moderndive.com/index.html), by Ismay and Kim.  This is roughly at the same level as our main reference.
-
-A more advanced and much more comprehensive guide can be found in [R for Data Science](https://r4ds.had.co.nz/), by Wickham and Grolemund.  
-
-For material in class, please download the following data sets and example R script:  
-- [nycflights13.csv](./data/nycflights.csv) and [nycflights_wrangle.R](./r/nycflights_wrangle.R)  
-- [olympics_top20.csv](./data/olympics_top20.csv)  
-- [artwork_tate.csv](./data/artwork_tate.csv)  
-- [billboard.csv](./data/billboard.csv)  
-
 
 
 ### Basic concepts in statistical learning  
@@ -161,12 +145,17 @@ Miscellaneous:
 - a little Python utility for [scraping Spotify playlists](https://github.com/nithinphilips/spotifyscrape)  
 
 
+### Treatment effects
 
+Treatment effects; multi-armed bandits and Thompson sampling; high-dimensional treatment effects with the lasso.  
 
+Slides:  
+- [Treatments](slides/Treatments.pdf).   
 
-### Treatments
-
-[A bit on treatment-effect estimation](slides/arx/Treatments.pdf). 
+Scripts and data:  
+- [mab.R](R/mab.R) and [Ads_CTR_Optimisation.csv](data/Ads_CTR_Optimisation.csv)  
+- [hockey.R](R/hockey.R) and all files in `data/hockey/`  
+- [smallbeer.R](R/smallbeer.R) and [smallbeer.csv](data/smallbeer.csv)  
 
 
 ### Resampling methods   

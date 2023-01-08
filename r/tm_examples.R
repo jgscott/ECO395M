@@ -54,7 +54,7 @@ my_documents = tm_map(my_documents, content_transformer(removeNumbers)) # remove
 my_documents = tm_map(my_documents, content_transformer(removePunctuation)) # remove punctuation
 my_documents = tm_map(my_documents, content_transformer(stripWhitespace)) ## remove excess white-space
 
-## Remove stopwords.  Always be careful with this: one person's trash is another one's treasure.
+## Remove stopwords.  Always be careful with this!
 stopwords("en")
 stopwords("SMART")
 ?stopwords
@@ -76,7 +76,7 @@ findFreqTerms(DTM_simon, 50)
 ## ...or find words whose count correlates with a specified word.
 findAssocs(DTM_simon, "genetic", .5) 
 
-## Finally, drop those terms that only occur in one or two documents
+## Drop those terms that only occur in one or two documents
 ## This is a common step: the noise of the "long tail" (rare terms)
 ##	can be huge, and there is nothing to learn if a term occurred once.
 ## Below removes those terms that have count 0 in >95% of docs.  
@@ -90,46 +90,10 @@ tfidf_simon = weightTfIdf(DTM_simon)
 ####
 # Compare documents
 ####
-
 inspect(tfidf_simon[1,])
-inspect(tfidf_simon[2,])
-inspect(tfidf_simon[3,])
 
 # could go back to the raw corpus
 content(simon[[1]])
-content(simon[[2]])
-content(simon[[3]])
-
-# cosine similarity
-# use the cosine_sim_docs function to compute pairwise cosine similarity for all documents
-cosine_sim_mat = dist(as.matrix(tfidf_simon))
-
-# Now consider a query document
-content(simon[[17]])
-cosine_sim_mat
-
-# looks like document 16 has the highest cosine similarity
-sort(cosine_sim_mat[17,], decreasing=TRUE)
-
-# and they are about a very similar thing
-content(simon[[16]])
-content(simon[[17]])
-
-#####
-# Cluster documents
-#####
-
-# define the cosine distance
-cosine_dist_mat = proxy::dist(as.matrix(tfidf_simon), method='cosine')
-tree_simon = hclust(cosine_dist_mat)
-plot(tree_simon)
-clust5 = cutree(tree_simon, k=5)
-
-# inspect the clusters
-which(clust5 == 3)
-content(simon[[10]])
-content(simon[[11]])
-
 
 
 ####
@@ -171,3 +135,20 @@ content(simon[[10]])
 content(simon[[11]])
 
 # Conclusion: even just these two-number summaries still preserve a lot of information
+
+
+#####
+# Cluster documents
+#####
+
+# define the distance matrix
+# using the PCA scores
+dist_mat = dist(pca_simon$x)
+tree_simon = hclust(dist_mat)
+plot(tree_simon)
+clust5 = cutree(tree_simon, k=5)
+
+# inspect the clusters
+which(clust5 == 3)
+content(simon[[18]])
+content(simon[[19]])

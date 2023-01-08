@@ -2,15 +2,15 @@
 
 Follow the guidelines given below for how to submit.  
 
-- [Exercises 1](exercises01.md): Due Friday, Feb 11 by 5 PM Central time.  
-- [Exercises 2](exercises02.md): Due Monday, March 7 by 5 PM Central time.  
+- [Exercises 1](exercises01.md): Due Monday, Jan 30 by 5 PM Central time.  
+<!-- - [Exercises 2](exercises02.md): Due Monday, March 7 by 5 PM Central time.  
 - [Exercises 3](exercises03.md): Due Wednesday, April 6 by 5 PM Central time.  
 - [Exercises 4](exercises04.md): Due Monday, May 2 by 5 PM Central time.  
-
+ -->
 
 # Project  
 
-Projects are due at 9:00 AM, US Central Time, on Monday, May 9.  
+Projects are due at 5:00 PM, US Central Time, on Monday, April 24.  
 
 I have posted a [set of project guidelines](https://github.com/jgscott/ECO395M/blob/master/exercises/project-guidelines.pdf) to give you some more specifics about how to prepare and submit your reports.  But the basic idea is what we've discussed before: find a problem and data set that interests you, approach it using the tools we've learned in class, and write a report.  
 

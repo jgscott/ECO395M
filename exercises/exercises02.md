@@ -3,46 +3,9 @@
 Due date: links must be submitted by 5 PM on Monday, March 7, 2021  
 
 
-## Problem 1: visualization
-
-__Background__.  This problem gives some further practice on data visualization.  Remember, data visualization is one of the most important tools of data science, and it's almost always an important part of building a model. The basic skills of "group/pipe/summarize" and plotting are really useful for exploring data, so it's good to keep them sharp.  
-
-__Data and problem__: The data in `capmetro_UT.csv` contains data from Capital Metro, which runs the bus network in Austin, including shuttles (like the West Campus and 40 Acres routes) to, from, and around UT.  The data tracks ridership on buses in the UT area, which is measured by an optical scanner that counts how many people get on and off the bus at each stop.  We'll revisit this data set later in the semester when we have more tools for nonparametric regression, so consider this a preview of what's to come.  
-
-Each row in the data set corresponds to a 15-minute period between the hours of 6 AM and 10 PM, each and every day, from September through November 2018.  The variables are:  
-
-- timestamp: the beginning of the 15-minute window for that row of data  
-- boarding: how many people got on board any Capital Metro bus on the UT campus in the specific 15 minute window  
-- alighting: how many people got off ("alit") any Capital Metro bus on the UT campus in the specific 15 minute window  
-- day_of_week and weekend: Monday, Tuesday, etc, as well as an indicator for whether it's a weekend.  
-- temperature: temperature at that time in degrees F  
-- hour_of_day: on 24-hour time, so 6 for 6 AM, 13 for 1 PM, 14 for 2 PM, etc.  
-- month: which month  
-
-Your task in this problem is __to make two faceted plots__ and to answer questions about them.     
-
-- One panel of line graphs that plots __average boardings__ grouped by hour of the day, day of week, and month.  You should facet by day of week.  Each facet should include three lines, one for each month, colored differently and with colors labeled with a legend.  Give the figure an informative caption in which you explain what is shown in the figure and address the following questions, citing evidence from the figure.  Does the hour of peak boardings change from day to day, or is it broadly similar across days?   Why do you think average boardings on Mondays in September look lower, compared to other days and months?   Similarly, why do you think average boardings on Weds/Thurs/Fri in November look lower?  
-
-- One panel of scatter plots showing boardings (y) vs. temperature (x) in each 15-minute window, faceted by hour of the day, and with points colored in according to whether it is a weekday or weekend.  Give the figure an informative caption in which you explain what is shown in the figure and answer the following question, citing evidence from the figure.  When we hold hour of day and weekend status constant, does temperature seem to have a noticeable effect on the number of UT students riding the bus?    
-These are exactly the kind of figures that Capital Metro planners might use to understand seasonal and intra-week variation in demand for UT bus service.  They're also the kind of figures you'd make to assist in building a model to predict ridership (even though, in this problem you won't actually be building that model).    
 
 
-### Notes:
-
-All you need to turn in here are the two figures and their captions.  Keep each figure + caption to a single page combined (i.e. two pages, one page for first figure + caption, a second page for second figure + caption).    
-
-Second, a feature of R is that it orders categorical variables alphabetically by default.  This doesn't make sense for something like the day of the week or the month of the year.  So if you want to re-order these variables in their usual order, try pasting the following block of code into your R script at the top, and executing it before you start further work on it.  
-```
-# Recode the categorical variables in sensible, rather than alphabetical, order
-capmetro_UT = mutate(capmetro_UT,
-               day_of_week = factor(day_of_week,
-                 levels=c("Mon", "Tue", "Wed","Thu", "Fri", "Sat", "Sun")),
-               month = factor(month,
-                 levels=c("Sep", "Oct","Nov")))
-```
-
-
-## Problem 2: Saratoga house prices
+## Saratoga house prices
 
 Return to the data set on house prices in Saratoga, NY that we considered in class.  Recall that a starter script here is in `saratoga_lm.R`.  For this data set, you'll run a "horse race" (i.e. a model comparison exercise) between two model classes: linear models and KNN.  
 
@@ -54,7 +17,7 @@ Which model seems to do better at achieving lower out-of-sample mean-squared err
 Note: When measuring out-of-sample performance, there is _random variation_ due to the particular choice of data points that end up in your train/test split.  Make sure your script addresses this by averaging the estimate of out-of-sample RMSE over many different random train/test splits, either randomly or by cross-validation.   
 
 
-## Problem 3: Classification and retrospective sampling
+## Classification and retrospective sampling
 
 Consider the data in `german_credit.csv` on loan defaults from a German bank.  The outcome variable of interest in this data set is `default`: a 0/1 indicator for whether a loan fell into default at some point before it was paid back to the bank.  All other variables are features of the loan or borrower that might, in principle, help the bank predict whether a borrower is likely to default on a loan.
 
@@ -65,7 +28,7 @@ Of particular interest here is the "credit history" variable (`history`), in whi
 What do you notice about the `history` variable vis-a-vis predicting defaults?  What do you think is going on here?  In light of what you see here, do you think this data set is appropriate for building a predictive model of defaults, if the purpose of the model is to screen prospective borrowers to classify them into "high" versus "low" probability of default?  Why or why not---and if not, would you recommend any changes to the bank's sampling scheme?    
 
 
-## Problem 4: Children and hotel reservations
+## Children and hotel reservations
 
 The files `hotels_dev.csv` and `hotels_val.csv` contains data on tens of thousands of hotel stays from a major U.S.-based hotel chain.  The goal of this problem is simple: to build a predictive model for whether a hotel booking will have children on it.  
 

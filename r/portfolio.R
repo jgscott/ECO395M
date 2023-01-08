@@ -1,3 +1,4 @@
+library(tidyverse)
 library(mosaic)
 library(quantmod)
 library(foreach)
