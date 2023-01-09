@@ -20,8 +20,7 @@ The prerequisites are the Statistics and Probability course and the Econometrics
 
 ## Lectures
 
-Lectures will take place in person starting from the week of January 31st.  For the first two weeks of class, we will meet via Zoom.  You can access the video stream via Canvas, by clicking on the Zoom tab in the left sidebar.  
-
+Lectures will take place in person in BRB 1.118.
 
 ## Software 
 
@@ -71,11 +70,12 @@ Your grade for this course will come from:
 - 60% homework.  I will assign four homework assignments throughout the semester, which count for 15% of your final grade each.  I will post the exercises [here](exercises/), along with their due dates.  
 - 40% final project, which will be like a bigger, more complex version of your homework problems.  
 
+
 ### Homework  
 
 The homework assignments consist mainly of analyzing some data and writing a report on what you've found.  Here's the submission protocol:  
 - Prepare your report as a single RMarkdown file.  
-- Knit the RMarkdown file to a Markdown (.md) output.  Do not knit to HTML.    
+- Knit the RMarkdown file to a Markdown (.md) output.  Consult the RMarkdown documentation if you need help specifying this output format.  Do not knit to HTML.    
 - E-mail the links for both the output (.md file) and the raw RMarkdown file (.Rmd) to our TA with the subject line: "ECO 395M Homework N: Your name(s) here".  Obviously, you should substitute the correct number for N (e.g. 1, 2) as well as your own name/group members' names.  
 
 Do not send an attachment.  Do not knit to an HTML file.  
@@ -94,7 +94,8 @@ The assignment for the final project is simple: pose an interesting question; co
 
 This assignment is purposely open-ended, allowing you considerable freedom to follow a path dictacted by your own intellectual curiosity. Strive to write something that a statistically literate person of wide- ranging interests (for example, a future employer) would find engaging and impressive.  
 
-The project is due at 9:00 AM, US Central Time, on Monday, May 9, 2022.   Because of the quick turn-around required to grade final projects, I unfortunately cannot extend the grace policy to encompass the project.  But remember, you have all semester to get this sorted.    
+
+Projects are due at 5:00 PM, US Central Time, on Monday, April 24.  Because of the quick turn-around required to grade final projects, I unfortunately cannot extend the grace policy to encompass the project.  But remember, you have all semester to get this sorted.    
 
 
 ### Groups are allowed
