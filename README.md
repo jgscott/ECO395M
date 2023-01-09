@@ -9,6 +9,8 @@ Welcome to the Spring 2023 edition of ECO 395M, a course on data mining and stat
 
 The exercises will be [posted here](https://github.com/jgscott/ECO395M/tree/master/exercises) as they are assigned throughout the semester.  
 
+Hey, we just made a dumb change.
+
 ## Office hours
 
 Tuesday, 1-2 PM, via Zoom (link on Canvas).
