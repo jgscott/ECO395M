@@ -44,6 +44,8 @@ Reading: Chapters 1-2 of "Introduction to Statistical Learning."
 In class:  
 - [loadhou.R](./r/loadhou.R)  
 - [loadhou.csv](./data/loadhou.csv)  
+- [utilities.R](./r/utilities.R)  
+- [utilities.csv](./data/utilities.csv)  
 
 
 ### Linear models  
@@ -142,20 +144,18 @@ Reading: rest of chapter 10 of _Introduction to Statistical Learning_.
 Miscellaneous:  
 - [Gephi](https://gephi.org/), a great piece of software for exploring graphs  
 - [The Gephi quick-start tutorial](https://gephi.org/tutorials/gephi-tutorial-quick_start.pdf)  
-- a little Python utility for [scraping Spotify playlists](https://github.com/nithinphilips/spotifyscrape)  
 
 
 ### Treatment effects
 
-Treatment effects; multi-armed bandits and Thompson sampling; high-dimensional treatment effects with the lasso.  
+Treatment effects; multi-armed bandits and Thompson sampling; high-dimensional confounders with the lasso.  
 
 Slides:  
 - [Treatments](slides/Treatments.pdf).   
 
 Scripts and data:  
-- [mab.R](R/mab.R) and [Ads_CTR_Optimisation.csv](data/Ads_CTR_Optimisation.csv)  
-- [hockey.R](R/hockey.R) and all files in `data/hockey/`  
-- [smallbeer.R](R/smallbeer.R) and [smallbeer.csv](data/smallbeer.csv)  
+- [mab.R](r/mab.R) and [Ads_CTR_Optimisation.csv](data/Ads_CTR_Optimisation.csv)  
+- [smallbeer.R](r/smallbeer.R) and [smallbeer.csv](data/smallbeer.csv)  
 
 
 ### Resampling methods   
