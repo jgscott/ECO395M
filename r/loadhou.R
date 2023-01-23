@@ -1,5 +1,4 @@
 library(tidyverse)
-library(ggplot2)
 library(rsample)  # for creating train/test splits
 library(caret)
 library(modelr)
@@ -17,7 +16,7 @@ ggplot(data = loadhou) +
   ylim(7000, 20000)
 
 # Make a train-test split
-loadhou_split =  initial_split(loadhou, prop=0.9)
+loadhou_split =  initial_split(loadhou, prop=0.8)
 loadhou_train = training(loadhou_split)
 loadhou_test  = testing(loadhou_split)
 
@@ -32,7 +31,7 @@ lm2 = lm(COAST ~ poly(KHOU, 2), data=loadhou_train)
 
 # KNN with K = 100
 knn100 = knnreg(COAST ~ KHOU, data=loadhou_train, k=100)
-rmse(knn100, loadhou_test)
+modelr::rmse(knn100, loadhou_test)
 
 ####
 # plot the fit

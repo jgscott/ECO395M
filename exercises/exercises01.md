@@ -1,6 +1,4 @@
-# ECO 395M: Exercises 1
-
-Due Friday, Feb 11 at 5 PM  
+# ECO 395M: Exercises 1 
 
 ## 1) Data visualization: flights at ABIA
 
