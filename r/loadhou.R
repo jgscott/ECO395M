@@ -106,7 +106,7 @@ sd(errs)/sqrt(K_folds)   # approximate standard error of CV error
 
 
 # so now we can do this across a range of k
-k_grid = c(2, 4, 6, 8, 10, 15, 20, 25, 30, 35, 40, 45,
+k_grid = c(2, 3, 4, 6, 8, 10, 15, 20, 25, 30, 35, 40, 45,
            50, 60, 70, 80, 90, 100, 125, 150, 175, 200, 250, 300)
 
 # Notice we use the same folds for each value of k

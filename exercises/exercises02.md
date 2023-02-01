@@ -1,8 +1,6 @@
 # ECO 395M: Exercises 2
 
-Due date: links must be submitted by 5 PM on Monday, March 7, 2021  
-
-
+Due date: links must be submitted by 5 PM on Wednesday, Feb 22, 2022.  
 
 
 ## Saratoga house prices

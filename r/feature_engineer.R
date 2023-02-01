@@ -98,7 +98,7 @@ lm3 = lm(COAST ~ KHOU + KHOU_squared + month + weeks_elapsed + hour + wday,
             data=load_train)
 
 # huge improvement on testing set
-rmse(lm3, load_train)
+rmse(lm2, load_train)
 rmse(lm3, load_test)
 
 
