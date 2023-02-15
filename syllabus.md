@@ -6,7 +6,7 @@
 - Course website: http://www.github.com/jgscott/ECO395M/
 - Teaching assistant: Rui Zou (ruizuo11@utexas.edu)
 
-Office hours: dates and times TBA.  
+Office hours: Tuesday 1-2 PM (Zoom link on Canvas).  Wednesdays 2-3 PM in Welch 5.228G.   
 
 
 ## Overview

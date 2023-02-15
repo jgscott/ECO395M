@@ -10,7 +10,7 @@ library(foreach)
 congress109 = read.csv("../data/congress109.csv", header=TRUE, row.names=1)
 congress109members = read.csv("../data/congress109members.csv", header=TRUE, row.names=1)
 
-# First split into a training and set set
+# First split into a training and test set
 # our naive bayes function expects X and Y separated out
 X_NB = as.matrix(congress109)  # feature matrix
 y_NB = factor(congress109members$party)
