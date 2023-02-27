@@ -68,7 +68,7 @@ beta_hat[colnames(config),]
 
 # the player effects
 beta_hat = coef(fit)
-head(beta_hat, 50)
+head(exp(beta_hat), 50)
 
 # now the player-only effects
 player_pm_logit = coef(fit, select='1se')[colnames(player),] %>%

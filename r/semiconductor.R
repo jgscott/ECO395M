@@ -66,7 +66,7 @@ sum(scb.1se!=0) ## usually selects all zeros (just the intercept)
 # note that AIC is a pretty good estimate of out-of-sample deviance
 # for values of lambda near the optimum
 # outside that range: much worse  
-plot(sccvl, bty="n", ylim=c(0, 1))
+plot(sccvl, bty="n", ylim=c(0.4, 1))
 lines(log(sclasso$lambda),AICc(sclasso)/n, col="green", lwd=2)
 legend("top", fill=c("blue","green"),
 	legend=c("CV","AICc"), bty="n")
