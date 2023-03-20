@@ -49,3 +49,4 @@ data/ercot/dewpoint_impute.csv
 # old exercises
 exercises_old/ 
 
+.DS_Store

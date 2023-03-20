@@ -1,6 +1,6 @@
 # ECO 395M: Exercises 4
 
-Due date: Monday, May 2, 5 PM US Central Time. E-mail submission links to Jialue at phatcao@utexas.edu.  
+Due date: Monday, April 17, 5 PM US Central Time.  Email submissions to ruizuo11@utexas.edu.  
 
 
 ## Clustering and PCA
