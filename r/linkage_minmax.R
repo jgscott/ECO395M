@@ -1,5 +1,6 @@
 library(mvtnorm)
 library(ggplot2)
+
 mu1 = c(-1, 0)
 mu2 = c(1, 0)
 sigma1 = diag(0.4^2, 2)
