@@ -13,15 +13,6 @@ playlists_raw = read.csv("../data/playlists.csv")
 str(playlists_raw)
 summary(playlists_raw)
 
-# Barplot of top 20 artists
-# Cool use of magrittr pipes in plotting/summary workflow
-# the dot (.) means "plug in the argument coming from the left"
-playlists_raw$artist %>%
-	summary(., maxsum=Inf) %>%
-	sort(., decreasing=TRUE) %>%
-	head(., 20) %>%
-	barplot(., las=2, cex.names=0.6) 
-
 # Turn user into a factor
 playlists_raw$user = factor(playlists_raw$user)
 

@@ -59,7 +59,7 @@ corpus_test = corpus_test %>% tm_map(., content_transformer(tolower)) %>%
 DTM_train = DocumentTermMatrix(corpus_train)
 DTM_train # some basic summary statistics
 
-# restrict test-set vocabulary to the terms in DTM_train
+
 DTM_test = DocumentTermMatrix(corpus_test,
                                control = list(dictionary=Terms(DTM_train)))
 
@@ -75,6 +75,6 @@ plot(coef(logit1))
 yhat_test = predict(logit1, DTM_test, type='response')
 
 xtabs(~ {yhat_test > 0.5} + y_test)
-boxplot(as.numeric(yhat_test) ~ y_test)
+cboxplot(as.numeric(yhat_test) ~ y_test)
 
 

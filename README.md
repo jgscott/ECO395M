@@ -146,6 +146,13 @@ Miscellaneous:
 - [The Gephi quick-start tutorial](https://gephi.org/tutorials/gephi-tutorial-quick_start.pdf)  
 
 
+Scripts and data:  
+- [microfi_gamlr.R](r/microfi_gamlr.R)  
+- [microfi_households.csv](data/microfi_households.csv)  
+- [microfi_edges.txt](data/microfi_edges.txt)  
+
+microfi_gamlr.R
+
 ### Treatment effects
 
 Treatment effects; multi-armed bandits and Thompson sampling; high-dimensional confounders with the lasso.  
