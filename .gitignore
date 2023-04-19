@@ -51,3 +51,5 @@ data/ercot/dewpoint_impute.csv
 exercises_old/ 
 
 .DS_Store
+data/corpora/omw-1.4.zip
+data/corpora/wordnet.zip

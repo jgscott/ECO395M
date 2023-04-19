@@ -360,3 +360,24 @@ $$
   - Uses update and reset gates
   - Requires fewer parameters and is faster to train
 
+## GRUs
+
+- Gated Recurrent Units (GRUs) are a type of recurrent neural network (RNN)
+- They are designed to help with the vanishing gradient problem that can occur in traditional RNNs
+- Like RNNs, GRUs process sequences of input data and use a hidden state to retain information from previous inputs
+- However, GRUs have an additional gating mechanism that helps them selectively forget or remember information from the past, making them more efficient and effective than traditional RNNs
+
+## Math of a GRU Unit
+
+- GRUs have two gates, an update gate $z$ and a reset gate $r$, which control the flow of information through the unit.
+- The output $h$ is a combination of the previous hidden state $h_{t-1}$ and the current input $x_t$.
+
+The equations for a GRU unit are:
+
+- Update gate: $z_t = \sigma(W_z [h_{t-1}, x_t] + b_z)$
+- Reset gate: $r_t = \sigma(W_r [h_{t-1}, x_t] + b_r)$
+- Candidate hidden state: $\tilde{h_t} = \tanh(W_h [r_t * h_{t-1}, x_t] + b_h)$
+- Final hidden state: $h_t = (1 - z_t) * h_{t-1} + z_t * \tilde{h_t}$
+
+where $W_z$, $W_r$, and $W_h$ are weight matrices, $b_z$, $b_r$, and $b_h$ are bias vectors, and $*$ represents element-wise multiplication.
+
