@@ -782,6 +782,13 @@ We start by creating an adjacency matrix ($A$) from the data, e.g. based on a K 
 
 ![A KNN graph](fig/spectral/800px-028k8Epsilon.png){height=30%}
 
+# Step 1: Adjacency Matrix
+
+The adjacency matrix encodes more "topological" information than pairwise differences by focusing on relationships among data points.
+
+- Instead of measuring the raw distances between points, the adjacency matrix captures the local neighborhood structure, highlighting connections and disconnections between data points.
+- This approach is more sensitive to the overall shape of the data and can better reveal complex, non-linear patterns.
+
 
 # Step 2: Laplacian Matrix
 
@@ -807,5 +814,14 @@ Compute the eigenvalues and eigenvectors of the Laplacian Matrix (L).
 - Sort the eigenvalues in ascending order
 - Select the k smallest eigenvalues and their corresponding eigenvectors
 
-This step can be related to Fourier analysis, where the eigenvectors of the Laplacian matrix correspond to the frequencies of the data. The smallest eigenvalues and their corresponding eigenvectors reveal the low-frequency structure of the data, which is used for clustering.
+This step can be related to Fourier analysis, where the smallest eigenvalues and their corresponding eigenvectors reveal the "low-frequency structure" of the data across the graph, which is used for clustering.
 
+# Step 4: Clustering Algorithm
+
+The intuition is pretty hard here.
+
+At a high level, each eigenvector of $L$ represents a single feature, observed at each node in the graph, that encodes the adjacency structure of the data.  $K$ eigenvectors means $K$ features.  
+
+So now we just use any clustering algorithm, such as K-means, using the eigenvector features instead of the original data features.  
+
+Let's see `spectral_cluster.ipynb`.
