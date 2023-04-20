@@ -18,8 +18,8 @@ knitr::opts_chunk$set(cache = TRUE)
 1. Introduction to PCA  
 2. Brief reminder of some linear algebra notation  
 3. PCA as a projection  
-4. PCA as an optimization problem  
-5. PCA as a regression on latent variables
+4. Generalizing to more than one principal component
+5. PCA as an optimization problem  
 
 
 ## Introduction to PCA 
@@ -150,7 +150,7 @@ The trick to PCA is interpreting the summaries!
 
 Alas, PCA is less tasty than baking, and uses more linear algebra.  Say that $v \in \mathbb{R}^P$ is some vector.  This defines a _subspace_ of $\mathbb{R}^P$:
 $$
-\mathcal{V} = \left\{z: z = \alpha_i v, \alpha_i \in \mathbb{R}  \right\}
+\mathcal{V} = \left\{z: z = c v, c \in \mathbb{R}  \right\}
 $$
 
 ```{r, echo=FALSE, message=FALSE, fig.width = 4.2, fig.height = 3.2, fig.align='center'}
@@ -171,17 +171,17 @@ abline(0, slope)
 ## Some linear algebra reminders
 
 
-Now let $X$ be our usual $N \times P$ data matrix with rows $x_i^T$.   
+Let's say that $x_i = (x_{i1}, \ldots, x_{iP})$ represents our  data vector for the $i$th case.  
 
-Suppose we _project_ each $x_i^T$ in our data matrix onto the subspace $\mathcal{V}$.  The scalar location of this projected point in this subspace $\mathcal{V}$ is
+Now we summarize $x_i$ by _projecting_ it onto the subspace $\mathcal{V}$.  The scalar location of this projected point in this subspace $\mathcal{V}$ is
 
 $$
-\alpha_i = x_i \cdot v = x_i^T v
+c_i = x_i \cdot v = x_i^T v
 $$
 
 This is a one-number summary of our original point $x_i$.  A different choice of $v$ gives a different summary.  
 
-__Let's see a picture.__
+__Let's see a picture, then consider why this is true.__
 
 
 ## The original points
@@ -212,6 +212,23 @@ X_hat = alpha %*% v_try
 points(X_hat, pch=labs, col='blue', cex=2)
 ```
 
+## Projection and dot product  
+
+The projection of $x_i$ onto $\mathcal{V}$ is **the vector that lies in $\mathcal{V}$ and is closest to $x_i$.**  We can find this projection by minimizing the squared distance between $x_i$ and the projected point $z = c_i v$:
+   $$
+   \min_{c_i \in \mathcal{R}} \|x_i - c_i v\|^2
+   $$
+
+Take the derivative with respect to $c_i$ and set it to zero:
+   $$
+   \frac{d}{dc_i} \|x_i - c_i v\|^2 = 0
+   $$
+Solving for $c_i$, we find:
+   $$
+   c_i = x_i \cdot v = x_i^T v
+   $$
+
+This scalar location represents the position of the projected point in the subspace $\mathcal{V}$.
 
 ## Key ideas
 
@@ -220,7 +237,7 @@ Key idea 1: projection = summary
 
 - Each point's location along the subspace is a __one-number linear summary__ of a $P$-dimensional data vector:
 $$
-\alpha_i = x_i \cdot v = x_i^T v
+c_i = x_i \cdot v = x_i^T v
 $$
 - The goal of principal components analysis (PCA) is to find the "best" projection, i.e. the best linear summary of the original data points.  
 - But what does "best" actually mean?  
@@ -231,19 +248,19 @@ $$
 Key idea 2: the "best summary" is the one that preserves as much of the __variance__ in the original data points as possible.  
 
 - Intuition: we're already trying to crowd these P-dimensional points into 1-D.  We should give them "room to breathe" by crowding them on top of each other as little as possible _within_ that 1-D space!
-- More variance in the scores ($\alpha_i$) means more "spread out" summaries in 1-D.  
+- More variance in the scores ($c_i$) means more "spread out" summaries in 1-D.  
 - And the more they're spread out, the more we have preserved differences between the projected points that were present in the original points.  __See pca_intro.R__.
 
 
 
-## PCA as an optimization problem
+## Finding the first PC vector
 
 
 Given data points $x_1, \ldots, x_N$, with each $x_i \in \mathbb{R}^{P}$, and a candidate vector $v_1$, the variance of the projected points is
 $$
-\mathrm{variance} = \frac{1}{n} \sum_{i=1}^n \left[ \alpha_i -  \bar{\alpha}  \right]^2
+\mathrm{variance} = \frac{1}{n} \sum_{i=1}^n \left[ c_i -  \bar{c}  \right]^2
 $$
-where $\alpha_i x_i \cdot v_1$.  
+where $c_i x_i \cdot v_1$.  
 
 So we solve:
 $$
@@ -254,99 +271,145 @@ $$
 Note: we constrain $v_1$ to have length 1; otherwise we could blow up the variance of the projected points as large as we wanted to.  
 
 
-## PCA as an optimization problem
+## Finding the first PC vector
 
 
 The solution $v_1$ to this optimization problem:
 
 - is a unit-length vector of dimension $P$.  
 - is called the first principal component (synonyms: loading, rotation.)   
-- represents, via the set of its scalar multiples $\{\alpha v_1: \alpha \in \mathcal{R}\}$, the one-dimensional subspace capturing as much of the information in the original data matrix as possible.  
+- represents, via the set of its scalar multiples $\{c v_1: c \in \mathcal{R}\}$, the one-dimensional subspace capturing as much of the information in the original data matrix as possible.  
 
-The projected points $\alpha_i = x_i \cdot v$ are called the _scores_ on the first principal component.  
-
-
-## PCA as regression on latent variables  
+The projected points $c_i = x_i \cdot v$ are called the _scores_ on the first principal component.  
 
 
-We can think of the projected location of $x_i$ as an approximation to the original data point: $x_i \approx \hat{x}_i = \alpha_i v$.  
 
-Or to make the approximation error explicit:
-$$
-\begin{aligned}
-x_{ij} &= \hat{x}_{ij} + e_i \\
-&= \alpha_i v_{j} + e_i 
-\end{aligned}
-$$
-This is like a regression problem for the jth feature variable.  
+## Multiple Principal Components
 
-- The $\alpha_i$'s are like hidden (latent) features.  
-- $v_j$ is like a regression coefficient for observed variable $j$.  
-
-Thus PCA is like estimating $P$ regression coefficients $v_1 = (v_{11}, \ldots, v_{1P})$ all at once, where the feature variable is hidden. 
-
-
-## PCA as regression on latent variables  
-
-
-We can write the approximation for the whole matrix as follows:
+Now let $v_1, v_2, \dots, v_K$ be a set of $K$ unit-length, orthogonal vectors, each $P$-dimensional.  Consider the set of all linear combinations of these vectors:
 
 $$
-\begin{aligned}
-X &\approx
-\left(
-\begin{array}{r r r r}
-\alpha_1 v_{11} & \alpha_1 v_{12} & \cdots & \alpha_1 v_{1P} \\
-\alpha_2 v_{11} & \alpha_2 v_{12} & \cdots & \alpha_2 v_{1P} \\
-\vdots & \vdots & & \vdots \\
-\alpha_N v_{11} & \alpha_N v_{12} & \cdots & \alpha_N v_{1P} \\
-\end{array}
-\right) \\
-&= \alpha v_1^T \quad \mbox{(outer product of $\alpha$ and $v_1$)}
-\end{aligned}
+\mathcal{V} \equiv \operatorname{span}\{\mathbf{v}_1, \ldots, \mathbf{v}_K\} = \left\{ z: z = \sum_{k=1}^K c_k \mathbf{v}_k \mid c_1, \ldots, c_K \in \mathbb{R} \right\}
 $$
 
+Here the $v_k$'s are our "ingredients" and the $c_k$'s are our "amounts."  
 
-## PCA as regression on latent variables  
+Each $z$ living in this space is $P$-dimensional vector whose "real" dimension is only $K$---potentially much smaller!  
 
 
-And if we explicitly include the error term:
+## Projecting Data onto the Subspace
 
-$$
-X = \alpha v_1^T + E
-$$
-
-where $E$ is a residual matrix with entries
+To summarize our data matrix $X$, we project each data point $x_i$ onto the subspace $\mathcal{V}$, and the coordinates of the projected points in this subspace are given by:
 
 $$
-\begin{aligned}
-E_{ij} &= x_{ij} - \hat{x}_{ij} \\
-&= x_{ij} - \alpha_i v_{1j}  
-\end{aligned}
+\hat{x}_i = \operatorname{proj}_{\operatorname{span}\{\mathbf{v}_1, \ldots, \mathbf{v}_K\}}(x_i) = \sum_{k=1}^K \mathbf{v}_k (\mathbf{v}_k^T x_i)
+$$
+
+Or, more concisely:
+$$
+\hat{x}_i = \operatorname{proj}_{\operatorname{span}\{\mathbf{v}_1, \ldots, \mathbf{v}_K\}}(x_i) = \mathbf{V} \mathbf{V}^T x_i
+$$
+The "amounts" of each vector $v_k$ are given by the projection of $x_i$ onto $v_K$ (via a dot product; see earlier discussion.)
+
+
+## The Optimization Problem
+
+We want to find the orthonormal basis $V_K = \begin{bmatrix} | & | & & | \\ v_1 & v_2 & \dots & v_K \\ | & | & & | \end{bmatrix}$ that maximizes the projected variance.
+
+**Variance of Projected Data.**  Let $X$ be our data matrix with $N$ samples and $P$ features, and let $V_K$ be the matrix with $K$ orthonormal vectors as its columns. We want to project our data matrix $X$ onto the subspace spanned by the vectors in $V_K$. The projected data matrix is given by:
+
+$$
+A = XV_K
+$$
+
+Where $A \in \mathbb{R}^{N \times K}$ is the "summary" data matrix, i.e. where we've summarized each $x_i \in \mathcal{R}^P$ via its projection "score" $a_i \in \mathcal{R}^K$.  
+
+
+
+## Covariance Matrix of Projected Data
+
+To find the variance of the projected data, we compute the covariance matrix of the projected data matrix $A$:
+
+$$
+\Sigma_A = \frac{1}{N-1} A^T A = \frac{1}{N-1} (XV_K)^T (XV_K)
 $$
 
 
-## Higher-order principal components
+By substituting the expression for the covariance matrix of the original data $\Sigma = \frac{1}{N-1} X^T X$, we can simplify the covariance matrix of the projected data:
+
+$$
+\Sigma_A = V_K^T \Sigma V_K
+$$
 
 
-With this in place, we can now define PCs 2 and up!
+## Trace of Covariance Matrix and Sum of Variances
 
-- PC 2: run PCA on the residual matrix from PC 1.  
-- PC 3: run PCA on the residual matrix from PCs 1-2.  
-- $\cdots$
-- PC P: run PCA on the residual matrix from PCs 1-(P-1).
+Let's look at $\Sigma_A$ more closely:
 
-Thus principal component $M$ is defined recursively in terms of the fit from principal components 1 through $M-1$.
+$$
+\Sigma_A = \begin{bmatrix} \sigma_1^2 & \operatorname{Cov}(a_1, a_2) & \dots & \operatorname{Cov}(a_1, a_K) \\ \operatorname{Cov}(a_2, a_1) & \sigma_2^2 & \dots & \operatorname{Cov}(a_2, a_K) \\ \vdots & \vdots & \ddots & \vdots \\ \operatorname{Cov}(a_K, a_1) & \operatorname{Cov}(a_K, a_2) & \dots & \sigma_K^2 \end{bmatrix}
+$$
 
-Notes:  
+Since we are projecting onto the orthonormal basis $\{\mathbf{v}_1, \ldots, \mathbf{v}_K\}$, the projected components are uncorrelated. This means that the off-diagonal elements of $\Sigma_A$ are zero:
 
-- In practice we often stop with far fewer than $P$ principal components.  
-- This process is a thought experiment that serves to __define__ the PCs; it isn't how they're actually calculated in practice.  
+$$
+\operatorname{Cov}(a_i, a_j) = 0 \quad \forall i \neq j
+$$
+
+## Trace of Covariance Matrix and Sum of Variances
+
+So we have an unambigious optimization problem: maximizing the trace of the covariance matrix $\Sigma_A$ is equivalent to maximizing the sum of the variances of our "summary" variables.
+
+$$
+\operatorname{Tr}(\Sigma_A) = \sigma_1^2 + \sigma_2^2 + \dots + \sigma_K^2
+$$
+
+So define
+
+$$
+\max_{V_K} \operatorname{Tr}(V_K^T \Sigma V_K)
+$$
+
+Subject to the orthonormality constraint:
+
+$$
+V_K^T V_K = I_K
+$$
 
 
+## Lagrange Multipliers
 
-## Higher-order principal components
+To solve this constrained optimization problem, we introduce the Lagrange multipliers $\Lambda = \operatorname{diag}(\lambda_1, \lambda_2, \dots, \lambda_K)$, and define the Lagrangian function:
 
+$$
+\mathcal{L}(V_K, \Lambda) = \operatorname{Tr}(V_K^T \Sigma V_K) - \operatorname{Tr}(\Lambda^T(V_K^T V_K - I_K))
+$$
+
+To find the optimal $V_K$, we take the gradient of the Lagrangian with respect to $V_K$ and set it to zero:
+
+$$
+\nabla_{V_K} \mathcal{L}(V_K, \Lambda) = 2 \Sigma V_K - 2 V_K \Lambda = 0
+$$
+
+This leads to the eigenvalue equation:
+
+$$
+\Sigma V_K = V_K \Lambda
+$$
+
+---
+
+## Solution via Eigenvalue Decomposition
+
+This is how the PC vectors are actually found:
+
+1. Perform the eigenvalue decomposition of the covariance matrix $\Sigma$ to obtain the eigenvector matrix $V$ and the eigenvalue matrix $\Lambda$.
+2. Select the first $K$ eigenvectors corresponding to the $K$ largest eigenvalues to form the matrix $V_K$.
+
+The matrix $V_K$ represents the orthonormal basis that maximizes the variance of the projected data, and its columns are the principal component vectors.
+
+
+## Examples
 
 Let's see the examples in:
 

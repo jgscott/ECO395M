@@ -12,7 +12,7 @@ knitr::opts_chunk$set(cache = TRUE)
 ```
 
 
-## Outline
+# Outline
 
 
 1. Introduction to clustering
@@ -22,7 +22,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 
 
-## Introduction to clustering
+# Introduction to clustering
 
 
 You've seen a lot of models for $p(y \mid x)$.  This is _supervised learning_ (knowing outcomes $y$ = "supervision").  
@@ -34,8 +34,9 @@ Today: __clustering__
 - Clustering means dividing data points into categories which are not defined in advance.
 - It's different from _classification_: dividing data points into categories which _are_ defined in advance, and for which we have explicit labels.   
 
+---
 
-## Clustering: toy example
+# Clustering: toy example
 
 
 ```{r, echo=FALSE, fig.align='center', out.width='300px', fig.asp = 0.65}
@@ -46,7 +47,7 @@ knitr::include_graphics("fig/three_clusters_intro.png")
 - From these locations, we impute the cluster labels: $\gamma_i = k$ if point $i$ is in cluster $k \in \{1, \ldots, K\}$.   
 
 
-## Criteria for clustering
+# Criteria for clustering
 
 
 Clusters should partition the data:
@@ -59,7 +60,7 @@ knitr::include_graphics("fig/chiweenie.png")
 ```
 
 
-## Criteria for clustering
+# Criteria for clustering
 
 
 Data points within the same cluster should be close/similar, and data points in different clusters should be far apart/dissimilar.  
@@ -69,7 +70,7 @@ knitr::include_graphics("fig/husky.png")
 ```
 
 
-## Criteria for clustering
+# Criteria for clustering
 
 
 Clusters should (ideally) be balanced.  A sensible clustering of living creatures:  
@@ -79,7 +80,7 @@ knitr::include_graphics("fig/450px-Phylogenetic_tree.png")
 ```
 
 
-## Criteria for clustering
+# Criteria for clustering
 
 
 A less sensible clustering of living creatures:  
@@ -90,7 +91,7 @@ knitr::include_graphics("fig/walhberg.png")
 
 
 
-## How can we cluster without labels?
+# How can we cluster without labels?
 
 
 There are many algorithms which do this, i.e. try to find clusters that are homogenous, well separated, balanced, etc.  
@@ -100,7 +101,7 @@ Key fact: we need to know about distances to quantify similarity (within a clust
 Generically, if $x_i$ and $x_j$ are two data points, we let $d(x_i, x_j)$ denote the distance between them.  
 
 
-## Distance functions
+# Distance functions
 
 The basic properties of any distance function:
 
@@ -116,7 +117,7 @@ NB: in math, distance functions are called "metrics."
 
 
 
-## Distance functions
+# Distance functions
 
 
 - Euclidean ($\ell^2)$:
@@ -133,10 +134,10 @@ $$
 
 Let's draw these to fix the intuition.
 
-## Distance functions: let's draw
+# Distance functions: let's draw
 
 
-## Distance functions 
+# Distance functions 
 
 
 The $x$ points can be arbitrary objects in potentially crazy spaces:
@@ -149,8 +150,7 @@ The $x$ points can be arbitrary objects in potentially crazy spaces:
 As long as we can measure the distance between any two points, we can cluster them.  
 
 
-## A few miscellaneous notes  
-
+# A few miscellaneous notes  
 
 Clusters can be ambiguous:
 
@@ -165,7 +165,7 @@ knitr::include_graphics("fig/ambiguous.png")
 How many clusters do you see?
 
 
-## A few miscellaneous notes  
+# A few miscellaneous notes  
 
 
 We can organize algorithms into two broad classes:
@@ -174,7 +174,7 @@ We can organize algorithms into two broad classes:
 2. "partitional" clustering methods.  Here there is no tree or hierarchy, just a "flat" set of clusters.  
 
 
-## A few miscellaneous notes  
+# A few miscellaneous notes  
 
 
 Distance-based clustering isn't magic.  
@@ -192,7 +192,7 @@ Should blue cluster with red or with yellow?
 (We can often deal with situations like this by redefining what distance is.  The term here is "manifold learning.")
 
 
-## K-means clustering
+# K-means clustering
 
 
 K-means is the most popular, and simplest, partitional clustering approach.
@@ -209,7 +209,7 @@ The two questions with K-means are:
 We'll treat the second question first, holding off on the first question for now.  
 
 
-## K-means clustering
+# K-means clustering
 
 
 The basic algorithm is super simple: 
@@ -225,7 +225,7 @@ knitr::include_graphics("fig/kmeans_basic_algo.png")
 __That's it!__ Algorithms don't get any simpler in data science.  
 
 
-## K-means clustering: some practical details
+# K-means clustering: some practical details
 
 - The $K$ initial centroids are often chosen randomly. Thus the clusters produced vary from one run of K-means to another.  
 - The centroid is (typically) the mean of the points in the cluster (it's K __means__, after all!)    
@@ -235,28 +235,28 @@ __That's it!__ Algorithms don't get any simpler in data science.
 - Complexity of each iteration is is $O( n \cdot K  \cdot D)$ where $n$ is the number of data points, $K$ is the number of clusters, and $D$ is the number of features.  
 
 
-## Two different K-means Clusterings
+# Two different K-means Clusterings
 
 
 ```{r, out.width = "300px", fig.align='center', echo=FALSE}
 knitr::include_graphics("fig/kmeans/two_different_clusterings.png")
 ```
 
-## From one set of initial centroids
+# From one set of initial centroids
 
 
 ```{r, out.width = "300px", fig.align='center', echo=FALSE}
 knitr::include_graphics("fig/kmeans/initial1.png")
 ```
 
-## From a different set of initial centroids
+# From a different set of initial centroids
 
 
 ```{r, out.width = "300px", fig.align='center', echo=FALSE}
 knitr::include_graphics("fig/kmeans/initial2.png")
 ```
 
-## Ten initial centroids
+# Ten initial centroids
 
 
 ```{r, out.width = "250px", fig.align='center', echo=FALSE}
@@ -266,7 +266,7 @@ knitr::include_graphics("fig/kmeans/cluster10it1a.png")
 Each pair of clusters has two initial centroids.  
 
 
-## Ten initial centroids
+# Ten initial centroids
 
 
 ```{r, out.width = "275px", fig.align='center', echo=FALSE}
@@ -276,7 +276,7 @@ knitr::include_graphics("fig/kmeans/cluster10it5a.png")
 Not bad!
 
 
-## Ten initial centroids: another try
+# Ten initial centroids: another try
 
 
 ```{r, out.width = "250px", fig.align='center', echo=FALSE}
@@ -286,7 +286,7 @@ knitr::include_graphics("fig/kmeans/cluster10it1b.png")
 Now one pair of clusters has one centroid (another pair has three).  
 
 
-## Ten initial centroids: another try
+# Ten initial centroids: another try
 
 
 ```{r, out.width = "275px", fig.align='center', echo=FALSE}
@@ -295,7 +295,7 @@ knitr::include_graphics("fig/kmeans/cluster10it5b.png")
 Not as good!
 
 
-## Solutions to "Initial Centroids" Problem
+# Solutions to "Initial Centroids" Problem
 
 
 - Multiple restarts (might help, but probability not on your side)  
@@ -309,7 +309,7 @@ Not as good!
 
 
 
-## K-means++
+# K-means++
 
 Here's now K-means++ initialization works:  
 
@@ -325,10 +325,10 @@ Thus points that are far away from existing cluster centroids are more likely to
 Note: this is just a different initialization strategy.  After initialization, it works the same as K-means.  
 
 
-## K-means++: a cartoon
+# K-means++: a cartoon
 
 
-## K-means: evaluating in-sample fit
+# K-means: evaluating in-sample fit
 
 
 Let $m_k$ be cluster centroid $k$, and let $C_k$ be the set of points in cluster $k$ (i.e. for which $\gamma_i = k$).    Two properties of a "well-fitting" clustering:  
@@ -345,7 +345,7 @@ $$
 where $\bar{x}$ is the overall sample mean.  
 
 
-## K-means: example
+# K-means: example
 
 
 Let's see an example in `cars.R`.
@@ -353,7 +353,7 @@ Let's see an example in `cars.R`.
 
 
 
-## K-means only finds a local optimum  
+# K-means only finds a local optimum  
 
 K-means tries to minimize within-cluster SSE.  But:  
   
@@ -373,7 +373,7 @@ $$
     
    
 
-## The geometry of K-means
+# The geometry of K-means
 
 
 Let $m_1, \ldots, m_K$ be the cluster centroids, and define  
@@ -387,7 +387,7 @@ $$
 ```
   
   
-## The geometry of K-means
+# The geometry of K-means
   
   
 These $V_k$ are convex polyhedra, and they form something called a _Voronoi tesselation._  
@@ -399,7 +399,7 @@ K-means is best at recovering clusters shaped like multivariate Gaussians.
 __But__: k-means can often be successfully applied in conjunction with another algorithm to find non-convex clusters.  
 
 
-## Choosing K
+# Choosing K
 
 
 Remember: K is an _input_ to K-means, not an estimated parameter.  __There is no generally accepted "best" method for choosing K,__ and there never will be.  Recall this example:
@@ -411,7 +411,7 @@ knitr::include_graphics("fig/ambiguous.png")
 ```
 
 
-## Choosing K
+# Choosing K
 
 
 Unlike in supervised learning, we can't really cross validate, because we don't know the "true" cluster labels of points in a training set.
@@ -423,7 +423,7 @@ Some heuristics that people use in practice:
 - optimize one of many quantitative model-selection criteria (CH index, AIC, BIC, gap statistic...)
 
 
-## Choosing K
+# Choosing K
 
 
 But probably the most popular principle is this:
@@ -432,7 +432,7 @@ But probably the most popular principle is this:
 - __There is absolutely no shame in this, and smart people do it all the time.__
   
     
-## Elbow plot
+# Elbow plot
     
     
 Let's try many clustering with many different values of K:
@@ -454,10 +454,10 @@ SSE_grid = foreach(k = k_grid, .combine='c') %do% {
 Let's draw a cartoon of what this is "supposed to" look like.  
 
 
-## Elbow plot: cartoon  
+# Elbow plot: cartoon  
  
  
-## Elbow plot: reality
+# Elbow plot: reality
 
 ```{r, fig.width = 4, fig.asp = 0.85, fig.align='center', message=FALSE}
 plot(k_grid, SSE_grid) 
@@ -465,7 +465,7 @@ plot(k_grid, SSE_grid)
 
 Do you see an elbow?
 
-## Elbow plot: reality
+# Elbow plot: reality
 
 ```{r, out.width = "300px", fig.align='center', echo=FALSE}
 knitr::include_graphics("fig/plasticman.jpg")
@@ -475,7 +475,7 @@ A lot of elbow plots I've seen look more or less like this.
 
 Your mileage may vary!  
 
-## CH index
+# CH index
 
 
 The CH index is just one of many model-selection criteria that people have proposed for choosing K in K-means clustering.  It tries to balance fit with simplicity.  
@@ -489,7 +489,7 @@ W(K) &= \sum_{j=1}^K \sum_{x_i \in C_j} d(x_i, m_j)^2 \quad \mbox{("within")}
 $$
 
 
-## CH index
+# CH index
 
 
 The CH-index is defined as
@@ -504,7 +504,7 @@ So choose $\hat{K} = \arg \max CH(K)$.
 
 If you know about $F$-tests in regression and ANOVA, this statistic might look familiar.  
 
-## CH index
+# CH index
 
 Here we are computing CH index across our grid of $K$:
 
@@ -520,7 +520,7 @@ CH_grid = foreach(k = k_grid, .combine='c') %do% {
 }
 ```
 
-## CH index
+# CH index
 
 ```{r, fig.width = 4, fig.asp = 0.85, fig.align='center', message=FALSE}
 plot(k_grid, CH_grid, las=1)
@@ -529,7 +529,7 @@ plot(k_grid, CH_grid, las=1)
 Don't take "highest is best" too literally because these numbers are noisy.  Focus more on the topography rather than the absolute peak.
 
 
-## Gap statistic
+# Gap statistic
 
 Another popular method for choosing $K$ is the gap statistic:
 
@@ -541,7 +541,7 @@ $$
 $$
 Here the expected value is taken under the "null" assumpion of no clustering, i.e. where data points are distributed uniformly within the bounding box of the original data.\footnote{The details are fiddly here; see the `clusGap` function in the `cluster` package, particularly the `method` argument.}  
 
-## Gap statistic
+# Gap statistic
 
 
 ```{r, fig.width = 4, fig.asp = 0.7, fig.align='center', message=FALSE}
@@ -554,7 +554,7 @@ The default selection method basically just looks for the first local peak, up t
 
 Here that's at K=5.  
 
-## Gap statistic: output
+# Gap statistic: output
 
 
 \footnotesize
@@ -568,7 +568,7 @@ cars_gap
 The output helpfully tells you.
 
 
-## Summary of K-means
+# Summary of K-means
 
 Pros and cons:  
 
@@ -583,7 +583,7 @@ __To sum up, I'll tell you my Spotify K-means story.__
 
 
 
-## Hierarchical clustering
+# Hierarchical clustering
 
 Hierarchical clustering is, well, just what it sounds like.  
 
@@ -595,7 +595,7 @@ knitr::include_graphics("fig/hier/toy_tree.png")
 ```
 
 
-## Strengths of hierarchical clustering
+# Strengths of hierarchical clustering
 
 
 You don't have to assume any particular number of clusters.  
@@ -609,7 +609,7 @@ The hierarchy itself may correspond to meaningful taxonomies:
 - languages  
 - etc.  
 
-## For example
+# For example
 
 
 ```{r, out.width = "300px", fig.align='center', echo=FALSE}
@@ -617,7 +617,7 @@ knitr::include_graphics("fig/hier/language.png")
 ```
 
 
-## Hierarchical clustering
+# Hierarchical clustering
 
 
 Two main types of hierarchical clustering
@@ -634,7 +634,7 @@ Two main types of hierarchical clustering
 
 
 
-## Agglomerative clustering
+# Agglomerative clustering
 
 
 The basic algorithm is straightforward: start with every point in its own cluster and compute a proximity matrix $D(i, j)$ between every pair of points $i$ and $j$.  
@@ -647,58 +647,58 @@ The basic algorithm is straightforward: start with every point in its own cluste
 Key operation is the computation of the proximity of two clusters.  Different approaches to defining the distance between clusters distinguish the different algorithms.  
 
 
-## Agglomerative clustering
+# Agglomerative clustering
 
 
 Start with a bunch of points and a proximity matrix:  
   
-  ```{r, out.width = "300px", fig.align='center', echo=FALSE}
+```{r, out.width = "300px", fig.align='center', echo=FALSE}
 knitr::include_graphics("fig/hier/proxmat1.png")
 ```
 
 
-## Agglomerative clustering
+# Agglomerative clustering
 
 
 After some merging steps, we have a handful of clusters:
   
-  ```{r, out.width = "300px", fig.align='center', echo=FALSE}
+```{r, out.width = "300px", fig.align='center', echo=FALSE}
 knitr::include_graphics("fig/hier/proxmat2.png")
 ```
 
 
-## Agglomerative clustering
+# Agglomerative clustering
 
 
 We want to merge C2 and C5 and update the proximity matrix:
   
-  ```{r, out.width = "300px", fig.align='center', echo=FALSE}
+```{r, out.width = "300px", fig.align='center', echo=FALSE}
 knitr::include_graphics("fig/hier/proxmat3.png")
 ```
 
-## Agglomerative clustering
+# Agglomerative clustering
 
 
 But how?
   
-  ```{r, out.width = "300px", fig.align='center', echo=FALSE}
+```{r, out.width = "300px", fig.align='center', echo=FALSE}
 knitr::include_graphics("fig/hier/proxmat4.png")
 ```
 
 
-## Agglomerative clustering
+# Agglomerative clustering
 
 
 The key math question is: how do we measure similarity/distance between two clusters of points?
   
-  ```{r, out.width = "300px", fig.align='center', echo=FALSE}
+```{r, out.width = "300px", fig.align='center', echo=FALSE}
 knitr::include_graphics("fig/hier/proxmat5.png")
 ```
 
 Four obvious options: min, max, average, centroids.  There are called "linkage functions" (for historical reasons having to do with the application of these ideas in statistical genetics).   
 
 
-## Min linkage ("single" in R)
+# Min linkage ("single" in R)
 
 
 ```{r, out.width = "275px", fig.align='center', echo=FALSE}
@@ -708,7 +708,7 @@ knitr::include_graphics("fig/hier/linkage_min.png")
 The minimum distance between two points, one in each cluster.  
 
 
-## Max linkage ("complete" in R)
+# Max linkage ("complete" in R)
 
 
 ```{r, out.width = "275px", fig.align='center', echo=FALSE}
@@ -718,7 +718,7 @@ knitr::include_graphics("fig/hier/linkage_max.png")
 The maximum distance between two points, one in each cluster.  
 
 
-## Average linkage ("average" in R)
+# Average linkage ("average" in R)
 
 
 ```{r, out.width = "275px", fig.align='center', echo=FALSE}
@@ -728,7 +728,7 @@ knitr::include_graphics("fig/hier/linkage_avg.png")
 The average distance between all pairs of points, one in each cluster.  
 
 
-## Centroid linkage ("centroid" in R)
+# Centroid linkage ("centroid" in R)
 
 
 ```{r, out.width = "275px", fig.align='center', echo=FALSE}
@@ -738,7 +738,7 @@ knitr::include_graphics("fig/hier/linkage_centroid.png")
 The distance between the centroids of each cluster.  
 
 
-## Choice of linkage function
+# Choice of linkage function
 
 
 Each has its own pros and cons:  
@@ -749,10 +749,63 @@ Each has its own pros and cons:
 
 See `linkage_minmax.R` and `hclust_examples.R`, where we'll see these ideas in action and show how to get a desired number of clusters by "cutting" the dendrogram.  
 
-## Agglomerative clustering: a few facts
+# Agglomerative clustering: a few facts
 
 
 - $O(N^2)$ space, since the proximity matrix must be stored  
 - Can be as slow as $O(N^3)$ in time, since there are $N$ steps and each step might take $O(N^2)$ time to update the proximity matrix.  
 - All the same model-selection criteria for choosing K in K-means also work for choosing where to cut the tree in hierarchical clustering.  
+
+
+
+# Spectral Clustering
+
+Spectral clustering is an unsupervised machine learning technique for partitioning data into groups or clusters based on their similarity. It is particularly effective for discovering non-linear relationships in the data.
+
+![Spectral Clustering](fig/spectral/64690spect.png)
+
+# Key Concepts
+
+1. Adjacency Matrix
+2. Laplacian Matrix
+3. Eigenvalues & Eigenvectors
+4. Clustering Algorithm (e.g., K-means)
+
+![Key Concepts](fig/spectral/spectral2.jpg)
+
+# Step 1: Adjacency Matrix
+
+We start by creating an adjacency matrix ($A$) from the data, e.g. based on a K nearest neighbor graph. The adjacency matrix tells us which data points are close to each other.  In simple terms:
+
+- $A_{ij} = 1$ if data points $i$ and $j$ are "close" (e.g. connected on the KNN graph).  
+- $A_{ij} = 0$ otherwise
+
+![A KNN graph](fig/spectral/800px-028k8Epsilon.png){height=30%}
+
+
+# Step 2: Laplacian Matrix
+
+Compute the Laplacian Matrix (L) using the adjacency matrix (A) and the degree matrix (D).
+
+$$
+D_{ii} = \text{degree of node i}
+$$
+
+$$
+L = D - A
+$$
+
+The Laplacian matrix is a representation of the graph that captures both the connectivity and the degrees of the nodes. It can be seen as a discrete analogue of the Laplace operator, which is used in Fourier analysis to study the frequency domain of functions.
+
+Spectral clustering leverages this connection to reveal the underlying structure of the data.
+
+
+# Step 3: Eigenvalues & Eigenvectors
+
+Compute the eigenvalues and eigenvectors of the Laplacian Matrix (L).
+
+- Sort the eigenvalues in ascending order
+- Select the k smallest eigenvalues and their corresponding eigenvectors
+
+This step can be related to Fourier analysis, where the eigenvectors of the Laplacian matrix correspond to the frequencies of the data. The smallest eigenvalues and their corresponding eigenvectors reveal the low-frequency structure of the data, which is used for clustering.
 

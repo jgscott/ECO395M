@@ -53,3 +53,5 @@ exercises_old/
 .DS_Store
 data/corpora/omw-1.4.zip
 data/corpora/wordnet.zip
+slides/07-clustering/07-clustering_cache/beamer/__packages
+*.log
