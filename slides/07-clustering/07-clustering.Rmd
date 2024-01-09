@@ -19,7 +19,7 @@ knitr::opts_chunk$set(cache = TRUE)
 2. K-means  
 3. Implementing K-means: some practical details  
 4. Hierarchical clustering  
-
+5. Spectral clustering  
 
 
 # Introduction to clustering

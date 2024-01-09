@@ -1,5 +1,5 @@
 ---
-title: "Principal components analysis"
+title: "Dimensionality reduction: PCA and tSNE"
 author: "James Scott"
 date: "Reference: Introduction to Statistical Learning Chapter 10.1-10.2"
 output: beamer_presentation
@@ -20,7 +20,7 @@ knitr::opts_chunk$set(cache = TRUE)
 3. PCA as a projection  
 4. Generalizing to more than one principal component
 5. PCA as an optimization problem  
-
+6. tSNE for visualization  
 
 ## Introduction to PCA 
 
@@ -311,7 +311,7 @@ $$
 $$
 The "amounts" of each vector $v_k$ are given by the projection of $x_i$ onto $v_K$ (via a dot product; see earlier discussion.)
 
-
+<!--
 ## The Optimization Problem
 
 We want to find the orthonormal basis $V_K = \begin{bmatrix} | & | & & | \\ v_1 & v_2 & \dots & v_K \\ | & | & & | \end{bmatrix}$ that maximizes the projected variance.
@@ -408,14 +408,98 @@ This is how the PC vectors are actually found:
 
 The matrix $V_K$ represents the orthonormal basis that maximizes the variance of the projected data, and its columns are the principal component vectors.
 
+-->
 
 ## Examples
 
 Let's see the examples in:
 
 - `nbc.R` 
-- `congress109.R`
 - `ercot_PCA.R`  
+
+If time, we'll also look at `congress109.R`.
 
 These examples will help us learn to answer the million-dollar question in PCA: what do the summaries mean?  
 
+## Introduction to tSNE   
+
+Recall that PCA provides a _linear_ summary of a high-dimensional set of input features.  But what if a linear summary just isn't a good summary?
+
+```{r, echo=FALSE, message=FALSE, fig.align='center', fig.height=2.25}
+# Import necessary libraries
+library(ggplot2)
+
+# Define parameters
+n_points <- 1000
+t <- seq(0, 4*pi, length.out = n_points)  # Defines how "tight" the spiral is
+radius <- seq(0, 1, length.out = n_points)  # Defines the "radius" of the spiral
+
+# Create x and y coordinates
+x <- radius * cos(t) + rnorm(n_points, 0, 0.02)
+y <- radius * sin(t) + rnorm(n_points, 0, 0.02)
+
+# Create a data frame
+df <- data.frame(x = x, y = y)
+
+# Create a scatter plot
+ggplot(df, aes(x = x, y = y)) +
+  geom_point(size = 1, color = 'blue') +
+  theme_minimal() +
+  coord_fixed()
+```
+
+## tSNE
+
+There are _a lot_ of ways to do nonlinear dimensionality reduction.
+
+Today we'll talk about tSNE (t-Distributed Stochastic Neighbor Embedding):
+
+- the most popular non-linear dimensionality reduction technique  
+- particularly well suited for embedding high-dimensional data into a space of _two_ (or maybe _three_) dimensions, which can then be visualized in a scatter plot.   
+- It's often (though not always) combined with other dimensionality reduction techniques like PCA.   
+
+__It's my favorite trick for exploratory plots of high-D data.__  
+
+## Why tSNE?  
+
+- tSNE preserves the local structure of the data. Data points that are close together in the high-dimensional space remain close together in the low-dimensional space.
+
+- The visualizations produced by t-SNE are easy to interpret. Each instance corresponds to a point in the scatterplot, and similar instances are modeled by nearby points.  
+
+- tSNE is generally faster and more computationally efficient than other nonlinear dimensionality reduction techniques.  __Few hyperparameters, no neural network training loop.__
+
+
+## Working principle of tSNE
+
+1. tSNE calculates two probabilities for each pair of points:
+  - the probability of similarity of the points in the original, high-D space  
+  - the probability of similarity of the points in the corresponding low-D space (typically in the 2D plane).  
+
+2. It then tries to minimize the difference between these probabilities by finding an optimal location for each point in the low-D space.  
+
+
+## Understanding "Probability of Similarity" in t-SNE
+
+In t-SNE, the "probability of similarity" is a way of quantifying the closeness of a pair of points.  
+
+- __In High-D Space:__ t-SNE models similarity by imagining a Gaussian distribution centered at this point and then measuring the density of nearby points.
+
+- __In Low-D Space:__ t-SNE models similarity using a t-distribution, which has heavier tails than a Gaussian distribution. (Why?  No deep theory; the plots are just prettier.)  
+
+- __Minimizing the Difference__: t-SNE then tries to make the low-dimensional similarities as close as possible to the high-dimensional ones by minimizing the divergence between the two distributions.  
+
+
+
+## t-SNE Hyperparameters
+
+t-SNE has a few key hyperparameters that can significantly impact the results. 
+
+- Number of Components (`n_components`): the dimensionality of the embedded space (usually set to 2 for visualization purposes).
+- `perplexity`: hard to interpret exactly, but can be thought of as a dial controlling the balance between maintaining the local and global structure of the data. Typical values: 5 to 50.  
+- `early_exaggeration`: controls how much space will be between natural clusters in the embedded space; default in `sklearn` is 12.0. High values tend to separate clusters better but can also "hallucinate" clusters.
+
+Remember that every dataset is unique, so the "best" hyperparameters can differ. Experimentation helps!  
+
+## Examples
+
+Let's see the examples in `tSNE.ipynb`.  

@@ -16,7 +16,7 @@ Tuesday, 1-2 PM, via Zoom (link on Canvas).
 Wednesdays in person, 2:00-3:00 PM, Welch 5.228G.     
 
 
-## Topics outline  
+## Topics outline
 
 I assume that you start the semester with a basic understanding of R and data visualization, at the level of [Lessons 1-5 of Data Science in R: A Gentle Introduction](https://bookdown.org/jgscott/DSGI/plots.html).  This material was covered in ECO 394D, and although we'll review some of these skills in the course of learning new stuff, it's expected that you're familiar with these lessons from day 1.  
 
@@ -25,17 +25,17 @@ I assume that you start the semester with a basic understanding of R and data vi
 
 [Slides here.](slides/01-intro/01_intro.pdf)  
 
-Topics: Good data-curation and data-analysis practices; R; Markdown and RMarkdown; the importance of replicable analyses; version control with Git and Github.  Visualization and data workflow.  
+Topics: Good data-curation and data-analysis practices; R; Markdown and RMarkdown; Jupyter; the importance of replicable analyses; version control with Git and Github. 
 
 Resources to learn Github and RMarkdown:  
 - [Introduction to RMarkdown](http://rmarkdown.rstudio.com) and [RMarkdown tutorial](https://rmarkdown.rstudio.com/lesson-1.html)  
 - [Introduction to GitHub](https://guides.github.com/activities/hello-world/)   
 - [Getting starting with GitHub Desktop](https://help.github.com/en/desktop/getting-started-with-github-desktop)  
 
-[Jeff Leek's guide to sharing data](https://github.com/jtleek/datasharing) is a great resource.  
 
 
-### Basic concepts in statistical learning  
+
+### Basic concepts in statistical learning
 
 [Slides here.](slides/02-intro_learning/02_intro_learning.pdf)  
 
@@ -48,7 +48,7 @@ In class:
 - [utilities.csv](./data/utilities.csv)  
 
 
-### Linear models  
+### Linear models
 
 [Slides here.](slides/03-linear_regression/03_linear_models.pdf)  
 
@@ -78,7 +78,7 @@ In class:
 - [glass_LDA.R](r/glass_LDA.R)  
 
 
-### Model selection and regularization  
+### Model selection and regularization
 
 [Slides here.](slides/05-selection_regularization/05-selection_regularization.pdf)  
 
@@ -101,7 +101,7 @@ Reading: Chapter 8 of _Introduction to Statistical Learning_.
 [The pdp package](https://journal.r-project.org/archive/2017/RJ-2017-016/RJ-2017-016.pdf) for partial dependence plots from nonparametric regression models.  
 
 
-### Unsupervised learning: clustering    
+### Clustering
 
 [Slides here.](slides/07-clustering/07-clustering.pdf)  
 Reading: chapter 10.3 of _Introduction to Statistical Learning_.
@@ -112,7 +112,10 @@ In class:
 - [linkage_minmax.R](r/linkage_minmax.R)  
 
 
-### Unsupervised learning: PCA 
+### Dimensionality reduction: PCA and tSNE
+
+Principal component analysis (PCA).  T-distributed stochastic neighbor embedding (tSNE).  
+
 
 Reading: rest of chapter 10 of _Introduction to Statistical Learning_.
 
@@ -122,14 +125,15 @@ Reading: rest of chapter 10 of _Introduction to Statistical Learning_.
 - [nbc.R](r/nbc.R), [nbc_showdetails.csv](data/nbc_showdetails.csv), [nbc_pilotsurvey.csv](data/nbc_pilotsurvey.csv)   
 - [congress109.R](r/congress109.R)   
 - [ercot_PCA.R](r/ercot_PCA.R), [ercot.zip](data/ercot.zip)  
+- [tSNE.ipynb](notebooks/tSNE.ipynb)  
 
 
-### Text
 
-[Slides on text](notes/text_intro.pdf).   
+### Neural networks: the basics
 
-- [tm_examples.R](r/tm_examples.R) 
-- [smallbeer.R](r/smallbeer.R) 
+[Intro to neural network slides here.](slides/09_neural_nets/neural_nets.pdf)  [Jupyter notebooks here.](notebooks/)
+
+
 
 
 ### Unsupervised learning: networks and association rules
@@ -151,38 +155,27 @@ Scripts and data:
 - [microfi_households.csv](data/microfi_households.csv)  
 - [microfi_edges.txt](data/microfi_edges.txt)  
 
-microfi_gamlr.R
+
 
 ### Treatment effects
 
-Treatment effects; multi-armed bandits and Thompson sampling; high-dimensional confounders with the lasso.  
+Treatment effects; multi-armed bandits and Thompson sampling; high-dimensional treatment effects with the lasso.  
 
 Slides:  
-- [Treatments](slides/Treatments.pdf).   
+- [Treatments](slides/10_treatments/treatments.pdf).   
 
 Scripts and data:  
 - [mab.R](r/mab.R) and [Ads_CTR_Optimisation.csv](data/Ads_CTR_Optimisation.csv)  
-- [smallbeer.R](r/smallbeer.R) and [smallbeer.csv](data/smallbeer.csv)  
+- [abortion.R](r/abortion.R) and [abortion.dat](data/abortion.dat)  
+- [smallbeer.R](r/smallbeer.R) and [smallbeer.csv](data/smallbeer.csv)   
 
 
-### Resampling methods   
+### Text
 
-[Slides here.](slides/bootstrap_VAR.pdf)    
-    
- In class:  
-- [portfolio.R](r/portfolio.R)  
+[Slides on text](notes/text_intro.pdf).   
 
-<!-- 
-[Slides here.](http://rpubs.com/jgscott/resampling)    
-  
-In class:  
-- [bootstrap.R](r/bootstrap.R)  
-- [residual_resampling.R](r/residual_resampling.R)  
-- [predimed_bootstrap.R](data/predimed_bootstrap.R)    
-- [chymotrypsin.csv](data/chymotrypsin.csv)   
-- [ethanol.csv](data/ethanol.csv)    
-- [predimed.csv](data/predimed.csv)    
- -->
+- [tm_examples.R](r/tm_examples.R) 
+- [smallbeer.R](r/smallbeer.R) 
 
 
 

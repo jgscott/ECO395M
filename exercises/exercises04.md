@@ -26,8 +26,22 @@ Your task to is analyze this data as you see fit, and to prepare a (short!) repo
 
 
 
-## Association rules for grocery purchases 
+## Association rules for grocery purchases
 
 Revisit the notes on association rule mining and the R example on music playlists: [playlists.R](../R/playlists.R) and [playlists.csv](../data/playlists.csv).  Then use the data on grocery purchases in [groceries.txt](../data/groceries.txt) and find some interesting association rules for these shopping baskets.  The data file is a list of shopping baskets: one person's basket for each row, with multiple items per row separated by commas -- you'll have to cobble together a few utilities for processing this into the format expected by the "arules" package.  Pick your own thresholds for lift and confidence; just be clear what these thresholds are and how you picked them.  Do your discovered item sets make sense?  Present your discoveries in an interesting and concise way.  
+
+
+
+## Image classification with neural networks
+
+In this problem, you will train a neural network to classify satellite images.  In the [data/EuroSAT_RGB](https://github.com/jgscott/STA380/tree/master/data/EuroSAT_RGB) directory, you will find 11 subdirectories, each corresponding to a different class of land or land use: e.g. industrial, crops, rivers, forest, etc.  Within each subdirectory, you will find examples in .jpg format of each type.  (Thus the name of the directory in which the image lives is the class label.)  
+
+Your job is to set up a neural network that can classify the images as accurately as possible.  Use an 80/20 train test split.  Summarize your model and its accuracy in any way you see fit, but make you include _at a minimum_ the following elements:
+
+- overall test-set accuracy, measured however you think is appropriate   
+- show some of the example images from the test set, together with your model's predicted classes. 
+- a confusion matrix showing the performance of the model on the set test, i.e. a table that cross-tabulates each test set example by (actual class, predicted class).  
+
+I strongly recommend the use of PyTorch in a Jupyter notebook for this problem; look into PyTorch's `ImageFolder` data set class, which will streamline things considerably.  
 
 
