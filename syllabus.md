@@ -1,4 +1,4 @@
-# ECO 395M: Data Mining and Statistical Learning  
+# ECO 395M: Data Mining and Statistical Learning
 
 ## Course details
 
@@ -6,7 +6,7 @@
 - Course website: http://www.github.com/jgscott/ECO395M/
 - Teaching assistant: Rui Zou (ruizuo11@utexas.edu)
 
-Office hours: Tuesday 1-2 PM (Zoom link on Canvas).  Wednesdays 2-3 PM in Welch 5.228G.   
+Office hours: MW 1-2 PM in CBA 6.478
 
 
 ## Overview
@@ -22,10 +22,11 @@ The prerequisites are the Statistics and Probability course and the Econometrics
 
 Lectures will take place in person in BRB 1.118.
 
-## Software 
+## Software
 
-Please install the following free pieces of software on your own machine:  
-- Statistical computing: [R](http://www.r-project.org) and [RStudio](http://www.rstudio.com), a free, platform-independent graphical front-end for R.  Make sure you have both R and RStudio installed, along with the [RMarkdown package](http://rmarkdown.rstudio.com).   
+We'll rely on the following software:  
+- [R](http://www.r-project.org) and [RStudio](http://www.rstudio.com), a free, platform-independent graphical front-end for R.  Make sure you have both R and RStudio installed, along with the [RMarkdown package](http://rmarkdown.rstudio.com).   
+- Python, specifically in the form of Jupyter notebooks.  You can either install Python and Jupyter on your machine
 - Other software: please [install Git and create a GitHub account](https://help.github.com/articles/set-up-git/), if you don't already have one.  You will use GitHub for version control and to submit your assignments.  
 
 
@@ -40,11 +41,10 @@ I'll also occasionally draw on two other references:
 - _DSGI_: selections from [_Data Science in R: A Gentle Introduction_](https://bookdown.org/jgscott/DSGI/), by James Scott.  
 
 
-## Outline of topics  
+## Outline of topics
 
 The core topics we will cover in this course are as follows.  The corresponding readings are in parentheses.  See the [course homepage](README.md) for more details on each topic.    
 - The data scientist's toolbox: R; Markdown and RMarkdown; version control with Git and Github (lecture notes).  
-- Data wrangling (DSGI Ch 6)
 - Statistical learning: some introductory concepts (ISL Ch 1-2)
 - Linear regression (ISL Ch 3).  
 - Classification (ISL Ch 4).  
@@ -62,7 +62,7 @@ If there's time, we will try to cover some or all of the following supplemental 
 - Causal inference.  
 
 
-## Assignments and grading  
+## Assignments and grading
 
 There are no in-class exams and no final exam.  
 
@@ -71,7 +71,7 @@ Your grade for this course will come from:
 - 40% final project, which will be like a bigger, more complex version of your homework problems.  
 
 
-### Homework  
+### Homework
 
 The homework assignments consist mainly of analyzing some data and writing a report on what you've found.  Here's the submission protocol:  
 - Prepare your report as a single RMarkdown file.  
@@ -88,7 +88,7 @@ All other late assignments will be penalized 10 points per day or partial day th
 
 
 
-### Final project  
+### Final project
 
 The assignment for the final project is simple: pose an interesting question; collect a relevant data set; and use the data, in conjuction with the tools we have learned in class, to answer the question you have posed. Make sure to address any shortcomings in the answer provided by your data and analysis. You will be evaluated both on the technical correctness (50%) and the overall intellectual quality (50%) of your approach and write-up.  
 
@@ -122,7 +122,7 @@ I do not round grades.  Attendance is not an explicit component of your class gr
 
 ## Miscellaneous policies and notices
 
-### If you need help, please just ask :-)  
+### If you need help, please just ask :-)
 
 Your success in this class is important to me. We will all need accommodations becausewe all learn differently. If there are aspects of this course that prevent you from learning or exclude you, please let me know as soon as possible. Together we’ll develop strategies to meet both your needs and the requirements of the course. I also encourage you to reach out to the student resources available through UT.  I am happy to connect you with a person or Center if you would like.   This includes any of the following:  
 
@@ -135,7 +135,7 @@ Your success in this class is important to me. We will all need accommodations b
 Class rosters are provided to me with each student’s legal name, but I will gladly address you with whatever name and pronouns you feel most comfortable with. Please let me your preferences!  
 
 
-### Academic Integrity  
+### Academic Integrity
 
 Each student in the course is expected to abide by the University of Texas Honor Code: “As a student of The University of Texas at Austin, I shall abide by the core values of the University and uphold academic integrity.” Plagiarism is taken very seriously at UT. Therefore, if you use words or ideas that are not your own (or that you have used in previous class), you must cite your sources. Otherwise you will be guilty of plagiarism and subject to academic disciplinary action, including failure of the course. You are responsible for understanding UT’s Academic Honesty and the	University Honor Code which can be found at the following web address: [http://deanofstudents.utexas.edu/sjs/acint_student.php](http://deanofstudents.utexas.edu/sjs/acint_student.php)  
 
@@ -145,7 +145,7 @@ Each student in the course is expected to abide by the University of Texas Honor
 If you want to drop a class after the 12th class day, you’ll need to execute a Q drop before the Q-drop deadline, which typically occurs near the middle of the semester. Under Texas law, you are only allowed six Q drops while you are in college at any public Texas institution. For more information, see: http://www.utexas.edu/ugs/csacc/academic/adddrop/qdrop
  
 
-### Important Safety Information:  
+### Important Safety Information:
 
 If you have concerns about the safety or behavior of fellow students, TAs or Professors, call BCAL (the Behavior Concerns Advice Line):  512-232-5050. Your call can be anonymous.  Trust your instincts and share your concerns.
 
