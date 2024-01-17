@@ -1,6 +1,6 @@
 # ECO 395M: Data Mining and Statistical Learning
 
-Welcome to the Spring 2023 edition of ECO 395M, a course on data mining and statistical learning for students in the Master's program in Economics at UT-Austin.  All course materials can be found through this GitHub page.  Please see the [course syllabus](syllabus.md) for details about:  
+Welcome to the Spring 2024 edition of ECO 395M, a course on data mining and statistical learning for students in the Master's program in Economics at UT-Austin.  All course materials can be found through this GitHub page.  Please see the [course syllabus](syllabus.md) for details about:  
 
 - expectations  
 - assignments and grading  
@@ -11,9 +11,7 @@ The exercises will be [posted here](https://github.com/jgscott/ECO395M/tree/mast
 
 ## Office hours
 
-Tuesday, 1-2 PM, via Zoom (link on Canvas).
-
-Wednesdays in person, 2:00-3:00 PM, Welch 5.228G.     
+MW 1-2 PM in CBA 6.478
 
 
 ## Topics outline
