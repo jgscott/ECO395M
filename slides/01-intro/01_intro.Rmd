@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
-## What is this course about?
+# What is this course about?  
 
 
 This class is about gaining knowledge from raw data.  You'll learn to use large and complicated data sets to make better decisions.
@@ -24,7 +24,7 @@ A mix of practice and principles:
 We’ll learn what to trust, how to use it, and how to learn more.
 
 
-## Supervised learning.
+# Supervised learning  
 
 Think "fancy regression":
 
@@ -36,7 +36,7 @@ find patterns that allow us to predict $y$ using $x$?
 In real life, there might be hundreds or thousands of features.  OLS might be where you start, but it's rarely where you stop.  
 
 
-## Unsupervised learning.
+# Unsupervised learning  
 
 This takes us beyond regression, or anything like it:  
 
@@ -49,7 +49,7 @@ Examples:
   - "Here's data on every tweet from all 145K followers of @VitaminWater.  Tell us about the different kinds of people who follow this brand."   
 
 
-## An alphabet soup of labels...
+# An alphabet soup of labels...
 
 Statistical learning, data mining, data science, ML, AI... there are many labels for what we’re doing!
 
@@ -58,7 +58,7 @@ Statistical learning, data mining, data science, ML, AI... there are many labels
 - Machine learning, pattern recognition, artificial intelligence: focused on algorithms with engineering-style performance guarantees.  
 
 
-## About "data mining"...
+# About "data mining"...
 
 
 Among economists, "data mining" is a dirty word.
@@ -72,7 +72,7 @@ Example: the "Lucas critique":
 This is a total caricature.  We'll strive to give data mining a better reputation :-)
 
 
-## About "data mining"...
+# About "data mining"...
 
 
 Some data-mining tools are familiar, or familiar with a twist:
@@ -92,7 +92,7 @@ Some are totally new:
 
 
 
-## People use these tools everywhere
+# People use these tools everywhere
 
 
 - Mining client information: Who buys your stuff, what do they pay, what do they think of your new product?
@@ -210,3 +210,4 @@ You can use git either through:
 - the command line in a Unix/Linux shell (the hard-core coder's approach)  
 - a graphical front-end (e.g. [GitHub Desktop](https://help.github.com/en/desktop/getting-started-with-github-desktop), SourceTree).  I strongly recommend this for git first-timers!    
 
+You'll turn in your homework by posting a link to your Github repo (either RMarkdown or Jupyter)  
