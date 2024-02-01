@@ -57,6 +57,9 @@ library(ggplot2)
 library(tidyverse)
 library(mosaic)
 
+flights = read.csv("/Users/josephwilliams/Desktop/Github_Repos/ECO395M-StatLearning/exercises-staging/data/airport-codes.csv")
+
+
 
 ```
 
