@@ -19,3 +19,6 @@ table(y=spamfit$y, yhat=yhat_train)
 probhat_test = predict(lm1, newdata=spamtest)
 yhat_test = ifelse(probhat_test >= 0.5, 1, 0)
 table(y=spamtest$y, yhat=yhat_test)
+
+
+logit_spam = glm(y ~ ., data=spamfit, family='binomial')

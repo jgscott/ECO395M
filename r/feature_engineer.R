@@ -107,7 +107,6 @@ lm4 = lm(COAST ~ KHOU + KHOU_squared + month + weeks_elapsed +
            hour + wday + hour:wday, data=load_train)
 
 # a bit of an improvement
-rmse(lm4, load_train)
 rmse(lm4, load_test)
 
 # how big is our model?

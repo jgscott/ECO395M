@@ -11,7 +11,7 @@ The exercises will be [posted here](https://github.com/jgscott/ECO395M/tree/mast
 
 ## Office hours
 
-MW 1-2 PM in CBA 6.478
+Mondays and Wednesdays 1-2 PM in Welch 5.228G. The best way to get here is to enter into Welch Hall through the glass doors along the Speedway side of the building. You should be in a large atrium with a large video screen on the far wall. Please use the elevator on the rightmost (northern) side of this atrium and head up to the 5th floor. Take a left out of the elevator and then an immediate right down the hallway. Enter through the main office in Welch 5.216, which has big-frosted glass walls.  Proceed from there to the hallway with my office.
 
 
 ## Topics outline

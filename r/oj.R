@@ -90,6 +90,7 @@ summary(reg_ads3)
 ## fit plots for the 3-way interaction
 
 # Add predictions to the data frame
+oj$reg_ads2_fitted = fitted(reg_ads2)
 oj$reg_ads3_fitted = fitted(reg_ads3)
 
 p_base = ggplot(data=oj) + 
@@ -99,6 +100,9 @@ p_base
 
 # shape = 21 gives you points with black circles around them
 # the fill aesthetic maps to whether or not feat=1
+p_base + geom_point(aes(x=log(price), y = reg_ads2_fitted, fill=factor(feat)),
+                    shape=21)
+
 p_base + geom_point(aes(x=log(price), y = reg_ads3_fitted, fill=factor(feat)),
                     shape=21)
 

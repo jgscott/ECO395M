@@ -37,3 +37,18 @@ rmse(lm3, saratoga_test)
 
 # Can you hand-build a model that improves on all three?
 # Remember feature engineering, and remember not just to rely on a single train/test split
+
+out = do(100)*{
+  saratoga_split = initial_split(SaratogaHouses, prop = 0.8)
+  saratoga_train = training(saratoga_split)
+  saratoga_test = testing(saratoga_split)
+  lm2 = lm(price ~ (. - pctCollege - sewer - waterfront - landValue -
+                 newConstruction), data=saratoga_train)
+  lm3 = lm(price ~ (. - pctCollege - sewer - waterfront - landValue -
+                      newConstruction)^2, data=saratoga_train)
+  rmse2 = rmse(lm2, saratoga_test)
+  rmse3 = rmse(lm3, saratoga_test)
+  c(rmse2, rmse3)
+}
+
+colMeans(out)
