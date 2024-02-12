@@ -97,3 +97,7 @@ The features in the data set are as follows:
 | habitat                      | grasses=g, leaves=l, meadows=m, paths=p, urban=u, waste=w, woods=d          |
 
 
+So you can see that all of the variables are categorical, sometimes with more than 2 levels.
+
+Can you predict whether a mushroom is poisonous using machine learning?  Write a short report on the best-performing model you can find using lasso-penalized logistic regression.  Evaluate the out-of-sample performance of your model using a ROC curve.  Based on this ROC curve, recommend a probability threshold for declaring a mushroom poisonous.  How well does your model perform at this threshold, as measured by false positive rate and true positive rate?  
+
