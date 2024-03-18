@@ -1,8 +1,8 @@
 # ECO 395M: Exercises 3
 
-Due date: Monday, March 27, 5 PM US Central Time.  Email submissions to ruizuo11@utexas.edu.  
+Due date: Monday, April 1, 5 PM US Central Time.  Email submissions to ruizuo11@utexas.edu.  
 
-## What causes what?  
+## What causes what?
 
 First, listen to [this podcast from Planet Money.](https://www.npr.org/sections/money/2013/04/23/178635250/episode-453-what-causes-what)  Then use your knowledge of statistical learning to answer the following questions.
 
@@ -51,7 +51,7 @@ Your task is to use _CART_, _random forests_, and _gradient-boosted trees_ to pr
 
 
 
-## Predictive model building: green certification   
+## Predictive model building: green certification
 
 Consider the data set on green buildings in [greenbuildings.csv](../data/greenbuildings.csv), which we've examined before in the context of data visualization.  This contains data on 7,894 commercial rental properties from across the United States. Of these, 685 properties have been awarded either LEED or EnergyStar certification as a green building.  Here is a list of the variables:
 
@@ -78,14 +78,14 @@ Consider the data set on green buildings in [greenbuildings.csv](../data/greenbu
 - City_Market_Rent:  a measure of average rent per square-foot per calendar year in the building's local market.    
 
 
-Your goal is to build the best predictive model possible for _revenue per square foot per calendar year_, and to use this model to quantify the average change in rental income per square foot (whether in absolute or percentage terms) associated with green certification, holding other features of the building constant. (This might entail, for example, a partial dependence plot, depending on what model you work with here.) Note that revenue per square foot per year is the product of two terms: rent and leasing_rate!  This reflects the fact that, for example, high-rent buildings with low occupancy may not actually bring in as much revenue as lower-rent buildings with higher occupancy.  
+Your goal is to build the best predictive model possible for _revenue per square foot per calendar year_, and to use this model to quantify the average change in rental income per square foot (whether in absolute or percentage terms) associated with green certification, holding other features of the building constant. (This might entail, for example, a partial dependence plot, depending on what model you work with here.) Note that revenue per square foot per year is the product of two terms: `rent` and `leasing_rate`!  This reflects the fact that, for example, high-rent buildings with low occupancy may not actually bring in as much revenue as lower-rent buildings with higher occupancy.  
 
 You can choose whether to consider LEED and EnergyStar separately or to collapse them into a single "green certified" category.  You can use any modeling approaches in your toolkit (regression, variable selection, trees, etc), and you should also feel free to do any feature engineering you think helps improve the model.  Just make sure to explain what you've done.  
 
 Write a short report, no more than the equivalent of about 4 pages, detailing your methods, modeling choice, and conclusions.  
 
 
-## Predictive model building: California housing  
+## Predictive model building: California housing
 
 The data in [CAhousing.csv](../data/CAhousing.csv) containts data at the census-tract level on residential housing in the state of California.  Each row is a [census tract](https://libguides.lib.msu.edu/tracts), and the columns are as follows:  
 
@@ -103,5 +103,5 @@ Your task is to build the best predictive model you can for `medianHouseValue`, 
 - a plot of your model's predictions of medianHouseValue (or log medianHouseValue) versus longitude (x) and latitude (y).  
 - a plot of your model's errors/residuals (or log residuals) versus longitude (x) and latitude (y).
 
-You can get nearly full credit (but not 100%) without a mapping package, i.e. just treating longitude and latitude as generic x/y coordinates.  But a modest number of points will be reserved for those who can successfully show these plots in a visually pleasing fashion on an _actual map of California_.  This will entail learning how to use an R package capable of making maps.  (We haven't covered this in class, but a major part of being a data scientist is learning how to use new software tools and libraries "on the fly" like this.)  I recommend `ggmap` as a good starting point, but you can use whatever R tools you want here.  
+You can get nearly full credit (but not 100%) without a mapping package, i.e. just treating longitude and latitude as generic x/y coordinates.  But a modest number of points will be reserved for those who can successfully show these plots in a visually pleasing fashion on an _actual map of California_.  This will entail learning how to use an R/python package capable of making maps.  (We haven't covered this in class, but a major part of being a data scientist is learning how to use new software tools and libraries "on the fly" like this.)  Consider `ggmap` as a good starting point, but you can use whatever R tools you want here.  
 

@@ -63,11 +63,14 @@ fit = cv.gamlr(x, y, nfold=10, verb=TRUE,
 # the CV error plot vs lambda
 plot(fit)
 
-# the game-configuration effects
-beta_hat[colnames(config),]
+
 
 # the player effects
 beta_hat = coef(fit)
+
+# the game-configuration effects
+beta_hat[1:8]
+
 head(exp(beta_hat), 50)
 
 # now the player-only effects

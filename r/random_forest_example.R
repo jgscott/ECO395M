@@ -26,9 +26,6 @@ load_tree = mutate(load_tree,
                    weeks_elapsed = time_length(timestamp - ymd_hms('2010-01-01 01:00:00'), unit='weeks'))
 
 
-
-
-
 head(load_tree)
 
 
