@@ -56,19 +56,30 @@ station_data = subset(station_data, state != 'MX')
 # to the same coordinate system used by usmap
 station_map = station_data %>%
   select(lon, lat) %>%
-  usmap_transform 
+  usmap_transform %>%
+  as_tibble() %>%
+  mutate(geometry = as.character(geometry)) %>%
+  mutate(geometry = str_remove_all(geometry, "[,c\\(\\)]"), # Remove parentheses
+         coords = str_split(geometry, " "),
+         x = as.numeric(map_chr(coords, 1)), # Extract x coordinate
+         y = as.numeric(map_chr(coords, 2))) %>% # Extract y coordinate
+  select(-geometry, -coords) # Remove the original geometry column and the temporary coords list column
 
 head(station_map)
 
-# now merge these coordinates station name
-station_data = station_data %>% rownames_to_column('station')
-station_data = merge(station_data, station_map, by=c('lat', 'lon'))
-head(station_data)
+
+# # now merge these coordinates station name
+# station_data = station_data %>% rownames_to_column('station')
+# station_data = merge(station_data, station_map, by=c('lat', 'lon'))
+# head(station_data)
+
+station_data = cbind(station_data, station_map)
 
 # plot the coordinates of the weather stations
 plot_usmap(include = c("TX", "LA", "OK", "NM", "AR")) + 
   geom_point(data=station_data, aes(x=x, y=y))
 
+station_data = station_data %>% rownames_to_column('station')
 
 #### 
 # PCA
