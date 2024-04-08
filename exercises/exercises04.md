@@ -42,6 +42,59 @@ Your job is to set up a neural network that can classify the images as accuratel
 - show some of the example images from the test set, together with your model's predicted classes. 
 - a confusion matrix showing the performance of the model on the set test, i.e. a table that cross-tabulates each test set example by (actual class, predicted class).  
 
-I strongly recommend the use of PyTorch in a Jupyter notebook for this problem; look into PyTorch's `ImageFolder` data set class, which will streamline things considerably.  
+I strongly recommend the use of PyTorch in a Jupyter notebook for this problem; look into PyTorch's `ImageFolder` data set class, which will streamline things considerably.  I'll give you the first block of code in my Jupyter notebook, which looks like this. I've handled the resizing and normalization of the images for you -- you can take it from here.  
+
+```
+# Necessary Imports
+import torch
+import torchvision
+import torchvision.transforms as transforms
+from torchvision.datasets import ImageFolder
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Set the directory where your data is stored
+data_dir = '../data/EuroSAT_RGB'
+
+# Set the batch size for training and testing
+batch_size = 4
+
+# Define a transformation to apply to the images
+transform = transforms.Compose(
+    [transforms.Resize((32, 32)),  # Resize images to 32x32
+     transforms.ToTensor(),  # Convert image to PyTorch Tensor data type
+     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])  # Normalize the images
+
+# Load the training data
+dataset = ImageFolder(root=data_dir, transform=transform)
+
+# Create data loaders for training and testing datasets
+data_loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=True)
+
+# Print some samples to verify the data loading
+data_iter = iter(data_loader)
+images, labels = data_iter.next()
+print(images.shape, labels.shape)
+
+# Function to show an image
+def imshow(img):
+    img = img / 2 + 0.5  # Unnormalize
+    npimg = img.numpy()
+    plt.imshow(np.transpose(npimg, (1, 2, 0)))
+    plt.show()
+
+ # Get some random training images
+dataiter = iter(data_loader)
+images, labels = dataiter.next()
+
+# Show images
+imshow(torchvision.utils.make_grid(images))
+
+# Print labels
+print(' '.join('%5s' % dataset.classes[labels[j]] for j in range(batch_size)))
+
+```
+
+One tip: in our example of a convolutional neural network in class, we had black and white images, and therefore _one_ input channel in our 2D convolutions.  These are RGB images here, and so you'll need to modify the first convolutional layer accordingly to handle _three_ input channels.  
 
 
