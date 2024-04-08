@@ -1,6 +1,6 @@
 # ECO 395M: Exercises 4
 
-Due date: Monday, April 17, 5 PM US Central Time.  Email submissions to ruizuo11@utexas.edu.  
+Due date: Monday, April 22, 5 PM US Central Time.  Email submissions to ruizuo11@utexas.edu.  
 
 
 ## Clustering and PCA
@@ -28,7 +28,7 @@ Your task to is analyze this data as you see fit, and to prepare a (short!) repo
 
 ## Association rules for grocery purchases
 
-Revisit the notes on association rule mining and the R example on music playlists: [playlists.R](../R/playlists.R) and [playlists.csv](../data/playlists.csv).  Then use the data on grocery purchases in [groceries.txt](../data/groceries.txt) and find some interesting association rules for these shopping baskets.  The data file is a list of shopping baskets: one person's basket for each row, with multiple items per row separated by commas -- you'll have to cobble together a few utilities for processing this into the format expected by the "arules" package.  Pick your own thresholds for lift and confidence; just be clear what these thresholds are and how you picked them.  Do your discovered item sets make sense?  Present your discoveries in an interesting and concise way.  
+Revisit the notes on association rule mining and the R example on music playlists: [playlists.R](../R/playlists.R) and [playlists.csv](../data/playlists.csv).  Then use the data on grocery purchases in [groceries.txt](../data/groceries.txt) and find some interesting association rules for these shopping baskets.  The data file is a list of shopping baskets: one person's basket for each row, with multiple items per row separated by commas -- you'll have to cobble together a few utilities for processing this into the format expected by the "arules" package.  Pick your own thresholds for lift and confidence; just be clear what these thresholds are and how you picked them.  Do your discovered item sets make sense?  Present your discoveries using an interesting visualization or two, along with no more than one page of typed text.  
 
 
 

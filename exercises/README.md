@@ -5,7 +5,7 @@ Follow the guidelines given below for how to submit.
 - [Exercises 1](exercises01.md): Due Monday, Feb 5 by 5 PM Central time.  
 - [Exercises 2](exercises02.md): Due Wednesday, Feb 28 by 5 PM Central time.   
 - [Exercises 3](exercises03.md): Due Monday, April 1 by 5 PM Central time.  
-<!-- - [Exercises 4](exercises04.md): Due Monday, April 17 by 5 PM Central time.   -->
+- [Exercises 4](exercises04.md): Due Monday, April 22 by 5 PM Central time. 
 
 # Project
 
