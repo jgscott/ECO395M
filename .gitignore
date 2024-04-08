@@ -60,3 +60,4 @@ data/corpora/wordnet.zip
 slides/07-clustering/07-clustering_cache/beamer/__packages
 *.log
 .gitignore.swp
+notebooks/eurosat.ipynb
